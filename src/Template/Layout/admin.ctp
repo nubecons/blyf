@@ -118,13 +118,8 @@
                   </span>
                 </a>
               </li>
-              <li>
-                <a href class="auto">      
-                  <i class="glyphicon glyphicon-stats icon text-primary-dker"></i>
-                  <span class="font-bold">Allergy Management
-                  </span>
-                </a>
-              </li>
+
+<li class="line dk"></li>
                 <li>
                 <a href class="auto">  
                  <span class="pull-right text-muted">
@@ -132,7 +127,7 @@
                     <i class="fa fa-fw fa-angle-down text-active"></i>
                   </span>
                       
-                  <i class="glyphicon glyphicon-stats icon text-primary-dker"></i>
+                  <i class="glyphicon glyphicon-th"></i>
                   <span class="font-bold">Categories</span>
                 </a>
                 <ul class="nav nav-sub dk">
@@ -160,7 +155,7 @@
                     <i class="fa fa-fw fa-angle-down text-active"></i>
                   </span>
                       
-                  <i class="glyphicon glyphicon-stats icon text-primary-dker"></i>
+                  <i class="fa fa-cutlery"></i>
                   <span class="font-bold">Meals</span>
                 </a>
                 <ul class="nav nav-sub dk">
@@ -189,7 +184,7 @@
                     <i class="fa fa-fw fa-angle-down text-active"></i>
                   </span>
                       
-                  <i class="glyphicon glyphicon-stats icon text-primary-dker"></i>
+                  <i class="fa fa-bank"></i>
                   <span class="font-bold">Stores</span>
                 </a>
                 <ul class="nav nav-sub dk">
@@ -224,7 +219,7 @@
                     <i class="fa fa-fw fa-angle-down text-active"></i>
                   </span>
                       
-                  <i class="glyphicon glyphicon-stats icon text-primary-dker"></i>
+                  <i class="glyphicon glyphicon-file icon"></i>
                   <span class="font-bold">Blogs</span>
                 </a>
                 <ul class="nav nav-sub dk">
@@ -253,7 +248,7 @@
                     <i class="fa fa-fw fa-angle-down text-active"></i>
                   </span>
                       
-                  <i class="glyphicon glyphicon-stats icon text-primary-dker"></i>
+                  <i class="glyphicon glyphicon-edit"></i>
                   <span class="font-bold">Content</span>
                 </a>
                 <ul class="nav nav-sub dk">
@@ -263,40 +258,40 @@
                     </a>
                   </li>
 </ul>
-
-               <li>
-                <a href class="auto">  
-                 <span class="pull-right text-muted">
-                    <i class="fa fa-fw fa-angle-right text"></i>
-                    <i class="fa fa-fw fa-angle-down text-active"></i>
-                  </span>
-                      
-                  <i class="glyphicon glyphicon-stats icon text-primary-dker"></i>
-                  <span class="font-bold">Orders</span>
-                </a>
-                <ul class="nav nav-sub dk">
-                  <li class="nav-sub-header">
-                    <a href>
-                      <span>Orders</span>
-                    </a>
-                  </li>
-     <li>
-                    <a href="javascript void(0)">
-                      <span>Orders Management</span>
-                    </a>
-                  </li> 
-                  <li>
-                    <a href="javascript void(0)">
-                      <span>Points Management</span>
-                    </a>
-                  </li>     
-                </ul>
-              </li>
-
-
-
      
-                </ul>
+            
+<li class="line dk"></li>
+              <li>
+                <a href class="auto">      
+                  <i class="glyphicon glyphicon-stats"></i>
+                  <span class="font-bold">Allergy Management</span>
+                </a>
+              </li>
+              <li>
+                <a href class="auto">      
+                  <i class="glyphicon glyphicon-list"></i>
+                  <span class="font-bold">Orders Management</span>
+                </a>
+              </li>
+              <li>
+                <a href class="auto">      
+                  <i class="fa fa-ticket"></i>
+                  <span class="font-bold">Points Management</span>
+                </a>
+              </li>
+              <li>
+                <a href class="auto">      
+                  <i class="fa fa-clipboard"></i>
+                  <span class="font-bold">Feedback Management
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href class="auto">      
+                  <i class="fa fa-money"></i>
+                  <span class="font-bold">Coupon Management
+                  </span>
+                </a>
               </li>
 
             </ul>

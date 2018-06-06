@@ -1,283 +1,219 @@
 <?php
-
-// src/Model/Table/UsersTable.php
-
 namespace App\Model\Table;
 
-
-
 use Cake\ORM\Table;
-
 use Cake\Validation\Validator;
-
 use Cake\Auth\DefaultPasswordHasher;
 
-class UsersTable extends Table
+class UsersTable extends Table {
 
-{
+    public function initialize(array $config) {
 
-public function initialize(array $config)
-
-    {
-
-       $this->addBehavior('Timestamp', [
+        $this->addBehavior('Timestamp', [
 
             'events' => [
 
                 'Model.beforeSave' => [
 
-				     'created' => 'new',
-
+                    'created' => 'new',
                     'dateCreated' => 'new',
-
                     'last_updated' => 'always',
-
-					'modified' => 'always',
-
-			    ]
-
+                    'modified' => 'always',
+                ]
             ]
-
         ]);
-
     }
 
-	
-
-	
-
-		public function validationPassword(Validator $validator )
-
-    {
+    public function validationPassword(Validator $validator) {
 
         $validator
+                ->add('old_password', 'custom', [
 
-            ->add('old_password','custom',[
+                    'rule' => function($value, $context) {
 
-                'rule'=>  function($value, $context){
+                        $user = $this->get($context['data']['id']);
 
-                    $user = $this->get($context['data']['id']);
+                        if ($user) {
 
-                    if ($user) {
+                            if ((new DefaultPasswordHasher)->check($value, $user->password)) {
 
-                        if ((new DefaultPasswordHasher)->check($value, $user->password)) {
-
-                            return true;
-
+                                return true;
+                            }
                         }
 
-                    }
+                        return false;
+                    },
+                    'message' => 'The old password does not match the current password!',
+                ])
+                ->notEmpty('old_password');
 
-                    return false;
 
-                },
-
-                'message'=>'The old password does not match the current password!',
-
-            ])
-
-            ->notEmpty('old_password');
-
- 
 
         $validator
 
-            /*->add('new_password', [
+                /* ->add('new_password', [
 
-                'length' => [
+                  'length' => [
 
-                    'rule' => ['minLength', 6],
+                  'rule' => ['minLength', 6],
 
-                    'message' => 'The password have to be at least 6 characters!',
+                  'message' => 'The password have to be at least 6 characters!',
 
-                ]
+                  ]
 
-            ])*/
+                  ]) */
+                ->add('new_password', [
 
-            ->add('new_password',[
+                    'match' => [
 
-                'match'=>[
-
-                    'rule'=> ['compareWith','confirm_password'],
-
-                    'message'=>'The passwords does not match!',
-
-                ]
-
-            ])
-
-            ->notEmpty('new_password');
+                        'rule' => ['compareWith', 'confirm_password'],
+                        'message' => 'The passwords does not match!',
+                    ]
+                ])
+                ->notEmpty('new_password');
 
         $validator
 
-            /*->add('confirm_password', [
+                /* ->add('confirm_password', [
 
-                'length' => [
+                  'length' => [
 
-                    'rule' => ['minLength', 6],
+                  'rule' => ['minLength', 6],
 
-                    'message' => 'The password have to be at least 6 characters!',
+                  'message' => 'The password have to be at least 6 characters!',
 
-                ]
+                  ]
 
-            ])*/
+                  ]) */
+                ->add('confirm_password', [
 
-            ->add('confirm_password',[
+                    'match' => [
 
-                'match'=>[
-
-                    'rule'=> ['compareWith','new_password'],
-
-                    'message'=>'The passwords does not match!',
-
-                ]
-
-            ])
-
-            ->notEmpty('confirm_password');
+                        'rule' => ['compareWith', 'new_password'],
+                        'message' => 'The passwords does not match!',
+                    ]
+                ])
+                ->notEmpty('confirm_password');
 
 
 
-			/*$validator->add('phone_number', [
+        /* $validator->add('phone_number', [
 
-				'rule' => ['validateUnique'],
+          'rule' => ['validateUnique'],
 
-				'on' => function ($context) {
+          'on' => function ($context) {
 
-					return ($context['data']['group_id'] === 2);
+          return ($context['data']['group_id'] === 2);
 
-				}
+          }
 
-			]);
+          ]);
 
-			*/
+         */
 
-			/*$validator->notEmpty('creditcard_number', 'Credit Card is required', function ($context) {
+        /* $validator->notEmpty('creditcard_number', 'Credit Card is required', function ($context) {
 
-				return $context['data']['payment_method'] === 'credit_card';
+          return $context['data']['payment_method'] === 'credit_card';
 
-			});*/
+          }); */
 
 
 
-			/*'emailUnique' => [
+        /* 'emailUnique' => [
 
-                'message' => 'The email you provided is already taken. Please provide another one.',
+          'message' => 'The email you provided is already taken. Please provide another one.',
 
-                'rule' => 'validateUnique', 
+          'rule' => 'validateUnique',
 
-                'provider' => 'table'
+          'provider' => 'table'
 
-            ]*/
+          ] */
 
         return $validator;
-
     }
 
-	
+    /* public function validationDefault(Validator $validator)
 
-   /* public function validationDefault(Validator $validator)
+      {
 
-    {
+      return $validator
 
-        return $validator
+      ->notEmpty('username', 'A username is required')
 
-            ->notEmpty('username', 'A username is required')
+      ->notEmpty('password', 'A password is required')
 
-            ->notEmpty('password', 'A password is required')
+      ->notEmpty('role', 'A role is required')
 
-            ->notEmpty('role', 'A role is required')
+      ->add('role', 'inList', [
 
-            ->add('role', 'inList', [
+      'rule' => ['inList', ['admin', 'author']],
 
-                'rule' => ['inList', ['admin', 'author']],
+      'message' => 'Please enter a valid role'
 
-                'message' => 'Please enter a valid role'
+      ]);
 
-            ]);
+      } */
 
-    }*/
+    public function findAuth(\Cake\ORM\Query $query, array $options) {
+        $query->select(['id', 'first_name', 'last_name', 'email', 'password', 'group_id', 'mobile']);
+        return $query;
+    }
 
-
-
-
-
-public function findAuth(\Cake\ORM\Query $query, array $options)
-	{
-		$query->select(['id', 'first_name', 'last_name', 'email', 'password' ,'group_id','mobile']);
-		return $query;
-	}
+    public function validatePassword($data) {
 
 
 
-public function validatePassword($data){
-
-        
-
-		 $error = '';	
-
-		 
-
-		  if (empty($data['password']))
-
-			  $error .= 'Please enter a password<br />';
-
-		   else if (empty($data['confirm_password']))
-
-			  $error .= 'Please enter your password twice<br />';
-
-		   else if ($data['password'] != $data['confirm_password'])
-
-			  $error .= 'Your password must be entered the same in both password fields<br />';
+        $error = '';
 
 
 
-           return $error ;		 
+        if (empty($data['password']))
+            $error .= 'Please enter a password<br />';
 
-	}	
+        else if (empty($data['confirm_password']))
+            $error .= 'Please enter your password twice<br />';
+
+        else if ($data['password'] != $data['confirm_password'])
+            $error .= 'Your password must be entered the same in both password fields<br />';
 
 
 
+        return $error;
+    }
+
+    public function create_account($data = []) {
 
 
-public function create_account($data = []){
-		
-		 
-		  $return = [];
-	
-		if(isset($data['id']))
-		  {
-		    $udata = $this->get($data['id']);
-		  }else{
-	
-			$udata = $this->newEntity();
-			
-			$check_email = $this->find()->where(['email' => $data['email']])->first();
-			
-			if($check_email){
-				
-			        $return['status'] = 'fail';
-			    	$return['message'] = 'This email already registered.';
-					return $return;
-				
-				}
-		  }
+        $return = [];
 
-    	  $udata = $this->patchEntity($udata, $data);
+        if (isset($data['id'])) {
+            $udata = $this->get($data['id']);
+        } else {
 
-    	  if($result = $this->save($udata)){
+            $udata = $this->newEntity();
 
-           	        $return['status'] = 'success';
-					$return['id'] = $result->id;
-			    	$return['message'] = 'User registered.';
-					return $return;
-				
-			
+            $check_email = $this->find()->where(['email' => $data['email']])->first();
 
-		  }
-		    $return['status'] = 'success';
-			$return['message'] =  'The user could not be saved. Please, try again.';
-			return $return;
-		
-	 }	
+            if ($check_email) {
+
+                $return['status'] = 'fail';
+                $return['message'] = 'This email already registered.';
+                return $return;
+            }
+        }
+
+        $udata = $this->patchEntity($udata, $data);
+
+        if ($result = $this->save($udata)) {
+
+            $return['status'] = 'success';
+            $return['id'] = $result->id;
+            $return['message'] = 'User registered.';
+            return $return;
+        }
+        $return['status'] = 'success';
+        $return['message'] = 'The user could not be saved. Please, try again.';
+        return $return;
+    }
+
 }
