@@ -120,6 +120,13 @@
                   </span>
                 </a>
               </li>
+              <li>
+                <a href class="auto">      
+                  <i class="glyphicon glyphicon-stats icon text-primary-dker"></i>
+                  <span class="font-bold">Allergy Management
+                  </span>
+                </a>
+              </li>
                 <li>
                 <a href class="auto">  
                  <span class="pull-right text-muted">
@@ -128,29 +135,52 @@
                   </span>
                       
                   <i class="glyphicon glyphicon-stats icon text-primary-dker"></i>
-                  <span class="font-bold">Manage Categories</span>
+                  <span class="font-bold">Categories</span>
                 </a>
                 <ul class="nav nav-sub dk">
                   <li class="nav-sub-header">
                     <a href>
-                      <span>Layout</span>
+                      <span>Categories</span>
                     </a>
                   </li>
                   <li>
-                    <a href="layout_app.html">
-                      <span>Application</span>
+                    <a href="javascript void(0)">
+                      <span>Categories Management</span>
+                    </a>
+                  </li> 
+                  <li>
+                    <a href="javascript void(0)">
+                      <span>Sub Categories</span>
+                    </a>
+                  </li>     
+                </ul>
+              </li>
+<li>
+                <a href class="auto">  
+                 <span class="pull-right text-muted">
+                    <i class="fa fa-fw fa-angle-right text"></i>
+                    <i class="fa fa-fw fa-angle-down text-active"></i>
+                  </span>
+                      
+                  <i class="glyphicon glyphicon-stats icon text-primary-dker"></i>
+                  <span class="font-bold">Meals</span>
+                </a>
+                <ul class="nav nav-sub dk">
+                  <li class="nav-sub-header">
+                    <a href>
+                      <span>Meals</span>
                     </a>
                   </li>
                   <li>
-                    <a href="layout_fullwidth.html">
-                      <span>Full width</span>
+                    <a href="javascript void(0)">
+                      <span>Individual Meals Management</span>
                     </a>
-                  </li>
+                  </li> 
                   <li>
-                    <a href="layout_boxed.html">
-                      <span>Boxed layout</span>
+                    <a href="javascript void(0)">
+                      <span>Ready  Meals Management</span>
                     </a>
-                  </li>      
+                  </li>     
                 </ul>
               </li>
               
@@ -162,29 +192,30 @@
                   </span>
                       
                   <i class="glyphicon glyphicon-stats icon text-primary-dker"></i>
-                  <span class="font-bold">Manage Store</span>
+                  <span class="font-bold">Stores</span>
                 </a>
                 <ul class="nav nav-sub dk">
                   <li class="nav-sub-header">
                     <a href>
-                      <span>Layout</span>
+                      <span>Stores</span>
                     </a>
                   </li>
                   <li>
-                    <a href="layout_app.html">
-                      <span>Application</span>
+                    <a href="javascript void(0)">
+                      <span>Stores Management</span>
+                    </a>
+                  </li> 
+                  <li>
+                    <a href="javascript void(0)">
+                      <span>Locations Management</span>
                     </a>
                   </li>
                   <li>
-                    <a href="layout_fullwidth.html">
-                      <span>Full width</span>
+                    <a href="javascript void(0)">
+                      <span>Pick Up Timings</span>
                     </a>
                   </li>
-                  <li>
-                    <a href="layout_boxed.html">
-                      <span>Boxed layout</span>
-                    </a>
-                  </li>      
+     
                 </ul>
               </li>
               
@@ -196,31 +227,80 @@
                   </span>
                       
                   <i class="glyphicon glyphicon-stats icon text-primary-dker"></i>
-                  <span class="font-bold">Manage Store</span>
+                  <span class="font-bold">Blogs</span>
                 </a>
                 <ul class="nav nav-sub dk">
                   <li class="nav-sub-header">
                     <a href>
-                      <span>Layout</span>
+                      <span>Blog Categories</span>
                     </a>
                   </li>
                   <li>
-                    <a href="layout_app.html">
-                      <span>Application</span>
+                    <a href="javascript void(0)">
+                      <span>Blog Management</span>
                     </a>
                   </li>
                   <li>
-                    <a href="layout_fullwidth.html">
-                      <span>Full width</span>
+                    <a href="javascript void(0)">
+                      <span>Blog Posts</span>
                     </a>
                   </li>
-                  <li>
-                    <a href="layout_boxed.html">
-                      <span>Boxed layout</span>
-                    </a>
-                  </li>      
+     
                 </ul>
               </li>
+               <li>
+                <a href class="auto">  
+                 <span class="pull-right text-muted">
+                    <i class="fa fa-fw fa-angle-right text"></i>
+                    <i class="fa fa-fw fa-angle-down text-active"></i>
+                  </span>
+                      
+                  <i class="glyphicon glyphicon-stats icon text-primary-dker"></i>
+                  <span class="font-bold">Content</span>
+                </a>
+                <ul class="nav nav-sub dk">
+                  <li class="nav-sub-header">
+                    <a href>
+                      <span>Pages</span>
+                    </a>
+                  </li>
+</ul>
+
+               <li>
+                <a href class="auto">  
+                 <span class="pull-right text-muted">
+                    <i class="fa fa-fw fa-angle-right text"></i>
+                    <i class="fa fa-fw fa-angle-down text-active"></i>
+                  </span>
+                      
+                  <i class="glyphicon glyphicon-stats icon text-primary-dker"></i>
+                  <span class="font-bold">Orders</span>
+                </a>
+                <ul class="nav nav-sub dk">
+                  <li class="nav-sub-header">
+                    <a href>
+                      <span>Orders</span>
+                    </a>
+                  </li>
+     <li>
+                    <a href="javascript void(0)">
+                      <span>Orders Management</span>
+                    </a>
+                  </li> 
+                  <li>
+                    <a href="javascript void(0)">
+                      <span>Points Management</span>
+                    </a>
+                  </li>     
+                </ul>
+              </li>
+
+
+
+     
+                </ul>
+              </li>
+
             </ul>
           </nav>
           <!-- nav -->
