@@ -912,12 +912,12 @@ body {
 @media (min-width: 768px) {
   .app-aside,
   .navbar-header {
-    width: 200px;
+    width: 230px;
   }
   .navbar-collapse,
   .app-content,
   .app-footer {
-    margin-left: 200px;
+    margin-left: 230px;
   }
   .app-aside-right {
     position: absolute;
@@ -990,10 +990,10 @@ body {
     width: 17px;
   }
   .app-aside-fixed .aside-wrap .navi-wrap > * {
-    width: 200px;
+    width: 230px;
   }
   .smart .app-aside-fixed .aside-wrap .navi-wrap {
-    width: 200px;
+    width: 230px;
   }
   .app-aside-fixed.app-aside-folded .app-aside {
     position: fixed;
