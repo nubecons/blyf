@@ -9195,3 +9195,103 @@ Stack Trace:
 #15 {main}
 
 
+2018-06-06 18:48:17 Error: [Error] Class 'Configure' not found
+Request URL: /admin/pages/index
+Stack Trace:
+#0 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\View\View.php(1240): include()
+#1 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\View\View.php(1201): Cake\View\View->_evaluate('D:\\xampp\\htdocs...', Array)
+#2 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\View\View.php(803): Cake\View\View->_render('D:\\xampp\\htdocs...')
+#3 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Controller\Controller.php(777): Cake\View\View->render(NULL, NULL)
+#4 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Http\ActionDispatcher.php(126): Cake\Controller\Controller->render()
+#5 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Http\ActionDispatcher.php(94): Cake\Http\ActionDispatcher->_invoke(Object(App\Controller\Admin\PagesController))
+#6 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Http\BaseApplication.php(228): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#7 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#8 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php(158): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#9 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#10 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#11 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#12 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php(98): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#13 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#14 D:\xampp\htdocs\blyf\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php(53): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#15 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Http\Runner.php(65): DebugKit\Middleware\DebugKitMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#16 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Http\Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#17 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Http\Server.php(98): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#18 D:\xampp\htdocs\blyf\webroot\index.php(40): Cake\Http\Server->run()
+#19 {main}
+
+
+2018-06-06 18:48:44 Error: [Error] Class 'Configure' not found
+Request URL: /admin/pages/index
+Stack Trace:
+#0 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\View\View.php(1240): include()
+#1 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\View\View.php(1201): Cake\View\View->_evaluate('D:\\xampp\\htdocs...', Array)
+#2 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\View\View.php(803): Cake\View\View->_render('D:\\xampp\\htdocs...')
+#3 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Controller\Controller.php(777): Cake\View\View->render(NULL, NULL)
+#4 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Http\ActionDispatcher.php(126): Cake\Controller\Controller->render()
+#5 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Http\ActionDispatcher.php(94): Cake\Http\ActionDispatcher->_invoke(Object(App\Controller\Admin\PagesController))
+#6 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Http\BaseApplication.php(228): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#7 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#8 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php(158): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#9 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#10 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#11 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#12 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php(98): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#13 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#14 D:\xampp\htdocs\blyf\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php(53): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#15 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Http\Runner.php(65): DebugKit\Middleware\DebugKitMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#16 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Http\Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#17 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Http\Server.php(98): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#18 D:\xampp\htdocs\blyf\webroot\index.php(40): Cake\Http\Server->run()
+#19 {main}
+
+
+2018-06-06 18:49:23 Error: [Error] Class 'Configure' not found
+Request URL: /admin/pages/index
+Stack Trace:
+#0 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\View\View.php(1240): include()
+#1 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\View\View.php(1201): Cake\View\View->_evaluate('D:\\xampp\\htdocs...', Array)
+#2 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\View\View.php(803): Cake\View\View->_render('D:\\xampp\\htdocs...')
+#3 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Controller\Controller.php(777): Cake\View\View->render(NULL, NULL)
+#4 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Http\ActionDispatcher.php(126): Cake\Controller\Controller->render()
+#5 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Http\ActionDispatcher.php(94): Cake\Http\ActionDispatcher->_invoke(Object(App\Controller\Admin\PagesController))
+#6 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Http\BaseApplication.php(228): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#7 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#8 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php(158): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#9 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#10 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#11 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#12 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php(98): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#13 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#14 D:\xampp\htdocs\blyf\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php(53): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#15 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Http\Runner.php(65): DebugKit\Middleware\DebugKitMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#16 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Http\Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#17 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Http\Server.php(98): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#18 D:\xampp\htdocs\blyf\webroot\index.php(40): Cake\Http\Server->run()
+#19 {main}
+
+
+2018-06-06 18:49:47 Error: [Error] Class 'Cache' not found
+Request URL: /admin/pages/index
+Stack Trace:
+#0 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\View\View.php(1240): include()
+#1 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\View\View.php(1201): Cake\View\View->_evaluate('D:\\xampp\\htdocs...', Array)
+#2 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\View\View.php(803): Cake\View\View->_render('D:\\xampp\\htdocs...')
+#3 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Controller\Controller.php(777): Cake\View\View->render(NULL, NULL)
+#4 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Http\ActionDispatcher.php(126): Cake\Controller\Controller->render()
+#5 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Http\ActionDispatcher.php(94): Cake\Http\ActionDispatcher->_invoke(Object(App\Controller\Admin\PagesController))
+#6 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Http\BaseApplication.php(228): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#7 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#8 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php(158): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#9 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#10 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#11 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#12 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php(98): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#13 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#14 D:\xampp\htdocs\blyf\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php(53): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#15 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Http\Runner.php(65): DebugKit\Middleware\DebugKitMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#16 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Http\Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#17 D:\xampp\htdocs\blyf\vendor\cakephp\cakephp\src\Http\Server.php(98): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#18 D:\xampp\htdocs\blyf\webroot\index.php(40): Cake\Http\Server->run()
+#19 {main}
+
+
