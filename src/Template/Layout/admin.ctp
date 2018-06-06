@@ -120,6 +120,31 @@
               </li>
 
 <li class="line dk"></li>
+<li>
+                <a href class="auto">  
+                 <span class="pull-right text-muted">
+                    <i class="fa fa-fw fa-angle-right text"></i>
+                    <i class="fa fa-fw fa-angle-down text-active"></i>
+                  </span>
+                      
+                  <i class="glyphicon glyphicon-th"></i>
+                  <span class="font-bold">CMS</span>
+                </a>
+                <ul class="nav nav-sub dk">
+                
+                  <li>
+                   <a href="<?=$site_url?>admin/pages">
+                      <span>All Pages</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a  href="<?=$site_url?>admin/pages/add">
+                      <span>Add New Page</span>
+                    </a>
+                  </li> 
+               
+                </ul>
+              </li>
                 <li>
                 <a href class="auto">  
                  <span class="pull-right text-muted">
