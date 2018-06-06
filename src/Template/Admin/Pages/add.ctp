@@ -15,7 +15,7 @@
         <div class="form-group">
           <label class="col-sm-2 control-label" for="input-id-1">Headline </label>
           <div class="col-sm-5">
-            <?php echo $this->Form->input('headline', ['class'=>'form-control' ]); ?>
+            <?php echo $this->Form->text('headline', ['class'=>'form-control' ]); ?>
           </div>
         </div>
         
@@ -29,7 +29,7 @@
          <div class="form-group">
           <label class="col-sm-2 control-label" for="input-id-1">Body</label>
           <div class="col-sm-10">
-           <?php echo $this->Ck->Create('body'); ?>
+           <?php echo $this->Ck->Create('body' , $Page->body); ?>
            <?php
 		     if( $Page->errors('body') ){?>
            <div class="error-message">This field cannot be left empty</div>

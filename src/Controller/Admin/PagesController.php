@@ -17,7 +17,7 @@ class PagesController extends AppController
 		$conditions = [] ;
 		$query = $this->Pages->find('all')->where($conditions);
         $this->paginate['limit'] = 25;
-        $this->paginate['order'] = ['created' => 'DESC', ];
+        $this->paginate['order'] = ['created' => 'ASC' ];
         $Pages = $this->paginate($query, array('url' => '/Pages/'));
         $this->set('Pages', $Pages);
        
@@ -71,8 +71,24 @@ class PagesController extends AppController
 				
 				}
 		}
-		
-			
-			
+	} 
+	
+	public function delete($id = null){
+
+	  $Page = $this->Pages->get($id);
+	 
+	 // if ($this->request->is('post') || $this->request->is('put'))
+		{
+			 
+				if ($this->Pages->delete($Page))
+				{
+					$this->Flash->success(__('Record deleted successfully.'));
+					$this->redirect(['action' => 'index']);
+				}else{
+					
+				 $this->Flash->error(__('Record could not deleted. Please try again later.'));	
+				
+				}
+		}
 	}
 }
