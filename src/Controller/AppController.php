@@ -56,24 +56,16 @@ class AppController extends Controller
 		$this->sUser = $sUser ;
 
 		if(isset($this->request->params['prefix']) && $this->request->params['prefix'] == 'admin' ){ 
-
-			$this->viewBuilder()->setLayout('admin');
-
-			/*if($sUser['group_id'] != '1' ){
+   
+			if($sUser && $sUser['group_id'] != '1' ){
 
 				return $this->redirect('/');
-			}*/
-			
-			
-		}else{
-			
-			
-		 
-			
 			}
 
+			$this->viewBuilder()->setLayout('admin');
+			
+		}		
 		
-
 		$this->set('sUser' ,$sUser);
 	
 		
