@@ -19,7 +19,7 @@
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
   
-
+    <?php $site_url = $this->Url->build('/',true); ?> 
 </head>
 <body>
 <div class="app app-header-fixed ">
@@ -68,7 +68,7 @@
           <li class="dropdown">
             <a href="#" data-toggle="dropdown" class="dropdown-toggle clear" data-toggle="dropdown">
               <span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm">
-                <img src="img/a0.jpg" alt="...">
+                <img src="<?=$site_url?>admin/img/a0.jpg" alt="...">
                 <i class="on md b-white bottom"></i>
               </span>
               <span class="hidden-sm hidden-md"><?=$sUser['email']?></span> <b class="caret"></b>
@@ -76,21 +76,19 @@
             <!-- dropdown -->
             <ul class="dropdown-menu animated fadeInRight w">
               <li class="wrapper b-b m-b-sm bg-light m-t-n-xs">
-               
-              
               </li>
               <li>
-                <a href>
-                  <span>Settings</span>
+                <a href="<?=$site_url?>admin/users/profile"  > 
+                  Settings
                 </a>
               </li>
               <li>
-                <a ui-sref="app.page.profile">Change Passoword</a>
+               <a href="<?=$site_url?>admin/users/change-password"  > Change Passoword</a>
               </li>
             
               <li class="divider"></li>
               <li>
-                <a ui-sref="access.signin">Logout</a>
+                <a href="<?=$site_url?>admin/users/logout"  >Logout</a>
               </li>
             </ul>
             <!-- / dropdown -->
@@ -313,6 +311,8 @@
   <!-- content -->
   <div id="content" class="app-content" role="main">
   	<div class="app-content-body ">
+	   <?= $this->Flash->render() ?>
+	   
 	    <?= $this->fetch('content') ?>
 	</div>
   </div>
