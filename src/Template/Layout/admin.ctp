@@ -112,7 +112,7 @@
                             <ul class="nav">
 
                                 <li>
-                                    <a href class="auto">      
+                                    <a href="#" class="auto">      
                                         <i class="glyphicon glyphicon-stats icon text-primary-dker"></i>
                                         <span class="font-bold">Dashboard
                                         </span>
@@ -121,7 +121,7 @@
 
                                 <li class="line dk"></li>
                                 <li>
-                                    <a href class="auto">  
+                                    <a href="#" class="auto">  
                                         <span class="pull-right text-muted">
                                             <i class="fa fa-fw fa-angle-right text"></i>
                                             <i class="fa fa-fw fa-angle-down text-active"></i>
@@ -148,7 +148,7 @@
 
 
                                 <li>
-                                    <a href class="auto">  
+                                    <a href="#" class="auto">  
                                         <span class="pull-right text-muted">
                                             <i class="fa fa-fw fa-angle-right text"></i>
                                             <i class="fa fa-fw fa-angle-down text-active"></i>
@@ -182,7 +182,7 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href class="auto">  
+                                    <a href="#" class="auto">  
                                         <span class="pull-right text-muted">
                                             <i class="fa fa-fw fa-angle-right text"></i>
                                             <i class="fa fa-fw fa-angle-down text-active"></i>
@@ -193,7 +193,7 @@
                                     </a>
                                     <ul class="nav nav-sub dk">
                                         <li class="nav-sub-header">
-                                            <a href>
+                                            <a href="#">
                                                 <span>Stores</span>
                                             </a>
                                         </li>
@@ -217,7 +217,7 @@
                                 </li>
 
                                 <li>
-                                    <a href class="auto">  
+                                    <a href="#" class="auto">  
                                         <span class="pull-right text-muted">
                                             <i class="fa fa-fw fa-angle-right text"></i>
                                             <i class="fa fa-fw fa-angle-down text-active"></i>
@@ -228,7 +228,7 @@
                                     </a>
                                     <ul class="nav nav-sub dk">
                                         <li class="nav-sub-header">
-                                            <a href>
+                                            <a href="#">
                                                 <span>Categories</span>
                                             </a>
                                         </li>
@@ -245,7 +245,7 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href class="auto">  
+                                    <a href="#" class="auto">  
                                         <span class="pull-right text-muted">
                                             <i class="fa fa-fw fa-angle-right text"></i>
                                             <i class="fa fa-fw fa-angle-down text-active"></i>
@@ -256,7 +256,7 @@
                                     </a>
                                     <ul class="nav nav-sub dk">
                                         <li class="nav-sub-header">
-                                            <a href>
+                                            <a href="#">
                                                 <span>Allergens</span>
                                             </a>
                                         </li>
@@ -274,7 +274,7 @@
                                 </li>
                                 
                                 <li>
-                                    <a href class="auto">  
+                                    <a href="#" class="auto">  
                                         <span class="pull-right text-muted">
                                             <i class="fa fa-fw fa-angle-right text"></i>
                                             <i class="fa fa-fw fa-angle-down text-active"></i>
@@ -285,7 +285,7 @@
                                     </a>
                                     <ul class="nav nav-sub dk">
                                         <li class="nav-sub-header">
-                                            <a href>
+                                            <a href="#">
                                                 <span>Ingredients</span>
                                             </a>
                                         </li>
@@ -302,7 +302,7 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href class="auto">  
+                                    <a href="#" class="auto">  
                                         <span class="pull-right text-muted">
                                             <i class="fa fa-fw fa-angle-right text"></i>
                                             <i class="fa fa-fw fa-angle-down text-active"></i>
@@ -313,27 +313,27 @@
                                     </a>
                                     <ul class="nav nav-sub dk">
                                         <li class="nav-sub-header">
-                                            <a href>
+                                            <a href="#">
                                                 <span>Meals</span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="javascript void(0);">
+                                            <a href="<?=$site_url?>admin/dishes">
                                                 <span>Individual Meals/Dishes</span>
                                             </a>
                                         </li> 
                                          <li>
-                                            <a href="javascript void(0);">
+                                            <a href="<?=$site_url?>admin/dishes/add">
                                                 <span>Add Individual Meal/Dish</span>
                                             </a>
                                         </li> 
                                         <li>
-                                            <a href="javascript void(0);">
+                                            <a href="#">
                                                 <span>All Meals</span>
                                             </a>
                                         </li>  
                                          <li>
-                                            <a href="javascript void(0);">
+                                            <a href="#">
                                                 <span>Add Meals</span>
                                             </a>
                                         </li> 
@@ -346,26 +346,26 @@
                                 <li class="line dk"></li>
 
                                 <li>
-                                    <a href class="auto">      
+                                    <a href="#" class="auto">      
                                         <i class="glyphicon glyphicon-list"></i>
                                         <span class="font-bold">Orders Management</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href class="auto">      
+                                    <a href="#" class="auto">      
                                         <i class="fa fa-ticket"></i>
                                         <span class="font-bold">Points Management</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href class="auto">      
+                                    <a href="#" class="auto">      
                                         <i class="fa fa-clipboard"></i>
                                         <span class="font-bold">Feedback Management
                                         </span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href class="auto">      
+                                    <a href="#" class="auto">      
                                         <i class="fa fa-money"></i>
                                         <span class="font-bold">Coupon Management
                                         </span>

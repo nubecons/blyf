@@ -10,7 +10,7 @@ $site_url = $this->Url->build('/',true); ?>
         </div>
         <div class="panel-body">
 
-      <?php echo $this->Form->create($Allergy, ["class" => "form-horizontal" , 'enctype' => 'multipart/form-data']); ?> 
+      <?php echo $this->Form->create($Dish, ["class" => "form-horizontal" , 'enctype' => 'multipart/form-data']); ?> 
             <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-id-1">Title </label>
                 <div class="col-sm-5">
@@ -25,13 +25,26 @@ $site_url = $this->Url->build('/',true); ?>
 
                 </div>
             </div>
-            <div style=" padding-left: 150px;"><?php if($Allergy['image'] != ''){?>
-                <img src="<?=$site_url?>img/Allergens/<?php echo $Allergy['image'];?>" alt="img" width="100" height="100"/>
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-id-1"></label>
+             <div class="col-sm-5">
+			 <?php if($Dish['image'] != ''){?>
+                <img src="<?=$site_url?>img/Dishes/<?php echo $Dish['image'];?>" alt="img" width="100" height="100"/>
                <?php }else{?>
-                 <img src="<?=$site_url?>img/Allergens/awaiting.jpg" alt="img" width="100" height="100"/>
+                 <img src="<?=$site_url?>img/Dishes/awaiting.jpg" alt="img" width="100" height="100"/>
                <?php }?>&nbsp;</div>
-
-            <div>
+				</div>
+             <div class="form-group">
+          <label class="col-sm-2 control-label" for="input-id-1">Description</label>
+          <div class="col-sm-10">
+           <?php echo $this->Ck->Create('description' , $Dish->description); ?>
+           <?php
+		     if( $Dish->errors('description') ){?>
+           <div class="error-message">This field cannot be left empty</div>
+           <?php }?>
+           
+          </div>
+        </div>
 
 
                 <div class="line line-dashed b-b line-lg pull-in"></div>

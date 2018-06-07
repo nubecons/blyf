@@ -1,25 +1,20 @@
 <?php $site_url = $this->Url->build('/',true); ?>
-
-<?= $this->Html->script('../admin/js/ui-client.js') ?>
-<?= $this->Html->script('../admin/js/ui-client.js') ?>
-
-
-<div class="bg-light lter b-b wrapper-md">
-  <h1 class="m-n font-thin h3">Blog Categories Management</h1>
-</div>
+<!--<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">CMS</h1>
+</div>-->
 <div class="wrapper-md">
   
   <div class="panel panel-default">
     <div class="panel-heading">
      <div class="row">
       <div class="col-sm-5">
-       BlogCategories             
+       Dishes             
       </div>
       <div class="col-sm-4">
       </div>
       <div class="col-sm-3">
         
-      <a href="<?=$site_url?>admin/blog-categories/add"><button class="btn btn-default pull-right"> <i class="glyphicon glyphicon-plus"> Add New</i></button></a>
+      <a href="<?=$site_url?>admin/dishes/add"><button class="btn btn-default pull-right"> <i class="glyphicon glyphicon-plus">Add New</i></button></a>
       
       </div>
     </div>
@@ -36,25 +31,28 @@
             </th>
             <th>Id</th>
             <th>Title</th>
-            
+            <th>Image</th>
+            <th>Status</th>
             <th>Modified</th>
             <th style="width:30px;">Action</th>
           </tr>
         </thead>
         <tbody>
         <?php
-		foreach($BlogCategories as $Category): 
+		foreach($Dishes as $Dish): 
          ?>
 
           <tr>
             <td><?php /*?><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label><?php */?></td>
-            <td><?=$Category['id']?></td>
-            <td><?=$Category['title']?></td>
-            <td><?=$Category['modified']?></td>
+            <td><?=$Dish['id']?></td>
+            <td><?=$Dish['title']?></td>
+            <td><?=$Dish['image']?></td>
+            <td><?=$Dish['status']?></td>
+            <td><?=$Dish['modified']?></td>
             <td>
-             <a href="<?=$site_url?>admin/blog-categories/edit/<?=$Category['id']?>" title="Edit"><i class="fa fa-pencil"></i></a>
+             <a href="<?=$site_url?>admin/dishes/edit/<?=$Dish['id']?>" title="Edit"><i class="fa fa-pencil"></i></a>
               &nbsp;&nbsp;
-              <a href="<?=$site_url?>admin/blog-categories/delete/<?=$Category['id']?>" onclick="return confirm('Are you sure you want to delete this item?');" ><i class="fa fa-times text-danger"></i></a>
+              <a href="<?=$site_url?>admin/dishes/delete/<?=$Dish['id']?>" onclick="return confirm('Are you sure you want to delete this item?');" ><i class="fa fa-times text-danger"></i></a>
             </td>
           </tr>
 		  <?php endforeach;  ?>
@@ -87,5 +85,4 @@
     </footer>
   </div>
 </div>
-
 

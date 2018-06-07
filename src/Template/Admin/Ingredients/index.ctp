@@ -8,7 +8,7 @@
     <div class="panel-heading">
      <div class="row">
       <div class="col-sm-5">
-       Categories             
+       Ingredients             
       </div>
       <div class="col-sm-4">
       </div>
@@ -31,7 +31,7 @@
             </th>
             <th>Id</th>
             <th>Title</th>
-            <th>image</th>
+            <th>Image</th>
             <th>Status</th>
             <th>Modified</th>
             <th style="width:30px;">Action</th>
@@ -45,12 +45,8 @@
           <tr>
             <td><?php /*?><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label><?php */?></td>
             <td><?=$Ingredient['id']?></td>
-            <?php if($Ingredient['parent_id']==0){?>
-            <td><?php echo $this->Html->link(__($Ingredient['title']), array($Ingredient['id'])); ?></td>
-            <?php }else{?>
             <td><?=$Ingredient['title']?></td>
-            <?php }?>
-            <td><?=$Ingredient['description']?></td>
+            <td><?=$Ingredient['image']?></td>
             <td><?=$Ingredient['status']?></td>
             <td><?=$Ingredient['modified']?></td>
             <td>
