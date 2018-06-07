@@ -162,12 +162,12 @@
                     </a>
                   </li>
                   <li>
-                    <a href="javascript void(0)">
+                    <a href="<?=$site_url?>admin/categories">
                       <span>Categories Management</span>
                     </a>
                   </li> 
                   <li>
-                    <a href="javascript void(0)">
+                    <a href="<?=$site_url?>admin/categories/subcategories">
                       <span>Sub Categories</span>
                     </a>
                   </li>     

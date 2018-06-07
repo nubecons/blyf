@@ -58,8 +58,3 @@
   </div>
 </div>
 
-    <script> 
-jQuery(document).ready(function($){
-    $('input.timepicker').timepicker({ timeFormat: 'h:mm:ss p' });
-});
-    </script>
