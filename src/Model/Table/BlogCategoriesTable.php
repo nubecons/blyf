@@ -36,4 +36,14 @@ public function initialize(array $config)
         ]);
 
     }
+	
+	
+public function validationDefault(Validator $validator)
+{
+    $validator->notEmpty('title');
+    return $validator;
+}
+	
+	
+		
 }
