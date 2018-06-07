@@ -45,7 +45,11 @@
           <tr>
             <td><?php /*?><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label><?php */?></td>
             <td><?=$Category['id']?></td>
+            <?php if($Category['parent_id']==0){?>
+            <td><?php echo $this->Html->link(__($Category['title']), array($Category['id'])); ?></td>
+            <?php }else{?>
             <td><?=$Category['title']?></td>
+            <?php }?>
             <td><?=$Category['description']?></td>
             <td><?=$Category['status']?></td>
             <td><?=$Category['modified']?></td>

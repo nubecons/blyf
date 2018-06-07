@@ -203,8 +203,8 @@
                     </a>
                   </li> 
                   <li>
-                    <a href="<?=$site_url?>admin/categories/subcategories">
-                      <span>Sub Categories</span>
+                    <a href="<?=$site_url?>admin/allergens">
+                      <span>Allergens</span>
                     </a>
                   </li>     
                 </ul>

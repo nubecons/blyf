@@ -8,14 +8,7 @@
     </div>
     <div class="panel-body">
     
-      <?php echo $this->Form->create($Category, ["class" => "form-horizontal" , 'enctype' => 'multipart/form-data']); ?> 
-        <div class="form-group">
-          <label class="col-sm-2 control-label" for="input-id-1">Title </label>
-          <div class="col-sm-5">
-            <?php echo $this->Form->input('parent_id', [ 'empty' => 'Main Category' ,   'options' => $MainCategories ,  'dev' => false , 'label' => false, 'class'=>'form-control']); ?>
-       
-          </div>
-        </div>
+      <?php echo $this->Form->create($Allergy, ["class" => "form-horizontal" , 'enctype' => 'multipart/form-data']); ?> 
         <div class="form-group">
           <label class="col-sm-2 control-label" for="input-id-1">Title </label>
           <div class="col-sm-5">
@@ -24,11 +17,14 @@
         </div>
         
          <div class="form-group">
-          <label class="col-sm-2 control-label" for="input-id-1">Description</label>
+          <label class="col-sm-2 control-label" for="input-id-1">Picture</label>
           <div class="col-sm-5">
-            <?php echo $this->Form->text('description', ['class'=>'form-control']); ?>
+             <?php echo $this->Form->file('image_file', ["id"=>"input-upload-img1" , "accept"=>'image/*' , "type" => "file" , "class" => "file" , "data-preview-file-type" => "text"]); ?>
+                                  
           </div>
         </div>
+        
+        
                 
         <div>
         

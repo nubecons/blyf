@@ -14,7 +14,7 @@
       </div>
       <div class="col-sm-3">
         
-      <a href="<?=$site_url?>admin/categories/add"><button class="btn btn-default pull-right"> <i class="glyphicon glyphicon-plus">Add New</i></button></a>
+      <a href="<?=$site_url?>admin/allergens/add"><button class="btn btn-default pull-right"> <i class="glyphicon glyphicon-plus">Add New</i></button></a>
       
       </div>
     </div>
@@ -30,9 +30,8 @@
               </label><?php */?>
             </th>
             <th>Id</th>
-            <th>Category</th>
             <th>Title</th>
-            <th>Description</th>
+            <th>image</th>
             <th>Status</th>
             <th>Modified</th>
             <th style="width:30px;">Action</th>
@@ -40,21 +39,24 @@
         </thead>
         <tbody>
         <?php
-		foreach($Categories as $Category): 
+		foreach($Allergens as $Allergy): 
          ?>
 
           <tr>
             <td><?php /*?><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label><?php */?></td>
-            <td><?=$Category['id']?></td>
-            <td><?=$Category['Category.title']?></td>
-            <td><?=$Category['title']?></td>
-            <td><?=$Category['description']?></td>
-            <td><?=$Category['status']?></td>
-            <td><?=$Category['modified']?></td>
+            <td><?=$Allergy['id']?></td>
+            <?php if($Allergy['parent_id']==0){?>
+            <td><?php echo $this->Html->link(__($Allergy['title']), array($Allergy['id'])); ?></td>
+            <?php }else{?>
+            <td><?=$Allergy['title']?></td>
+            <?php }?>
+            <td><?=$Allergy['description']?></td>
+            <td><?=$Allergy['status']?></td>
+            <td><?=$Allergy['modified']?></td>
             <td>
-             <a href="<?=$site_url?>admin/categories/edit/<?=$Category['id']?>" title="Edit"><i class="fa fa-pencil"></i></a>
+             <a href="<?=$site_url?>admin/allergens/edit/<?=$Allergy['id']?>" title="Edit"><i class="fa fa-pencil"></i></a>
               &nbsp;&nbsp;
-              <a href="<?=$site_url?>admin/categories/delete/<?=$Category['id']?>" onclick="return confirm('Are you sure you want to delete this item?');" ><i class="fa fa-times text-danger"></i></a>
+              <a href="<?=$site_url?>admin/allergens/delete/<?=$Allergy['id']?>" onclick="return confirm('Are you sure you want to delete this item?');" ><i class="fa fa-times text-danger"></i></a>
             </td>
           </tr>
 		  <?php endforeach;  ?>

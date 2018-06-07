@@ -12,20 +12,14 @@ class CategoriesController extends AppController
 {
 
    
-    public function index() {
-	
-		$conditions = [] ;
-		$query = $this->Categories->find('all')->where($conditions);
-        $this->paginate['limit'] = 25;
-        $this->paginate['order'] = ['created' => 'ASC' ];
-        $Categories = $this->paginate($query, array('url' => '/Categories/'));
-        $this->set('Categories', $Categories);
-       
-	   }
-    public function subCategories() {
-	
-		$conditions = [] ;
-		$query = $this->Categories->find('all')->where($conditions);
+    public function index($id = null) {
+    
+    if($id){
+   $conditions = ['parent_id' => $id] ;
+    }else{
+    $conditions = ['parent_id' => 0] ; 
+     }
+	$query = $this->Categories->find('all')->where($conditions);
         $this->paginate['limit'] = 25;
         $this->paginate['order'] = ['created' => 'ASC' ];
         $Categories = $this->paginate($query, array('url' => '/Categories/'));
@@ -34,7 +28,8 @@ class CategoriesController extends AppController
 	   }
  
     public function add(){
-	
+	 $MainCategories = $this->Categories->find('list', ['keyField' => 'id', 'valueField' => 'title'])->where(['status' => 'ACTIVE', 'parent_id' => 0])->toArray();
+        $this->set('MainCategories', $MainCategories);
 	  $Category = $this->Categories->newEntity();
 	  
 	  $this->set('Category' ,$Category);
@@ -61,7 +56,8 @@ class CategoriesController extends AppController
 	}
 	
 	public function edit($id = null){
-
+           $MainCategories = $this->Categories->find('list', ['keyField' => 'id', 'valueField' => 'title'])->where(['status' => 'ACTIVE', 'parent_id' => 0])->toArray();
+        $this->set('MainCategories', $MainCategories);
 	  $Category = $this->Categories->get($id);
 	  $this->set('Category' ,$Category);
 	  
