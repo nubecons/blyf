@@ -17,7 +17,6 @@ class BlogsTable extends Table
 {
 
 public function initialize(array $config)
-
     {
 
        $this->addBehavior('Timestamp', [
@@ -36,6 +35,16 @@ public function initialize(array $config)
         ]);
 
     }
+	
+public function validationDefault(Validator $validator)
+{
+    $validator->notEmpty('blog_category_id');
+	$validator->notEmpty('title');
+	$validator->notEmpty('post');
+	
+    return $validator;
+}	
+	
 }
 
 

@@ -82,6 +82,26 @@ class BlogCategoriesController extends AppController {
 			
 	}
 	
+	
+	public function delete($id = null){
+
+	  $Category = $this->BlogCategories->get($id);
+	 
+	 // if ($this->request->is('post') || $this->request->is('put'))
+		{
+			 
+				if ($this->BlogCategories->delete($Category))
+				{
+					$this->Flash->success(__('Record deleted successfully.'));
+					$this->redirect(['action' => 'index']);
+				}else{
+					
+				 $this->Flash->error(__('Record could not deleted. Please try again later.'));	
+				
+				}
+		}
+	}
+	
 
 
 }
