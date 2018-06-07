@@ -219,15 +219,10 @@
                     </a>
                   </li>
                   <li>
-                    <a href="javascript void(0)">
-                      <span>Stores Management</span>
+                    <a href="<?=$site_url?>admin/stores">
+                      <span>Stores & Locations Management</span>
                     </a>
                   </li> 
-                  <li>
-                    <a href="javascript void(0)">
-                      <span>Locations Management</span>
-                    </a>
-                  </li>
                   <li>
                     <a href="javascript void(0)">
                       <span>Pick Up Timings</span>
