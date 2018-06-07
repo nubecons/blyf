@@ -280,7 +280,7 @@
                                             <i class="fa fa-fw fa-angle-down text-active"></i>
                                         </span>
 
-                                        <i class="glyphicon glyphicon-stats"></i>
+                                        <i class="glyphicon glyphicon-leaf"></i>
                                         <span class="font-bold">Ingredients</span>
                                     </a>
                                     <ul class="nav nav-sub dk">
