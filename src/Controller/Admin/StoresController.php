@@ -58,7 +58,7 @@ class StoresController extends AppController
 	  
 	  if ($this->request->is('post') || $this->request->is('put'))
 		{
-			 $data = $this->request->data;
+			    $data = $this->request->data;
 				$Store= $this->Stores->patchEntity($Store, $this->request->data);
 			
 				if ($this->Stores->save($Store))
@@ -66,7 +66,10 @@ class StoresController extends AppController
 					$this->Flash->success(__('Record saved successfully.'));
 					$this->redirect(['action' => 'index']);
 				}else{
-					
+			     
+				
+				 
+				 
 				 $this->Flash->error(__('Record could not saved. Please try again later.'));	
 				
 				}

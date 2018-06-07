@@ -12,12 +12,8 @@ class UsersTable extends Table {
         $this->addBehavior('Timestamp', [
 
             'events' => [
-
                 'Model.beforeSave' => [
-
                     'created' => 'new',
-                    'dateCreated' => 'new',
-                    'last_updated' => 'always',
                     'modified' => 'always',
                 ]
             ]

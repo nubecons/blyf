@@ -1,50 +1,44 @@
 <?php
 
-// src/Model/Table/UsersTable.php
-
 namespace App\Model\Table;
-
 
 
 use Cake\ORM\Table;
 
 use Cake\Validation\Validator;
 
+use Cake\Auth\DefaultPasswordHasher;
 
-
-class BlogCategoriesTable extends Table
+class StoresTable extends Table
 
 {
 
 public function initialize(array $config)
-
     {
 
        $this->addBehavior('Timestamp', [
 
             'events' => [
-
-                'Model.beforeSave' => [
-
+                 'Model.beforeSave' => [
 				     'created' => 'new',
-					'modified' => 'always',
-
+                 	 'modified' => 'always',
 			    ]
-
             ]
-
         ]);
 
     }
-	
-	
+
 public function validationDefault(Validator $validator)
 {
-    $validator->notEmpty('title');
+	$validator->email('email')->notEmpty('email');
+    $validator->notEmpty('name');
+    $validator->notEmpty('address');
+	$validator->notEmpty('opening_hours');
+	$validator->notEmpty('closing_hours');
+	
 	
     return $validator;
 }
 	
-	
-		
+
 }

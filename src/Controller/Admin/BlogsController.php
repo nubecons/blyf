@@ -38,8 +38,7 @@ class BlogsController extends AppController {
         $Blogs = $this->paginate($query, array('url' => '/Blogs/'));
         $this->set('Blogs', $Blogs);
         
-       /* $Blogs = $this->Blogs->find('all')->where()->toArray();
-        $this->set('Blogs', $Blogs);*/
+    
     }
 
  
@@ -50,25 +49,9 @@ class BlogsController extends AppController {
 	  $BlogCategories = $this->BlogCategories->find('list', ['keyField' => 'id', 'valueField' => 'title'])->where(['status'=>'ACTIVE' ,'parent_id' => 0])->toArray();
       $this->set('BlogCategories', $BlogCategories);
 	  
-	/*  $BlogCategorieslvl2 =[];
-	  $BlogCategorieslvl3 =[];
-	 
-	  foreach($BlogCategories as $key => $val){
-		      
-			  $BlogCategorieslvl2[$val] = $this->BlogCategories->find('list', ['keyField' => 'id', 'valueField' => 'title'])->where(['status'=>'ACTIVE' ,'parent_id' => $key])->toArray();
-		   
-		     foreach($BlogCategorieslvl2[$val] as $key2 => $val2){
-		              $BlogCategorieslvl3[$val2] = $this->BlogCategories->find('list', ['keyField' => 'id', 'valueField' => 'title'])->where(['status'=>'ACTIVE' ,'parent_id' => $key2])->toArray();
-		      }
-		 
-		  }
-		  
-		  
-	  $this->set('BlogCategorieslvl2', $BlogCategorieslvl2);
-	  $this->set('BlogCategorieslvl3', $BlogCategorieslvl3);*/
-	  
+	
 	  $Blog = $this->Blogs->newEntity();
-	  
+	  $this->set('Blog', $Blog);
 	  if ($this->request->is('post'))
 		{
 			 $data = $this->request->data;
@@ -86,6 +69,7 @@ class BlogsController extends AppController {
 				else
 				{
 					$this->request->data['image'] = $this->Upload->result; 
+					$this->request->data['image_name'] = $this->request->data['image_file']['name']; 
 					
 				}
 			}
@@ -94,12 +78,16 @@ class BlogsController extends AppController {
 			
 				if ($this->Blogs->save($Blog))
 				{
-					//$this->Flash->success(__('File uploaded successfully.'));
+				   $this->Flash->success(__('Record saved successfully.'));
 					$this->redirect(['action' => 'index']);
+				
+				}else{
+					
+				 $this->Flash->error(__('Record could not saved. Please try again later.'));	
 				}
 		}
 		
-			
+		 $this->set('Blog', $Blog);	
 			
 	}
 	
@@ -107,25 +95,10 @@ class BlogsController extends AppController {
 	
 	  $this->set('title', 'Update Blog');
 	  $this->loadModel('BlogCategories');
-	  $BlogCategories = $this->BlogCategories->find('list', ['keyField' => 'id', 'valueField' => 'title'])->where(['status'=>'ACTIVE' ,'parent_id' => 0])->toArray();
+	  $BlogCategories = $this->BlogCategories->find('list', ['keyField' => 'id', 'valueField' => 'title'])->where()->toArray();
       $this->set('BlogCategories', $BlogCategories);
 	  
-	/*  $BlogCategorieslvl2 =[];
-	  $BlogCategorieslvl3 =[];
-	 
-	  foreach($BlogCategories as $key => $val){
-		      
-			  $BlogCategorieslvl2[$val] = $this->BlogCategories->find('list', ['keyField' => 'id', 'valueField' => 'title'])->where(['status'=>'ACTIVE' ,'parent_id' => $key])->toArray();
-		   
-		     foreach($BlogCategorieslvl2[$val] as $key2 => $val2){
-		              $BlogCategorieslvl3[$val2] = $this->BlogCategories->find('list', ['keyField' => 'id', 'valueField' => 'title'])->where(['status'=>'ACTIVE' ,'parent_id' => $key2])->toArray();
-		      }
-		 
-		  }
-		  
-		  
-	  $this->set('BlogCategorieslvl2', $BlogCategorieslvl2);
-	  $this->set('BlogCategorieslvl3', $BlogCategorieslvl3);*/
+	
 	  
 	  
 	 
@@ -146,10 +119,13 @@ class BlogsController extends AppController {
 				if(count($this->Upload->errors) > 0)
 				{
 					unset($this->request->data['image_file']);
+					$this->Flash->error(__($this->Upload->errors[0]));	
+					return;
 				}
 				else
 				{
 					$this->request->data['image'] = $this->Upload->result; 
+					$this->request->data['image_name'] = $this->request->data['image_file']['name']; 
 					
 				}
 			}
@@ -159,8 +135,12 @@ class BlogsController extends AppController {
 			
 				if ($this->Blogs->save($Blog))
 				{
-					//$this->Flash->success(__('File uploaded successfully.'));
+				   $this->Flash->success(__('Record saved successfully.'));
 					$this->redirect(['action' => 'index']);
+				
+				}else{
+					
+				 $this->Flash->error(__('Record could not saved. Please try again later.'));	
 				}
 		}
 		
