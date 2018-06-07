@@ -28,7 +28,19 @@ use Cake\View\Exception\MissingTemplateException;
  */
 class PagesController extends AppController
 {
- 
+ function initialize() {
+
+        parent::initialize();
+    }
+
+    function beforeFilter(Event $event) {
+
+        parent::beforeFilter($event);
+
+
+        $this->Auth->allow(['about', 'contact', 'privacy', 'home', 'display']);
+    }
+
  
  public function home()
     {

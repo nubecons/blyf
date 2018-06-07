@@ -119,15 +119,15 @@
                 </a>
               </li>
 
-<li class="line dk"></li>
-<li>
+				<li class="line dk"></li>
+				<li>
                 <a href class="auto">  
                  <span class="pull-right text-muted">
                     <i class="fa fa-fw fa-angle-right text"></i>
                     <i class="fa fa-fw fa-angle-down text-active"></i>
                   </span>
                       
-                  <i class="glyphicon glyphicon-th"></i>
+                  <i class="glyphicon glyphicon-edit"></i>
                   <span class="font-bold">CMS</span>
                 </a>
                 <ul class="nav nav-sub dk">
@@ -143,6 +143,42 @@
                     </a>
                   </li> 
                
+                </ul>
+              </li>
+                
+                
+                <li>
+                <a href class="auto">  
+                 <span class="pull-right text-muted">
+                    <i class="fa fa-fw fa-angle-right text"></i>
+                    <i class="fa fa-fw fa-angle-down text-active"></i>
+                  </span>
+                      
+                  <i class="glyphicon glyphicon-file icon"></i>
+                  <span class="font-bold">Blogs</span>
+                </a>
+                <ul class="nav nav-sub dk">
+                  <li>
+                     <a href="<?=$site_url?>admin/BlogCategories">
+                      <span>Blog Categories</span>
+                    </a>
+                  </li>
+                  <li>
+                     <a href="<?=$site_url?>admin/BlogCategories/add">
+                      <span>Add New Category</span>
+                    </a>
+                  </li>
+                   <li>
+                     <a href="<?=$site_url?>admin/Blogs">
+                      <span>Posts</span>
+                    </a>
+                  </li>
+                  <li>
+                     <a href="<?=$site_url?>admin/Blogs/add">
+                      <span>Add New Post</span>
+                    </a>
+                  </li>
+              
                 </ul>
               </li>
                 <li>
@@ -232,35 +268,7 @@
                 </ul>
               </li>
               
-               <li>
-                <a href class="auto">  
-                 <span class="pull-right text-muted">
-                    <i class="fa fa-fw fa-angle-right text"></i>
-                    <i class="fa fa-fw fa-angle-down text-active"></i>
-                  </span>
-                      
-                  <i class="glyphicon glyphicon-file icon"></i>
-                  <span class="font-bold">Blogs</span>
-                </a>
-                <ul class="nav nav-sub dk">
-                  <li class="nav-sub-header">
-                    <a href>
-                      <span>Blog Categories</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="javascript void(0)">
-                      <span>Blog Management</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="javascript void(0)">
-                      <span>Blog Posts</span>
-                    </a>
-                  </li>
-     
-                </ul>
-              </li>
+               
                <li>
                 <a href class="auto">  
                  <span class="pull-right text-muted">

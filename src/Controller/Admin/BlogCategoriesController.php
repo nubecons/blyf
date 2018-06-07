@@ -36,7 +36,8 @@ class BlogCategoriesController extends AppController {
 	
 	  
 	  $Category = $this->BlogCategories->newEntity();
-
+ 	  $this->set('Category', $Category);
+ 
 	  if ($this->request->is('post'))
 		{
 			    $data = $this->request->data;
@@ -49,11 +50,11 @@ class BlogCategoriesController extends AppController {
 					
 				}else{
 					
-					$this->Flash->success(__('Category could not added successfully. Please try again later!'));
+					$this->Flash->error(__('Category could not added successfully. Please try again later!'));
 					
 					}
 		}
-		
+		  $this->set('Category', $Category);
 			
 			
 	}
@@ -73,7 +74,7 @@ class BlogCategoriesController extends AppController {
 					$this->Flash->success(__('Category saved successfully.'));
 					$this->redirect(['action' => 'index']);
 				}else{
-					$this->Flash->success(__('Category could not saved successfully. Please try again later!'));
+					$this->Flash->error(__('Category could not saved successfully. Please try again later!'));
 					}
 		}
 		
