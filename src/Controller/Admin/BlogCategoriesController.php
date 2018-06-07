@@ -36,7 +36,8 @@ class BlogCategoriesController extends AppController {
 	
 	  
 	  $Category = $this->BlogCategories->newEntity();
-
+ 	  $this->set('Category', $Category);
+ 
 	  if ($this->request->is('post'))
 		{
 			    $data = $this->request->data;
@@ -53,7 +54,7 @@ class BlogCategoriesController extends AppController {
 					
 					}
 		}
-		
+		  $this->set('Category', $Category);
 			
 			
 	}
