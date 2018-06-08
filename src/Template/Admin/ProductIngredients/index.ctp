@@ -1,20 +1,20 @@
 <?php $site_url = $this->Url->build('/',true); ?>
-<div class="bg-light lter b-b wrapper-md">
-  <h1 class="m-n font-thin h3">Products Management</h1>
-</div>
+<!--<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">CMS</h1>
+</div>-->
 <div class="wrapper-md">
   
   <div class="panel panel-default">
     <div class="panel-heading">
      <div class="row">
       <div class="col-sm-5">
-       Products             
+      <?=$Product->title?>'s Ingredients             
       </div>
       <div class="col-sm-4">
       </div>
       <div class="col-sm-3">
         
-      <a href="<?=$site_url?>admin/products/add"><button class="btn btn-default pull-right"> <i class="glyphicon glyphicon-plus">Add New</i></button></a>
+      <a href="<?=$site_url?>admin/product-ingredients/add/<?=$Product->id?>"><button class="btn btn-default pull-right"> <i class="glyphicon glyphicon-plus">Add New</i></button></a>
       
       </div>
     </div>
@@ -30,31 +30,23 @@
               </label><?php */?>
             </th>
             <th>Id</th>
-            <th>Title</th>
-            <th>Image</th>
-            <th>Status</th>
+            <th>Ingredient</th>
             <th>Modified</th>
-			<th>Ingredients</th>
             <th style="width:30px;">Action</th>
           </tr>
         </thead>
         <tbody>
         <?php
-		foreach($Products as $Product): 
+		foreach($ProductIngredients as $Ingredient): 
          ?>
 
           <tr>
             <td><?php /*?><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label><?php */?></td>
-            <td><?=$Product['id']?></td>
-            <td><?=$Product['title']?></td>
-            <td><?=$Product['image']?></td>
-            <td><?=$Product['status']?></td>
-            <td><?=$Product['modified']?></td>
-            <td> <a href="<?=$site_url?>admin/product-ingredients/index/<?=$Product['id']?>" title="Product Ingredients">View Ingredients</a></td>
+            <td><?=$Ingredient['id']?></td>
+            <td><?=$Ingredients[$Ingredient['ingredient_id']]?></td>
+            <td><?=$Ingredient['modified']?></td>
             <td>
-             <a href="<?=$site_url?>admin/products/edit/<?=$Product['id']?>" title="Edit"><i class="fa fa-pencil"></i></a>
-              &nbsp;&nbsp;
-              <a href="<?=$site_url?>admin/products/delete/<?=$Product['id']?>" onclick="return confirm('Are you sure you want to delete this item?');" ><i class="fa fa-times text-danger"></i></a>
+              <a href="<?=$site_url?>admin/product-ingredients/delete/<?=$Ingredient['id']?>" onclick="return confirm('Are you sure you want to delete this item?');" ><i class="fa fa-times text-danger"></i></a>
             </td>
           </tr>
 		  <?php endforeach;  ?>

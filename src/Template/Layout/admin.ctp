@@ -328,12 +328,12 @@
                                             </a>
                                         </li> 
                                         <li>
-                                            <a href="#">
+                                            <a href="<?=$site_url?>admin/meals">
                                                 <span>All Ready Meals</span>
                                             </a>
                                         </li>  
                                          <li>
-                                            <a href="#">
+                                            <a href="<?=$site_url?>admin/meals/add">
                                                 <span>Add Ready Meals</span>
                                             </a>
                                         </li> 

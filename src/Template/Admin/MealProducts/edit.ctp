@@ -26,9 +26,9 @@ $site_url = $this->Url->build('/',true); ?>
                 </div>
             </div>
             <div style=" padding-left: 150px;"><?php if($Ingredient['image'] != ''){?>
-                <img src="<?=$site_url?>img/Ingredients/<?php echo $Ingredient['image'];?>" alt="img" width="20%" height="20%"/>
+                <img src="<?=$site_url?>img/ingredients/<?php echo $Ingredient['image'];?>" alt="img" width="20%" height="20%"/>
                <?php }else{?>
-                 <img src="<?=$site_url?>img/awaiting-image.jpg" alt="img" width="20%" height="20%"/>
+                 <img src="<?=$site_url?>img/ingredients/awaiting.jpg" alt="img" width="20%" height="20%"/>
                <?php }?>&nbsp;</div>
 
             <div>

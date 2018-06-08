@@ -8,43 +8,34 @@ use Cake\Http\Exception\ForbiddenException;
 use Cake\Http\Exception\NotFoundException;
 use Cake\View\Exception\MissingTemplateException;
 
-class ProductsController extends AppController
+class MealsController extends AppController
 {
     public function initialize() {
 
         parent::initialize();
 
-        $this->file_path = WWW_ROOT . 'img' . DS . 'Products' . DS;
+        $this->file_path = WWW_ROOT . 'img' . DS . 'Meals' . DS;
          $this->loadComponent('Upload');
     }
 
-    public function index($id = null) {
+    public function index() {
     
-	if($id){
-		$conditions = ['parent_id' => $id] ;
-	}else{
-		$conditions = ['parent_id' => 0] ; 
-	}
-	
+
 	$conditions = [] ; 
-	$query = $this->Products->find('all')->where($conditions);
+	$query = $this->Meals->find('all')->where($conditions);
 	$this->paginate['limit'] = 25;
 	$this->paginate['order'] = ['created' => 'ASC' ];
-	$Products = $this->paginate($query, array('url' => '/Products/'));
-	$this->set('Products', $Products);
+	$Meals = $this->paginate($query, array('url' => '/Meals/'));
+	$this->set('Meals', $Meals);
        
 	   }
  
     public function add(){
 		
-	 $this->loadModel('Categories');
-	 	
-	 $MainCategories = $this->Categories->find('list', ['keyField' => 'id', 'valueField' => 'title'])->where(['status' => 'ACTIVE', 'parent_id' => 0])->toArray();
-	 $this->set('MainCategories', $MainCategories);
-        
-	  $Product = $this->Products->newEntity();
 	  
-	  $this->set('Product' ,$Product);
+	  $Meal = $this->Meals->newEntity();
+	  
+	  $this->set('Meal' ,$Meal);
 	  if ($this->request->is('post'))
 		{
 			
@@ -66,9 +57,9 @@ class ProductsController extends AppController
 				}
             }
 			 
-			   $Product= $this->Products->patchEntity($Product, $data);
+			   $Meal= $this->Meals->patchEntity($Meal, $data);
 			
-				if ($this->Products->save($Product))
+				if ($this->Meals->save($Meal))
 				{
 					$this->Flash->success(__('Record saved successfully.'));
 					$this->redirect(['action' => 'index']);
@@ -80,20 +71,16 @@ class ProductsController extends AppController
 				}
 		}
 		
-		$this->set('Product' ,$Product);
+		$this->set('Meal' ,$Meal);
 			
 			
 	}
 	
 	public function edit($id = null){
 		
-	 $this->loadModel('Categories');
-	 	
-	 $MainCategories = $this->Categories->find('list', ['keyField' => 'id', 'valueField' => 'title'])->where(['status' => 'ACTIVE', 'parent_id' => 0])->toArray();
-	 $this->set('MainCategories', $MainCategories);	
-       
-	  $Product = $this->Products->get($id);
-	  $this->set('Product' ,$Product);
+	     
+	  $Meal = $this->Meals->get($id);
+	  $this->set('Meal' ,$Meal);
 	  
 	  if ($this->request->is('post') || $this->request->is('put'))
 		{
@@ -115,9 +102,9 @@ class ProductsController extends AppController
 					
 				}
             }
-				$Product= $this->Products->patchEntity($Product, $data);
+				$Meal= $this->Meals->patchEntity($Meal, $data);
 			
-				if ($this->Products->save($Product))
+				if ($this->Meals->save($Meal))
 				{
 					$this->Flash->success(__('Record saved successfully.'));
 					$this->redirect(['action' => 'index']);
@@ -131,12 +118,12 @@ class ProductsController extends AppController
 	
 	public function delete($id = null){
 
-	  $Product = $this->Products->get($id);
+	  $Meal = $this->Meals->get($id);
 	 
 	 // if ($this->request->is('post') || $this->request->is('put'))
 		{
 			 
-				if ($this->Products->delete($Product))
+				if ($this->Meals->delete($Meal))
 				{
 					$this->Flash->success(__('Record deleted successfully.'));
 					$this->redirect(['action' => 'index']);
