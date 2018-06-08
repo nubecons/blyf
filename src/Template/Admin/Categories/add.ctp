@@ -10,7 +10,7 @@
     
       <?php echo $this->Form->create($Category, ["class" => "form-horizontal" , 'enctype' => 'multipart/form-data']); ?> 
         <div class="form-group">
-          <label class="col-sm-2 control-label" for="input-id-1">Title </label>
+          <label class="col-sm-2 control-label" for="input-id-1">Category </label>
           <div class="col-sm-5">
             <?php echo $this->Form->input('parent_id', [ 'empty' => 'Main Category' ,   'options' => $MainCategories ,  'dev' => false , 'label' => false, 'class'=>'form-control']); ?>
        

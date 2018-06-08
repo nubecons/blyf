@@ -12,14 +12,19 @@
         <div class="form-group">
           <label class="col-sm-2 control-label" for="input-id-1">Title </label>
           <div class="col-sm-5">
-            <?php echo $this->Form->text('title', ['class'=>'form-control' ]); ?>
+            <?php echo $this->Form->input('title', ['label' =>false,'class'=>'form-control' ]); ?>
           </div>
         </div>
-        
+         <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-id-1">Description </label>
+                <div class="col-sm-5">
+            <?php echo $this->Form->input('description', ['label' =>false, 'class'=>'form-control' ]); ?>
+                </div>
+            </div>
          <div class="form-group">
           <label class="col-sm-2 control-label" for="input-id-1">Picture</label>
           <div class="col-sm-5">
-             <?php echo $this->Form->file('image_file', ["id"=>"input-upload-img1" , "accept"=>'image/*' , "type" => "file" , "class" => "file" , "data-preview-file-type" => "text"]); ?>
+             <?php echo $this->Form->input('image_file', ['label' =>false,"id"=>"input-upload-img1" , "accept"=>'image/*' , "type" => "file" , "class" => "file" , "data-preview-file-type" => "text"]); ?>
                                   
           </div>
         </div>

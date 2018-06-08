@@ -318,23 +318,23 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="<?=$site_url?>admin/dishes">
-                                                <span>Individual Meals/Dishes</span>
+                                            <a href="<?=$site_url?>admin/products">
+                                                <span>Individual Meals</span>
                                             </a>
                                         </li> 
                                          <li>
-                                            <a href="<?=$site_url?>admin/dishes/add">
-                                                <span>Add Individual Meal/Dish</span>
+                                            <a href="<?=$site_url?>admin/products/add">
+                                                <span>Add Individual Meal</span>
                                             </a>
                                         </li> 
                                         <li>
                                             <a href="#">
-                                                <span>All Meals</span>
+                                                <span>All Ready Meals</span>
                                             </a>
                                         </li>  
                                          <li>
                                             <a href="#">
-                                                <span>Add Meals</span>
+                                                <span>Add Ready Meals</span>
                                             </a>
                                         </li> 
                                     </ul>

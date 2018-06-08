@@ -28,9 +28,11 @@ class CategoriesController extends AppController
 	   }
  
     public function add(){
+		
 	 $MainCategories = $this->Categories->find('list', ['keyField' => 'id', 'valueField' => 'title'])->where(['status' => 'ACTIVE', 'parent_id' => 0])->toArray();
-        $this->set('MainCategories', $MainCategories);
-	  $Category = $this->Categories->newEntity();
+	 $this->set('MainCategories', $MainCategories);
+	 
+	 $Category = $this->Categories->newEntity();
 	  
 	  $this->set('Category' ,$Category);
 	  if ($this->request->is('post'))

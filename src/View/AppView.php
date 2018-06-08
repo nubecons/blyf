@@ -37,7 +37,7 @@ class AppView extends View
     public function initialize()
     {
 		
-		$this->Form->templates(
+		$this->Form->setTemplates(
 
 									  ['dateWidget' => '{{month}}{{day}}{{year}}{{hour}}{{minute}}{{second}}{{meridian}}']
 
@@ -45,7 +45,7 @@ class AppView extends View
 
 									
 
-        $this->Paginator->templates([
+        $this->Paginator->setTemplates([
 
 				'nextActive' => '<li class="page-item"><a class="page-link"" rel="next" href="{{url}}">{{text}}</a> </li>',
 

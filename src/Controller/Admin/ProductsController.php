@@ -8,36 +8,43 @@ use Cake\Http\Exception\ForbiddenException;
 use Cake\Http\Exception\NotFoundException;
 use Cake\View\Exception\MissingTemplateException;
 
-class AllergensController extends AppController
+class ProductsController extends AppController
 {
     public function initialize() {
 
         parent::initialize();
 
-        $this->file_path = WWW_ROOT . 'img' . DS . 'Allergens' . DS;
+        $this->file_path = WWW_ROOT . 'img' . DS . 'Products' . DS;
          $this->loadComponent('Upload');
     }
 
     public function index($id = null) {
     
-    if($id){
-   $conditions = ['parent_id' => $id] ;
-    }else{
-    $conditions = ['parent_id' => 0] ; 
-     }
-	$query = $this->Allergens->find('all')->where($conditions);
-        $this->paginate['limit'] = 25;
-        $this->paginate['order'] = ['created' => 'ASC' ];
-        $Allergens = $this->paginate($query, array('url' => '/Allergens/'));
-        $this->set('Allergens', $Allergens);
+	if($id){
+		$conditions = ['parent_id' => $id] ;
+	}else{
+		$conditions = ['parent_id' => 0] ; 
+	}
+	
+	$conditions = [] ; 
+	$query = $this->Products->find('all')->where($conditions);
+	$this->paginate['limit'] = 25;
+	$this->paginate['order'] = ['created' => 'ASC' ];
+	$Products = $this->paginate($query, array('url' => '/Products/'));
+	$this->set('Products', $Products);
        
 	   }
  
     public function add(){
+		
+	 $this->loadModel('Categories');
+	 	
+	 $MainCategories = $this->Categories->find('list', ['keyField' => 'id', 'valueField' => 'title'])->where(['status' => 'ACTIVE', 'parent_id' => 0])->toArray();
+	 $this->set('MainCategories', $MainCategories);
         
-	  $Allergy = $this->Allergens->newEntity();
+	  $Product = $this->Products->newEntity();
 	  
-	  $this->set('Allergy' ,$Allergy);
+	  $this->set('Product' ,$Product);
 	  if ($this->request->is('post'))
 		{
                if (!empty($this->request->data['image_file']['name'])) {
@@ -45,14 +52,20 @@ class AllergensController extends AppController
 
                 if (count($this->Upload->errors) > 0) {
                     unset($this->request->data['image_file']);
-                } else {
-                    $this->request->data['image'] = $this->Upload->result;
-                }
+                     $this->Flash->error(__($this->Upload->errors[0]));	
+					return;
+				}
+				else
+				{
+					$this->request->data['image'] = $this->Upload->result; 
+					$this->request->data['image_name'] = $this->request->data['image_file']['name']; 
+					
+				}
             }
 			   $data = $this->request->data;
-			   $Allergy= $this->Allergens->patchEntity($Allergy, $this->request->data);
+			   $Product= $this->Products->patchEntity($Product, $this->request->data);
 			
-				if ($this->Allergens->save($Allergy))
+				if ($this->Products->save($Product))
 				{
 					$this->Flash->success(__('Record saved successfully.'));
 					$this->redirect(['action' => 'index']);
@@ -60,24 +73,29 @@ class AllergensController extends AppController
 				}else{
 					
 				 $this->Flash->error(__('Record could not saved. Please try again later.'));	
-				  $this->set('errors', $Allergy->errors());
+				  $this->set('errors', $Product->errors());
 				}
 		}
 		
-		$this->set('Allergy' ,$Allergy);
+		$this->set('Product' ,$Product);
 			
 			
 	}
 	
 	public function edit($id = null){
-        $MainAllergens = $this->Allergens->find('list', ['keyField' => 'id', 'valueField' => 'title'])->where(['status' => 'ACTIVE', 'parent_id' => 0])->toArray();
-        $this->set('MainAllergens', $MainAllergens);
-	  $Allergy = $this->Allergens->get($id);
-	  $this->set('Allergy' ,$Allergy);
+		
+	 $this->loadModel('Categories');
+	 	
+	 $MainCategories = $this->Categories->find('list', ['keyField' => 'id', 'valueField' => 'title'])->where(['status' => 'ACTIVE', 'parent_id' => 0])->toArray();
+	 $this->set('MainCategories', $MainCategories);	
+       
+	  $Product = $this->Products->get($id);
+	  $this->set('Product' ,$Product);
 	  
 	  if ($this->request->is('post') || $this->request->is('put'))
 		{
-			if (!empty($this->request->data['image_file']['name'])) {
+			
+			   if (!empty($this->request->data['image_file']['name'])) {
                 $result = $this->Upload->upload($this->request->data['image_file'], $this->file_path, null, null, null);
 
                 if (count($this->Upload->errors) > 0) {
@@ -93,9 +111,9 @@ class AllergensController extends AppController
 				}
             }
 			 $data = $this->request->data;
-				$Allergy= $this->Allergens->patchEntity($Allergy, $this->request->data);
+				$Product= $this->Products->patchEntity($Product, $this->request->data);
 			
-				if ($this->Allergens->save($Allergy))
+				if ($this->Products->save($Product))
 				{
 					$this->Flash->success(__('Record saved successfully.'));
 					$this->redirect(['action' => 'index']);
@@ -109,12 +127,12 @@ class AllergensController extends AppController
 	
 	public function delete($id = null){
 
-	  $Allergy = $this->Allergens->get($id);
+	  $Product = $this->Products->get($id);
 	 
 	 // if ($this->request->is('post') || $this->request->is('put'))
 		{
 			 
-				if ($this->Allergens->delete($Allergy))
+				if ($this->Products->delete($Product))
 				{
 					$this->Flash->success(__('Record deleted successfully.'));
 					$this->redirect(['action' => 'index']);

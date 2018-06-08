@@ -14,7 +14,7 @@ class IngredientsController extends AppController
 
         parent::initialize();
 
-        $this->allergens_file_path = WWW_ROOT . 'img' . DS . 'Ingredients' . DS;
+        $this->file_path = WWW_ROOT . 'img' . DS . 'Ingredients' . DS;
          $this->loadComponent('Upload');
     }
 
@@ -41,7 +41,7 @@ class IngredientsController extends AppController
 	  if ($this->request->is('post'))
 		{
                if (!empty($this->request->data['image_file']['name'])) {
-                $result = $this->Upload->upload($this->request->data['image_file'], $this->allergens_file_path, null, null, null);
+                $result = $this->Upload->upload($this->request->data['image_file'], $this->file_path, null, null, null);
 
                 if (count($this->Upload->errors) > 0) {
                     unset($this->request->data['image_file']);
@@ -77,7 +77,24 @@ class IngredientsController extends AppController
 	  
 	  if ($this->request->is('post') || $this->request->is('put'))
 		{
-			 $data = $this->request->data;
+			    $data = $this->request->data;
+				
+				if (!empty($this->request->data['image_file']['name'])) {
+                $result = $this->Upload->upload($this->request->data['image_file'], $this->file_path, null, null, null);
+
+                if (count($this->Upload->errors) > 0) {
+                    unset($this->request->data['image_file']);
+                     $this->Flash->error(__($this->Upload->errors[0]));	
+					return;
+				}
+				else
+				{
+					$this->request->data['image'] = $this->Upload->result; 
+					$this->request->data['image_name'] = $this->request->data['image_file']['name']; 
+					
+				}
+            }
+				
 				$Ingredient= $this->Ingredients->patchEntity($Ingredient, $this->request->data);
 			
 				if ($this->Ingredients->save($Ingredient))

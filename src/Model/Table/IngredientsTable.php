@@ -12,7 +12,7 @@ use Cake\Validation\Validator;
 
 
 
-class DishesTable extends Table
+class IngredientsTable extends Table
 
 {
 
@@ -38,9 +38,8 @@ public function initialize(array $config)
 	
 public function validationDefault(Validator $validator)
 {
-    $validator->notEmpty('blog_category_id');
+  
 	$validator->notEmpty('title');
-	$validator->notEmpty('post');
 	
     return $validator;
 }	

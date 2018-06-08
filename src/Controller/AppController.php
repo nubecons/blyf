@@ -16,7 +16,7 @@ class AppController extends Controller
     
 	public function initialize()
     {
-		$this->Session = $this->request->Session();
+		$this->Session = $this->getRequest()->getSession();
 		//$this->addBehavior('Timestamp');
         $this->loadComponent('Flash');
 		$this->loadComponent('Site');
@@ -50,12 +50,13 @@ class AppController extends Controller
 
     public function beforeFilter(Event $event)
     {
-		$this->Session = $this->request->Session();
+		
+		$this->Session =  $this->getRequest()->getSession();
 
 		$sUser = $this->Auth->user();
 		$this->sUser = $sUser ;
 
-		if(isset($this->request->params['prefix']) && $this->request->params['prefix'] == 'admin' ){ 
+		if($this->getRequest()->getParam('prefix') == 'admin' ){ 
    
 			if($sUser && $sUser['group_id'] != '1' ){
 

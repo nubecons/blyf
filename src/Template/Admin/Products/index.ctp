@@ -1,20 +1,20 @@
 <?php $site_url = $this->Url->build('/',true); ?>
-<!--<div class="bg-light lter b-b wrapper-md">
-  <h1 class="m-n font-thin h3">CMS</h1>
-</div>-->
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">Products Management</h1>
+</div>
 <div class="wrapper-md">
   
   <div class="panel panel-default">
     <div class="panel-heading">
      <div class="row">
       <div class="col-sm-5">
-       Dishes             
+       Products             
       </div>
       <div class="col-sm-4">
       </div>
       <div class="col-sm-3">
         
-      <a href="<?=$site_url?>admin/dishes/add"><button class="btn btn-default pull-right"> <i class="glyphicon glyphicon-plus">Add New</i></button></a>
+      <a href="<?=$site_url?>admin/products/add"><button class="btn btn-default pull-right"> <i class="glyphicon glyphicon-plus">Add New</i></button></a>
       
       </div>
     </div>
@@ -39,20 +39,20 @@
         </thead>
         <tbody>
         <?php
-		foreach($Dishes as $Dish): 
+		foreach($Products as $Product): 
          ?>
 
           <tr>
             <td><?php /*?><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label><?php */?></td>
-            <td><?=$Dish['id']?></td>
-            <td><?=$Dish['title']?></td>
-            <td><?=$Dish['image']?></td>
-            <td><?=$Dish['status']?></td>
-            <td><?=$Dish['modified']?></td>
+            <td><?=$Product['id']?></td>
+            <td><?=$Product['title']?></td>
+            <td><?=$Product['image']?></td>
+            <td><?=$Product['status']?></td>
+            <td><?=$Product['modified']?></td>
             <td>
-             <a href="<?=$site_url?>admin/dishes/edit/<?=$Dish['id']?>" title="Edit"><i class="fa fa-pencil"></i></a>
+             <a href="<?=$site_url?>admin/products/edit/<?=$Product['id']?>" title="Edit"><i class="fa fa-pencil"></i></a>
               &nbsp;&nbsp;
-              <a href="<?=$site_url?>admin/dishes/delete/<?=$Dish['id']?>" onclick="return confirm('Are you sure you want to delete this item?');" ><i class="fa fa-times text-danger"></i></a>
+              <a href="<?=$site_url?>admin/products/delete/<?=$Product['id']?>" onclick="return confirm('Are you sure you want to delete this item?');" ><i class="fa fa-times text-danger"></i></a>
             </td>
           </tr>
 		  <?php endforeach;  ?>

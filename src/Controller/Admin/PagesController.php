@@ -31,8 +31,8 @@ class PagesController extends AppController
 	  $this->set('Page' ,$Page);
 	  if ($this->request->is('post'))
 		{
-			   $data = $this->request->data;
-			   $Page= $this->Pages->patchEntity($Page, $this->request->data);
+			   $data = $this->request->getData();
+			   $Page= $this->Pages->patchEntity($Page, $this->request->getData());
 			
 				if ($this->Pages->save($Page))
 				{
@@ -42,7 +42,7 @@ class PagesController extends AppController
 				}else{
 					
 				 $this->Flash->error(__('Record could not saved. Please try again later.'));	
-				  $this->set('errors', $Page->errors());
+				 
 				}
 		}
 		

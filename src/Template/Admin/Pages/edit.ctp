@@ -31,7 +31,7 @@
           <div class="col-sm-10">
            <?php echo $this->Ck->Create('body' , $Page->body); ?>
            <?php
-		     if( $Page->errors('body') ){?>
+		     if( $Page->getError('body') ){?>
            <div class="error-message">This field cannot be left empty</div>
            <?php }?>
            

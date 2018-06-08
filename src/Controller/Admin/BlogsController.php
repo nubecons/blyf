@@ -64,7 +64,9 @@ class BlogsController extends AppController {
 				
 				if(count($this->Upload->errors) > 0)
 				{
-					unset($this->request->data['image_file']);
+					//unset($this->request->data['image_file']);
+				    $this->Flash->error(__($this->Upload->errors[0]));	
+					return;
 				}
 				else
 				{

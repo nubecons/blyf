@@ -46,15 +46,18 @@ use Cake\Routing\Route\DashedRoute;
  */
 Router::defaultRouteClass(DashedRoute::class);
 
+
+
 Router::prefix('admin', function ($routes) {
      // All routes here will be prefixed with `/admin`
      // And have the prefix => admin route element added.
+	 $routes->connect('/login', ['controller' => 'Users', 'action' => 'login']);    
      $routes->connect('/', ['controller' => 'Users', 'action' => 'dashboard']);    
 	 
      $routes->fallbacks('DashedRoute');
 });
 
-
+Router::connect('/admin', array('controller' => 'users', 'action' => 'dashboard', 'admin'=>true));
 Router::scope('/', function (RouteBuilder $routes) {
     /**
      * Here, we are connecting '/' (base path) to a controller called 'Pages',
