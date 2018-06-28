@@ -27,7 +27,7 @@ class AllergensController extends AppController
      }
 	$query = $this->Allergens->find('all')->where($conditions);
         $this->paginate['limit'] = 25;
-        $this->paginate['order'] = ['created' => 'ASC' ];
+        $this->paginate['order'] = ['id' => 'DESC' ];
         $Allergens = $this->paginate($query, array('url' => '/Allergens/'));
         $this->set('Allergens', $Allergens);
        
@@ -40,27 +40,62 @@ class AllergensController extends AppController
 	  $this->set('Allergy' ,$Allergy);
 	  if ($this->request->is('post'))
 		{
-               if (!empty($this->request->data['image_file']['name'])) {
-                $result = $this->Upload->upload($this->request->data['image_file'], $this->file_path, null, null, null);
-
-                if (count($this->Upload->errors) > 0) {
-                    unset($this->request->data['image_file']);
-                } else {
-                    $this->request->data['image'] = $this->Upload->result;
-                }
-            }
-			   $data = $this->request->data;
-			   $Allergy= $this->Allergens->patchEntity($Allergy, $this->request->data);
+			
+			    $data = $this->request->getData();
+				$Allergy= $this->Allergens->patchEntity($Allergy, $data);
+				$this->set('Allergy' ,$Allergy);
+				
+              if (!empty($data['image_file']['name']))
+			  {
+				
+				if(($data['image_file']['size']/1024) > 100){
+					$this->Flash->error(__('Image size is greater then 100kb. Please choose smaller image.'));	
+					return;
+					}
+				
+				$result = $this->Upload->upload($data['image_file'], $this->file_path, null,  array('type' => 'resize', 'size' => '300', 'output' => 'png') ,null);
+				
+				if(count($this->Upload->errors) > 0)
+				{
+					unset($data['image_file']);
+					$this->Flash->error(__($this->Upload->errors[0]));	
+					return;
+				}
+				else
+				{
+					$data['image'] = $this->Upload->result; 
+					$data['image_name'] = $data['image_file']['name']; 
+					
+				}
+				
+				$result = $this->Upload->upload($data['image_file'], $this->file_path.'thumbnails/', null,  array('type' => 'resize', 'size' => '150', 'output' => 'png') ,null);
+				
+				if(count($this->Upload->errors) > 0)
+				{
+					$this->Flash->error(__($this->Upload->errors[0]));	
+					return;
+				}
+				else
+				{
+					$data['thumbnail'] = $this->Upload->result; 
+					
+					
+				}
+				
+				
+			}
+		
+			   $Allergy= $this->Allergens->patchEntity($Allergy, $data);
 			
 				if ($this->Allergens->save($Allergy))
 				{
 					$this->Flash->success(__('Record saved successfully.'));
-					$this->redirect(['action' => 'index']);
+					return $this->redirect(['action' => 'index']);
 				
-				}else{
+				}elseif(!$Allergy->getErrors()){
 					
 				 $this->Flash->error(__('Record could not saved. Please try again later.'));	
-				  $this->set('errors', $Allergy->errors());
+				
 				}
 		}
 		
@@ -77,29 +112,59 @@ class AllergensController extends AppController
 	  
 	  if ($this->request->is('post') || $this->request->is('put'))
 		{
-			if (!empty($this->request->data['image_file']['name'])) {
-                $result = $this->Upload->upload($this->request->data['image_file'], $this->file_path, null, null, null);
-
-                if (count($this->Upload->errors) > 0) {
-                    unset($this->request->data['image_file']);
-                     $this->Flash->error(__($this->Upload->errors[0]));	
+			 $data = $this->request->getData();
+			
+			 $Allergy= $this->Allergens->patchEntity($Allergy, $data);
+			 $this->set('Allergy' ,$Allergy);
+				
+              if (!empty($data['image_file']['name']))
+			  {
+				
+				if(($data['image_file']['size']/1024) > 800){
+					$this->Flash->error(__('Image size is greater then 800kb. Please choose smaller image.'));	
+					return;
+					}
+				
+				$result = $this->Upload->upload($data['image_file'], $this->file_path, null,  array('type' => 'resize', 'size' => '1000', 'output' => 'png') ,null);
+				
+				if(count($this->Upload->errors) > 0)
+				{
+					unset($data['image_file']);
+					$this->Flash->error(__($this->Upload->errors[0]));	
 					return;
 				}
 				else
 				{
-					$this->request->data['image'] = $this->Upload->result; 
-					$this->request->data['image_name'] = $this->request->data['image_file']['name']; 
+					$data['image'] = $this->Upload->result; 
+					$data['image_name'] = $data['image_file']['name']; 
 					
 				}
-            }
-			 $data = $this->request->data;
-				$Allergy= $this->Allergens->patchEntity($Allergy, $this->request->data);
+				
+				$result = $this->Upload->upload($data['image_file'], $this->file_path.'thumbnails/', null,  array('type' => 'resize', 'size' => '300', 'output' => 'png') ,null);
+				
+				if(count($this->Upload->errors) > 0)
+				{
+					$this->Flash->error(__($this->Upload->errors[0]));	
+					return;
+				}
+				else
+				{
+					$data['thumbnail'] = $this->Upload->result; 
+					
+					
+				}
+				
+				
+			}
+			
+				$Allergy= $this->Allergens->patchEntity($Allergy, $data);
 			
 				if ($this->Allergens->save($Allergy))
 				{
 					$this->Flash->success(__('Record saved successfully.'));
-					$this->redirect(['action' => 'index']);
-				}else{
+					return $this->redirect(['action' => 'index']);
+					
+				}elseif(!$Allergy->getErrors()){
 					
 				 $this->Flash->error(__('Record could not saved. Please try again later.'));	
 				
@@ -117,12 +182,44 @@ class AllergensController extends AppController
 				if ($this->Allergens->delete($Allergy))
 				{
 					$this->Flash->success(__('Record deleted successfully.'));
-					$this->redirect(['action' => 'index']);
+					return $this->redirect(['action' => 'index']);
 				}else{
 					
 				 $this->Flash->error(__('Record could not deleted. Please try again later.'));	
 				
 				}
 		}
+	}
+	
+	public function changestatus($id = null){
+
+	  $Allergy = $this->Allergens->get($id);
+	
+	  if (!$Allergy){
+	  		
+			$this->Flash->error(__('Invalid Allergy.'));	
+	  		return $this->redirect($this->referer());
+		
+		}	
+		
+		
+	   
+	   if($Allergy['status'] == 'ACTIVE')
+		{
+			$data['status'] = 'INACTIVE';
+		}else{
+			$data['status'] = 'ACTIVE';
+		}
+		
+		$Allergy= $this->Allergens->patchEntity($Allergy, $data);
+		if ($this->Allergens->save($Allergy))
+		{
+			$this->Flash->success(__('Status updated successfully.'));
+		}else{
+		    $this->Flash->error(__('Status could not updated. Please try again later.'));	
+		}	
+		
+		return $this->redirect($this->referer());
+			
 	}
 }

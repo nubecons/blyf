@@ -1,35 +1,35 @@
 <?php $site_url = $this->Url->build('/',true); ?>
-<!--<div class="bg-light lter b-b wrapper-md">
-  <h1 class="m-n font-thin h3">CMS</h1>
-</div>-->
+
 <div class="wrapper-md">
-  
+  <div>
+  <a href="<?=$site_url?>admin/products" class="text-info" > All Dishes </a> -> <?=$Product->title?>'s Ingredients
+  </div>
   <div class="panel panel-default">
-    <div class="panel-heading">
+    <div class="panel-heading font-bold">
      <div class="row">
       <div class="col-sm-5">
       <?=$Product->title?>'s Ingredients             
       </div>
-      <div class="col-sm-4">
+      <div class="col-sm-2">
       </div>
       <div class="col-sm-3">
-        
-      <a href="<?=$site_url?>admin/product-ingredients/add/<?=$Product->id?>"><button class="btn btn-default pull-right"> <i class="glyphicon glyphicon-plus">Add New</i></button></a>
+       
+     <a href="<?=$site_url?>admin/product-ingredients/add/<?=$Product->id?>"><button class="btn btn-default pull-right"> <i class="glyphicon glyphicon-plus"></i> Select & Add Ingredient</button></a>
+     </div>
+      <div class="col-sm-2">   
+      <a href="<?=$site_url?>admin/products"><button class="btn btn-default pull-right"> <i class="glyphicon glyphicon-list"></i> Go back to dishes</button></a>
+      
       
       </div>
     </div>
     </div>
   
   <div class="table-responsive">
-      <table class="table table-striped b-t b-light">
+      <table class="table table-striped b-t b-light"  id="data_table">
         <thead>
           <tr>
-            <th style="width:20px;">
-             <?php /*?> <label class="i-checks m-b-none">
-                <input type="checkbox"><i></i>
-              </label><?php */?>
-            </th>
-            <th>Id</th>
+          
+           
             <th>Ingredient</th>
             <th>Modified</th>
             <th style="width:30px;">Action</th>
@@ -41,8 +41,8 @@
          ?>
 
           <tr>
-            <td><?php /*?><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label><?php */?></td>
-            <td><?=$Ingredient['id']?></td>
+            
+         
             <td><?=$Ingredients[$Ingredient['ingredient_id']]?></td>
             <td><?=$Ingredient['modified']?></td>
             <td>
@@ -54,7 +54,7 @@
         </tbody>
       </table>
     </div>
-    <footer class="panel-footer">
+   <?php /*?> <footer class="panel-footer">
       <div class="row">
         <div class="col-sm-4 hidden-xs">
                            
@@ -76,7 +76,10 @@
           <?php }?>   
         </div>
       </div>
-    </footer>
+    </footer><?php */?>
   </div>
 </div>
+
+
+
 

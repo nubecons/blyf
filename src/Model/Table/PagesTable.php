@@ -31,8 +31,27 @@ public function initialize(array $config)
 public function validationDefault(Validator $validator)
 {
     $validator->notEmpty('headline');
-    $validator->notEmpty('url');
+    
 	$validator->notEmpty('body');
+	
+	$validator->add('headline', [
+                    'unique' => [
+                        'rule' => ['validateUnique'],
+						'provider' => 'table', 
+                        'message' => 'This page already exist. Please provide another one.',
+                    ]
+                ])
+                ->notEmpty('headline');
+				
+	 $validator->add('url', [
+                    'unique' => [
+                        'rule' => ['validateUnique'],
+						'provider' => 'table', 
+                        'message' => 'This url already exist. Please provide another one.',
+                    ]
+                ])
+                ->notEmpty('url');
+	
 
     return $validator;
 }

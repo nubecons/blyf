@@ -13,21 +13,21 @@
         <div class="form-group">
           <label class="col-sm-2 control-label" for="input-id-1">First Name</label>
           <div class="col-sm-10">
-            <?php echo $this->Form->text('first_name', ['class'=>'form-control' ,'required' => true]); ?>
+            <?php echo $this->Form->control('first_name', ['label'=>false, 'class'=>'form-control' ,'required' => true]); ?>
           </div>
         </div>
         
          <div class="form-group">
           <label class="col-sm-2 control-label" for="input-id-1">Last Name</label>
           <div class="col-sm-10">
-            <?php echo $this->Form->text('last_name', ['class'=>'form-control' ,'required' => true]); ?>
+            <?php echo $this->Form->control('last_name', ['label'=>false,'class'=>'form-control' ,'required' => true]); ?>
           </div>
         </div>
         
          <div class="form-group">
           <label class="col-sm-2 control-label" for="input-id-1">Email</label>
           <div class="col-sm-10">
-            <?php echo $this->Form->text('email', ['class'=>'form-control' ,'required' => true]); ?>
+            <?php echo $this->Form->control('email', ['label'=>false,'class'=>'form-control' ,'required' => true]); ?>
           </div>
         </div>
   

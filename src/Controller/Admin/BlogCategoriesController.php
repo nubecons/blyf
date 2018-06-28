@@ -40,15 +40,15 @@ class BlogCategoriesController extends AppController {
  
 	  if ($this->request->is('post'))
 		{
-			    $data = $this->request->data;
-             	$Category= $this->BlogCategories->patchEntity($Category, $this->request->data);
+			    $data = $this->request->getData();
+             	$Category= $this->BlogCategories->patchEntity($Category, $data);
 			
 				if ($this->BlogCategories->save($Category))
 				{
 					$this->Flash->success(__('Category added successfully.'));
 					$this->redirect(['action' => 'index']);
 					
-				}else{
+				}elseif(!$Category->getErrors()){
 					
 					$this->Flash->error(__('Category could not added successfully. Please try again later!'));
 					
@@ -66,14 +66,14 @@ class BlogCategoriesController extends AppController {
 	  
 	  if ($this->request->is('post') || $this->request->is('put'))
 		{
-			    $data = $this->request->data;
+			     $data = $this->request->getData();
             
 				$Category= $this->BlogCategories->patchEntity($Category, $data);
 				if($this->BlogCategories->save($Category))
 				{
 					$this->Flash->success(__('Category saved successfully.'));
 					$this->redirect(['action' => 'index']);
-				}else{
+				}elseif(!$Category->getErrors()){
 					$this->Flash->error(__('Category could not saved successfully. Please try again later!'));
 					}
 		}
@@ -84,6 +84,8 @@ class BlogCategoriesController extends AppController {
 	
 	
 	public function delete($id = null){
+		
+				   $this->loadModel('Blogs');
 
 	  $Category = $this->BlogCategories->get($id);
 	 
@@ -92,8 +94,10 @@ class BlogCategoriesController extends AppController {
 			 
 				if ($this->BlogCategories->delete($Category))
 				{
+					
+					$this->Blogs->deleteAll(['blog_category_id' =>$Category->id ]);
 					$this->Flash->success(__('Record deleted successfully.'));
-					$this->redirect(['action' => 'index']);
+					return $this->redirect(['action' => 'index']);
 				}else{
 					
 				 $this->Flash->error(__('Record could not deleted. Please try again later.'));	

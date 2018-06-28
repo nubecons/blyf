@@ -41,12 +41,22 @@ class MealsController extends AppController
 			
 			    $data = $this->request->getData() ;
 				
-               if (!empty($data['image_file']['name'])) {
-                $result = $this->Upload->upload($data['image_file'], $this->file_path, null, null, null);
-
-                if (count($this->Upload->errors) > 0) {
-                    unset($data['image_file']);
-                     $this->Flash->error(__($this->Upload->errors[0]));	
+				$Meal= $this->Meals->patchEntity($Meal, $data);
+				$this->set('Meal' ,$Meal);
+				if (!empty($data['image_file']['name']))
+				{
+				
+				if(($data['image_file']['size']/1024) > 150){
+					$this->Flash->error(__('Image size is greater then 150kb. Please choose smaller image.'));	
+					return;
+					}
+				
+				$result = $this->Upload->upload($data['image_file'], $this->file_path, null,  array('type' => 'resize', 'size' => '1000', 'output' => 'png') ,null);
+				
+				if(count($this->Upload->errors) > 0)
+				{
+					unset($data['image_file']);
+					$this->Flash->error(__($this->Upload->errors[0]));	
 					return;
 				}
 				else
@@ -55,7 +65,24 @@ class MealsController extends AppController
 					$data['image_name'] = $data['image_file']['name']; 
 					
 				}
-            }
+				
+				$result = $this->Upload->upload($data['image_file'], $this->file_path.'thumbnails/', null,  array('type' => 'resize', 'size' => '400', 'output' => 'png') ,null);
+				
+				if(count($this->Upload->errors) > 0)
+				{
+					$this->Flash->error(__($this->Upload->errors[0]));	
+					return;
+				}
+				else
+				{
+					$data['thumbnail'] = $this->Upload->result; 
+					
+					
+				}
+				
+				
+			}
+		
 			 
 			   $Meal= $this->Meals->patchEntity($Meal, $data);
 			
@@ -64,7 +91,7 @@ class MealsController extends AppController
 					$this->Flash->success(__('Record saved successfully.'));
 					$this->redirect(['action' => 'index']);
 				
-				}else{
+				}elseif(!$Meal->getErrors()){
 					
 				 $this->Flash->error(__('Record could not saved. Please try again later.'));	
 			
@@ -87,12 +114,22 @@ class MealsController extends AppController
 			
  			   $data = $this->request->getData() ;
 				
-               if (!empty($data['image_file']['name'])) {
-                $result = $this->Upload->upload($data['image_file'], $this->file_path, null, null, null);
-
-                if (count($this->Upload->errors) > 0) {
-                    unset($data['image_file']);
-                     $this->Flash->error(__($this->Upload->errors[0]));	
+              $Meal= $this->Meals->patchEntity($Meal, $data);
+				$this->set('Meal' ,$Meal);
+				if (!empty($data['image_file']['name']))
+				{
+				
+				if(($data['image_file']['size']/1024) > 150){
+					$this->Flash->error(__('Image size is greater then 150kb. Please choose smaller image.'));	
+					return;
+					}
+				
+				$result = $this->Upload->upload($data['image_file'], $this->file_path, null,  array('type' => 'resize', 'size' => '1000', 'output' => 'png') ,null);
+				
+				if(count($this->Upload->errors) > 0)
+				{
+					unset($data['image_file']);
+					$this->Flash->error(__($this->Upload->errors[0]));	
 					return;
 				}
 				else
@@ -101,14 +138,30 @@ class MealsController extends AppController
 					$data['image_name'] = $data['image_file']['name']; 
 					
 				}
-            }
+				
+				$result = $this->Upload->upload($data['image_file'], $this->file_path.'thumbnails/', null,  array('type' => 'resize', 'size' => '400', 'output' => 'png') ,null);
+				
+				if(count($this->Upload->errors) > 0)
+				{
+					$this->Flash->error(__($this->Upload->errors[0]));	
+					return;
+				}
+				else
+				{
+					$data['thumbnail'] = $this->Upload->result; 
+					
+					
+				}
+				
+				
+			}
 				$Meal= $this->Meals->patchEntity($Meal, $data);
 			
 				if ($this->Meals->save($Meal))
 				{
 					$this->Flash->success(__('Record saved successfully.'));
 					$this->redirect(['action' => 'index']);
-				}else{
+				}elseif(!$Meal->getErrors()){
 					
 				 $this->Flash->error(__('Record could not saved. Please try again later.'));	
 				

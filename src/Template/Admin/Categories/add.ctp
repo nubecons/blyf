@@ -3,30 +3,35 @@
 <div class="wrapper-md col-sm-11" >
 
   <div class="panel panel-default">
-    <div class="panel-heading font-bold">
-      Details
+     <div class="panel-heading font-bold">
+     <div class="row">
+      <div class="col-sm-5">
+        Add New Food Category          
+      </div>
+      <div class="col-sm-4">
+      </div>
+      <div class="col-sm-3">
+        
+      <a href="<?=$site_url?>admin/categories"><button class="btn btn-default pull-right"> <i class="glyphicon glyphicon-list"></i> Go back to list</button></a>
+      
+      </div>
+    </div>
     </div>
     <div class="panel-body">
     
       <?php echo $this->Form->create($Category, ["class" => "form-horizontal" , 'enctype' => 'multipart/form-data']); ?> 
-        <div class="form-group">
-          <label class="col-sm-2 control-label" for="input-id-1">Category </label>
-          <div class="col-sm-5">
-            <?php echo $this->Form->input('parent_id', [ 'empty' => 'Main Category' ,   'options' => $MainCategories ,  'dev' => false , 'label' => false, 'class'=>'form-control']); ?>
-       
-          </div>
-        </div>
+      
         <div class="form-group">
           <label class="col-sm-2 control-label" for="input-id-1">Title </label>
           <div class="col-sm-5">
-            <?php echo $this->Form->text('title', ['class'=>'form-control' ]); ?>
+          <?php echo $this->Form->control('title', ['label' => false, 'class'=>'form-control' ]); ?>
           </div>
         </div>
         
          <div class="form-group">
           <label class="col-sm-2 control-label" for="input-id-1">Description</label>
           <div class="col-sm-5">
-            <?php echo $this->Form->text('description', ['class'=>'form-control']); ?>
+             <?php echo $this->Form->control('description', ['label' => false,'class'=>'form-control']); ?>
           </div>
         </div>
                 

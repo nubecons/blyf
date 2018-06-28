@@ -1,42 +1,31 @@
 <?php $site_url = $this->Url->build('/',true); ?>
 
-<?= $this->Html->script('../admin/js/ui-client.js') ?>
-<?= $this->Html->script('../admin/js/ui-client.js') ?>
-
-
-<div class="bg-light lter b-b wrapper-md">
-  <h1 class="m-n font-thin h3">Blog Categories Management</h1>
-</div>
 <div class="wrapper-md">
-  
   <div class="panel panel-default">
-    <div class="panel-heading">
+    <div class="panel-heading font-bold">
      <div class="row">
       <div class="col-sm-5">
-       BlogCategories             
+       Blog Categories             
       </div>
       <div class="col-sm-4">
       </div>
       <div class="col-sm-3">
         
-      <a href="<?=$site_url?>admin/blog-categories/add"><button class="btn btn-default pull-right"> <i class="glyphicon glyphicon-plus"> Add New</i></button></a>
+      <a href="<?=$site_url?>admin/blog-categories/add"><button class="btn btn-default pull-right"> <i class="glyphicon glyphicon-plus"> </i> Add New</button></a>
       
       </div>
     </div>
     </div>
-  
+    
+   
   <div class="table-responsive">
-      <table class="table table-striped b-t b-light">
+      <table class="table table-striped b-t b-light" id="data_table" >
         <thead>
           <tr>
-            <th style="width:20px;">
-             <?php /*?> <label class="i-checks m-b-none">
-                <input type="checkbox"><i></i>
-              </label><?php */?>
-            </th>
-            <th>Id</th>
+          
+           
             <th>Title</th>
-            
+            <th>Created</th>
             <th>Modified</th>
             <th style="width:30px;">Action</th>
           </tr>
@@ -47,14 +36,15 @@
          ?>
 
           <tr>
-            <td><?php /*?><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label><?php */?></td>
-            <td><?=$Category['id']?></td>
+           
+           
             <td><?=$Category['title']?></td>
+            <td><?=$Category['created']?></td>
             <td><?=$Category['modified']?></td>
             <td>
              <a href="<?=$site_url?>admin/blog-categories/edit/<?=$Category['id']?>" title="Edit"><i class="fa fa-pencil"></i></a>
               &nbsp;&nbsp;
-              <a href="<?=$site_url?>admin/blog-categories/delete/<?=$Category['id']?>" onclick="return confirm('Are you sure you want to delete this item?');" ><i class="fa fa-times text-danger"></i></a>
+              <a href="<?=$site_url?>admin/blog-categories/delete/<?=$Category['id']?>" onclick="return confirm('Are you sure you want to delete this item?. It will delete all related data as well.');" ><i class="fa fa-times text-danger"></i></a>
             </td>
           </tr>
 		  <?php endforeach;  ?>
@@ -62,7 +52,7 @@
         </tbody>
       </table>
     </div>
-    <footer class="panel-footer">
+    <?php /*?><footer class="panel-footer">
       <div class="row">
         <div class="col-sm-4 hidden-xs">
                            
@@ -84,8 +74,9 @@
           <?php }?>   
         </div>
       </div>
-    </footer>
+    </footer><?php */?>
   </div>
 </div>
 
+	
 

@@ -36,6 +36,16 @@ public function validationDefault(Validator $validator)
 	$validator->notEmpty('opening_hours');
 	$validator->notEmpty('closing_hours');
 	
+	 $validator->add('name', [
+                    'unique' => [
+                        'rule' => ['validateUnique'],
+						'provider' => 'table', 
+                        'message' => 'This store already exist. Please provide another one.',
+                    ]
+                ])
+                ->notEmpty('name');
+	
+	
 	
     return $validator;
 }

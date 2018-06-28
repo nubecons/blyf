@@ -17,7 +17,7 @@ class StoresController extends AppController
 		$conditions = [] ;
 		$query = $this->Stores->find('all')->where($conditions);
         $this->paginate['limit'] = 25;
-        $this->paginate['order'] = ['created' => 'ASC' ];
+        $this->paginate['order'] = ['id' => 'DESC' ];
         $Stores = $this->paginate($query, array('url' => '/Stores/'));
         $this->set('Stores', $Stores);
        
@@ -31,8 +31,8 @@ class StoresController extends AppController
 	  $this->set('Store' ,$Store);
 	  if ($this->request->is('post'))
 		{
-			   $data = $this->request->data;
-			   $Store= $this->Stores->patchEntity($Store, $this->request->data);
+			   $data = $this->request->getData();
+			   $Store= $this->Stores->patchEntity($Store, $data);
 			
 				if ($this->Stores->save($Store))
 				{
@@ -41,9 +41,13 @@ class StoresController extends AppController
 				
 				}else{
 					
-				 $this->Flash->error(__('Record could not saved. Please try again later.'));	
-				  $this->set('errors', $Store->errors());
+				if(!$Store->getErrors()){
+					 $this->Flash->error(__('Record could not saved. Please try again later.'));	
 				}
+				  
+				}
+				
+			
 		}
 		
 		$this->set('Store' ,$Store);
@@ -58,19 +62,18 @@ class StoresController extends AppController
 	  
 	  if ($this->request->is('post') || $this->request->is('put'))
 		{
-			    $data = $this->request->data;
-				$Store= $this->Stores->patchEntity($Store, $this->request->data);
+			    $data = $this->request->getData();
+				$Store= $this->Stores->patchEntity($Store, $data);
 			
 				if ($this->Stores->save($Store))
 				{
 					$this->Flash->success(__('Record saved successfully.'));
 					$this->redirect(['action' => 'index']);
 				}else{
-			     
-				
-				 
-				 
-				 $this->Flash->error(__('Record could not saved. Please try again later.'));	
+			    
+				 if(!$Store->getErrors()){
+					 $this->Flash->error(__('Record could not saved. Please try again later.'));	
+				   }	
 				
 				}
 		}

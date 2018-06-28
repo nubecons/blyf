@@ -52,7 +52,7 @@ class User extends Entity
 
 	
 
-	 protected $_virtual = ['full_name'];
+	/* protected $_virtual = ['full_name'];
 
 
 
@@ -61,7 +61,7 @@ class User extends Entity
         return $this->_properties['first_name'] . ' ' . $this->_properties['last_name'];
 
     }
-
+*/
 }
 
 ?>

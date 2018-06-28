@@ -22,7 +22,7 @@ class MealProductsController extends AppController
 		
 		if(!$id){
 			$this->Flash->error(__('Please select valid meal.'));
-			return $this->redirect(['controler'=>'meals',  'action' => 'index']);
+			return $this->redirect(['controller'=>'Meals',  'action' => 'index']);
 		}
 		
 		  $this->loadModel('Meals');
@@ -30,7 +30,7 @@ class MealProductsController extends AppController
 		  
 		  if(!$Meal){
 			$this->Flash->error(__('Please select valid product.'));
-			return $this->redirect(['controler'=>'meals',  'action' => 'index']);
+			return $this->redirect(['controller'=>'Meals',  'action' => 'index']);
 		  
 		  }
 		
@@ -54,7 +54,7 @@ class MealProductsController extends AppController
 		
 		if(!$id){
 			$this->Flash->error(__('Please select valid product.'));
-			return $this->redirect(['controler'=>'meals',  'action' => 'index']);
+			return $this->redirect(['controller'=>'meals',  'action' => 'index']);
 		}
 		
 		$this->loadModel('Meals');
@@ -62,11 +62,15 @@ class MealProductsController extends AppController
 		
 		if(!$Meal){
 			$this->Flash->error(__('Please select valid product.'));
-			return $this->redirect(['controler'=>'meals',  'action' => 'index']);
+			return $this->redirect(['controller'=>'meals',  'action' => 'index']);
 		}
 		
 	  $this->set('Meal' , $Meal);
 
+$this->loadModel('Categories');
+	 	
+	 $MainCategories = $this->Categories->find('list', ['keyField' => 'id', 'valueField' => 'title'])->where(['status' => 'ACTIVE', 'parent_id' => 0])->toArray();
+	 $this->set('MainCategories', $MainCategories);
 	  $ProIdz = $this->MealProducts->find('list', ['keyField' => 'product_id', 'valueField' => 'product_id'])->where(['meal_id'=> $id])->toArray();
 
 	  $this->loadModel('Products');
@@ -99,7 +103,7 @@ class MealProductsController extends AppController
 					$this->Flash->success(__('Record saved successfully.'));
 					$this->redirect(['action' => 'index',$Meal->id]);
 				
-				}else{
+				}elseif(!$MealProduct->getErrors()){
 					
 				  $this->Flash->error(__('Record could not saved. Please try again later.'));	
 				 

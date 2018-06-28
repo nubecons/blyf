@@ -25,7 +25,7 @@
                                
                                  <div class="col-sm-9">
                                 <div class="input-icon"><i class="icon-user fa"></i>
-                                <?= $this->Form->text('email' ,[  "id" => "sender-email" ,  "class" => "form-control" , "placeholder"=>"Email"]) ?>
+                                <?= $this->Form->control('email' ,[ 'label'=>false, "id" => "sender-email" ,  "class" => "form-control" , "placeholder"=>"Email"]) ?>
                                   
                                 </div>
                                 </div>

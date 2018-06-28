@@ -1,11 +1,9 @@
 <?php $site_url = $this->Url->build('/',true); ?>
-<!--<div class="bg-light lter b-b wrapper-md">
-  <h1 class="m-n font-thin h3">CMS</h1>
-</div>-->
+
 <div class="wrapper-md">
   
   <div class="panel panel-default">
-    <div class="panel-heading">
+    <div class="panel-heading font-bold">
      <div class="row">
       <div class="col-sm-5">
        Ingredients             
@@ -14,27 +12,23 @@
       </div>
       <div class="col-sm-3">
         
-      <a href="<?=$site_url?>admin/ingredients/add"><button class="btn btn-default pull-right"> <i class="glyphicon glyphicon-plus">Add New</i></button></a>
+      <a href="<?=$site_url?>admin/ingredients/add"><button class="btn btn-default pull-right"> <i class="glyphicon glyphicon-plus"> </i> Add New</button></a>
       
       </div>
     </div>
     </div>
   
   <div class="table-responsive">
-      <table class="table table-striped b-t b-light">
+      <table class="table table-striped b-t b-light" id="data_table" >
         <thead>
           <tr>
-            <th style="width:20px;">
-             <?php /*?> <label class="i-checks m-b-none">
-                <input type="checkbox"><i></i>
-              </label><?php */?>
-            </th>
-            <th>Id</th>
+           
+           
             <th>Title</th>
             <th>Image</th>
             <th>Status</th>
-            <th>Modified</th>
-            <th style="width:30px;">Action</th>
+            <th>Created</th>
+            <th style="width:100px;">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -43,16 +37,32 @@
          ?>
 
           <tr>
-            <td><?php /*?><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label><?php */?></td>
-            <td><?=$Ingredient['id']?></td>
+            
+           
             <td><?=$Ingredient['title']?></td>
-            <td><?=$Ingredient['image']?></td>
+            <td>
+			<?php if($Ingredient['image'] != ''){?>
+                <img src="<?=$site_url?>img/Ingredients/<?php echo $Ingredient['image'];?>" alt="img"  style="max-height:50px; max-width:50px"/>
+            <?php }?>
+            </td>
             <td><?=$Ingredient['status']?></td>
-            <td><?=$Ingredient['modified']?></td>
+            <td><?=$Ingredient['created']?></td>
             <td>
              <a href="<?=$site_url?>admin/ingredients/edit/<?=$Ingredient['id']?>" title="Edit"><i class="fa fa-pencil"></i></a>
               &nbsp;&nbsp;
-              <a href="<?=$site_url?>admin/ingredients/delete/<?=$Ingredient['id']?>" onclick="return confirm('Are you sure you want to delete this item?');" ><i class="fa fa-times text-danger"></i></a>
+              
+               <?php
+			  if($Ingredient['status'] == 'ACTIVE'){
+				  $activeClass = 'glyphicon-ok text-success';
+				  $activetext = "Click to de-activate";
+			     }else{
+				  $activeClass = 'glyphicon-ban-circle text-danger'; 
+				  $activetext = "Click to activate";
+				  }?>
+              
+              <a href="<?=$site_url?>admin/ingredients/changestatus/<?=$Ingredient['id']?>" title="<?=$activetext?>"  onclick="return confirm('Are you sure you want to change the status?');" ><i class="glyphicon <?=$activeClass?> "></i></a>
+				&nbsp;&nbsp;
+              <a href="<?=$site_url?>admin/ingredients/delete/<?=$Ingredient['id']?>" title="Delete" onclick="return confirm('Are you sure you want to delete this item?');" ><i class="fa fa-times text-danger"></i></a>
             </td>
           </tr>
 		  <?php endforeach;  ?>
@@ -60,7 +70,7 @@
         </tbody>
       </table>
     </div>
-    <footer class="panel-footer">
+   <?php /*?> <footer class="panel-footer">
       <div class="row">
         <div class="col-sm-4 hidden-xs">
                            
@@ -82,7 +92,7 @@
           <?php }?>   
         </div>
       </div>
-    </footer>
+    </footer><?php */?>
   </div>
 </div>
 

@@ -22,7 +22,7 @@ class ProductIngredientsController extends AppController
 		
 		if(!$id){
 			$this->Flash->error(__('Please select valid product.'));
-			return $this->redirect(['controler'=>'products',  'action' => 'index']);
+			return $this->redirect(['controller'=>'products',  'action' => 'index']);
 		}
 		
 		  $this->loadModel('Products');
@@ -30,7 +30,7 @@ class ProductIngredientsController extends AppController
 		  
 		  if(!$Product){
 			$this->Flash->error(__('Please select valid product.'));
-			return $this->redirect(['controler'=>'products',  'action' => 'index']);
+			return $this->redirect(['controller'=>'products',  'action' => 'index']);
 		  
 		  }
 		
@@ -54,7 +54,7 @@ class ProductIngredientsController extends AppController
 		
 		if(!$id){
 			$this->Flash->error(__('Please select valid product.'));
-			return $this->redirect(['controler'=>'products',  'action' => 'index']);
+			return $this->redirect(['controller'=>'products',  'action' => 'index']);
 		}
 		
 		$this->loadModel('Products');
@@ -62,10 +62,13 @@ class ProductIngredientsController extends AppController
 		
 		if(!$Product){
 			$this->Flash->error(__('Please select valid product.'));
-			return $this->redirect(['controler'=>'products',  'action' => 'index']);
+			return $this->redirect(['controller'=>'products',  'action' => 'index']);
 		}
 		
 	  $this->set('Product' , $Product);
+	  
+	  
+	  
 
 	  $IngIdz = $this->ProductIngredients->find('list', ['keyField' => 'ingredient_id', 'valueField' => 'ingredient_id'])->where(['product_id'=> $id])->toArray();
 
@@ -78,7 +81,7 @@ class ProductIngredientsController extends AppController
 	  	$IngCond['id not in'] = $IngIdz ;
 	  }
 	  
-	  $Ingredients = $this->Ingredients->find('list', ['keyField' => 'id', 'valueField' => 'title'])->where($IngCond)->toArray();
+	  $Ingredients = $this->Ingredients->find('list', ['keyField' => 'id', 'valueField' => 'title'])->where($IngCond)->order('title')->toArray();
 	  $this->set('Ingredients', $Ingredients);
 	  
 		 
@@ -99,7 +102,7 @@ class ProductIngredientsController extends AppController
 					$this->Flash->success(__('Record saved successfully.'));
 					$this->redirect(['action' => 'index',$Product->id]);
 				
-				}else{
+				}elseif(!$ProductIngredient->getErrors()){
 					
 				  $this->Flash->error(__('Record could not saved. Please try again later.'));	
 				 
@@ -131,4 +134,6 @@ class ProductIngredientsController extends AppController
 				}
 		}
 	}
+	
+
 }

@@ -18,7 +18,7 @@ class AppController extends Controller
     {
 		$this->Session = $this->getRequest()->getSession();
 		//$this->addBehavior('Timestamp');
-        $this->loadComponent('Flash');
+        $this->loadComponent('Flash',['clear' => true]);
 		$this->loadComponent('Site');
 		
 		$this->loadComponent('Auth', [
@@ -70,12 +70,12 @@ class AppController extends Controller
 		$this->set('sUser' ,$sUser);
 	
 		
-		if($this->Session->check('SiteInfo'))
+		//if($this->Session->check('SiteInfo'))
 		{
 	
 			$SiteInfo = $this->Session->read('SiteInfo');
 			
-		}else{
+	//}else{
 			
 			$this->loadModel('SiteInformations');
 			$SiteInfo = $this->SiteInformations->find('list', ['keyField' => 'type', 'valueField' => 'value'])->toArray();

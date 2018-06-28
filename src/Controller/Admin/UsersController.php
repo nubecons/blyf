@@ -2,8 +2,18 @@
     namespace App\Controller\Admin;
     use App\Controller\AppController;
 
+	//For EMail Sending
+	use Cake\Mailer\AbstractTransport;
+	use Cake\Mailer\Email;
+	use Cake\Network\Exception\SocketException;
+	use Cake\Network\Http\Client;
+	use Cake\Utility\Hash;
+   //For Password Hashing
+	use Cake\Auth\DefaultPasswordHasher;
+	use Cake\Routing\Router;
+
+
 	use Cake\Event\Event;
-	use App\Utility\Lists;
 
     use Cake\Datasource\ConnectionManager;
 
@@ -80,8 +90,9 @@
 
         
         if ($this->request->is(['post', 'put'])) {
-
-            $User_email = $this->Users->find()->where([ 'id !=' => $this->sUser['id'], 'email' => $this->request->data['email']])->first();
+            
+			 $data = $this->request->getData();
+            $User_email = $this->Users->find()->where([ 'id !=' => $this->sUser['id'], 'email' => $data['email']])->first();
 
             if ($User_email) {
 
@@ -91,56 +102,85 @@
 
 
 
-            if (!empty($this->request->data['image_file']['name'])) {
-                $result = $this->Upload->upload($this->request->data['image_file'], $this->profile_file_path, null, null, $this->allowedImages);
+            if (!empty($data['image_file']['name'])) {
+                $result = $this->Upload->upload($data['image_file'], $this->profile_file_path, null, null, $this->allowedImages);
 
                 if (count($this->Upload->errors) > 0) {
-                    unset($this->request->data['image_file']);
+                    
+					 unset($data['image_file']);
+                     $this->Flash->error(__($this->Upload->errors[0]));	
+					return;
+					
                 } else {
-                    $this->request->data['image'] = $this->Upload->result;
+                    $data['image'] = $this->Upload->result;
                 }
             }
 
-            $user = $this->Users->patchEntity($user, $this->request->data);
+            $user = $this->Users->patchEntity($user, $data);
             if ($this->Users->save($user)) {
 
                 $this->Flash->success(__('Profile updated successfully.'));
-
+				$this->Auth->setUser($user);
                 return $this->redirect(array('controller' => 'Users', 'action' => 'profile'));
 
             } else {
 				
                 $this->Flash->error(__('Changes could not saved.'));
-                $this->set('errors', $user->errors());
+                
             }
         }
     }
 	
   public function changePassword() {
 
-
         $user = $this->Users->get($this->sUser['id']);
+				 
+         if ($this->request->is(['post', 'put'])) {
+            
+			$data = $this->request->getData();
+            
+			$user = $this->Users->patchEntity($user, [
 
-        if (!empty($this->request->data)) {
-
-            $user = $this->Users->patchEntity($user, [
-
-                'old_password' => $this->request->data['old_password'],
-                'password' => $this->request->data['new_password'],
-                'new_password' => $this->request->data['new_password'],
-                'confirm_password' => $this->request->data['confirm_password']
+                'old_password' => $data['old_password'],
+                'password' => $data['new_password'],
+                'new_password' => $data['new_password'],
+                'confirm_password' => $data['confirm_password']
                     ], ['validate' => 'password']
             );
 
             if ($this->Users->save($user)) {
+				
                 $this->Flash->success(__('The password is successfully changed'));
-
+				
+				$message = 'Hi '.$user->first_name.',';
+				$message .="<br><br>";
+				$message .="You've successfully changed your password.";
+				$message .="<br><br>";
+				$message .="Thanks,<br>".$this->SiteInfo['site-name'].' Team';
+			
+			try {
+				$email = new Email();
+				$r = $email->setTemplate('common')
+				->setEmailFormat('html')
+				->setViewVars(['message' => $message])
+				->setFrom([$this->SiteInfo['support_email']])
+				->setTo($user['email']) //$user['email'];
+				->setSubject('Your password was successfully changed')
+				->send();	
+				}
+				//catch exception
+				catch(Exception $e) {
+					// $e->getMessage();
+				}
+				
                 return $this->redirect(array('controller' => '/Users', 'action' => 'changePassword'));
             } else {
 
-                $this->set('errors', $user->errors());
+                
             }
-        }
+        }else{
+			$user->new_password = '';
+			}
 
         $this->set('user', $user);
     }

@@ -5254,3 +5254,5 @@ a.text-#000000:hover {
 	color: #3c763d;
 	padding:8px;
 	}	
+.dataTables_paginate , .dataTables_filter{ float:right;}
+.dataTables_paginate .pagination{margin-top:0px;}

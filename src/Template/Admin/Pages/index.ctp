@@ -1,11 +1,9 @@
 <?php $site_url = $this->Url->build('/',true); ?>
-<div class="bg-light lter b-b wrapper-md">
-  <h1 class="m-n font-thin h3">CMS</h1>
-</div>
+
+
 <div class="wrapper-md">
-  
   <div class="panel panel-default">
-    <div class="panel-heading">
+    <div class="panel-heading font-bold">
      <div class="row">
       <div class="col-sm-5">
        Pages             
@@ -21,15 +19,11 @@
     </div>
   
   <div class="table-responsive">
-      <table class="table table-striped b-t b-light">
+      <table class="table table-striped b-t b-light"  id="data_table">
         <thead>
           <tr>
-            <th style="width:20px;">
-             <?php /*?> <label class="i-checks m-b-none">
-                <input type="checkbox"><i></i>
-              </label><?php */?>
-            </th>
-            <th>Id</th>
+          
+            
             <th>Headline</th>
             <th>Url</th>
             <th>Modified</th>
@@ -42,8 +36,8 @@
          ?>
 
           <tr>
-            <td><?php /*?><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label><?php */?></td>
-            <td><?=$Page['id']?></td>
+            
+          
             <td><?=$Page['headline']?></td>
             <td><?=$Page['url']?></td>
             <td><?=$Page['modified']?></td>
@@ -58,7 +52,7 @@
         </tbody>
       </table>
     </div>
-    <footer class="panel-footer">
+   <?php /*?> <footer class="panel-footer">
       <div class="row">
         <div class="col-sm-4 hidden-xs">
                            
@@ -80,7 +74,7 @@
           <?php }?>   
         </div>
       </div>
-    </footer>
+    </footer><?php */?>
   </div>
 </div>
 

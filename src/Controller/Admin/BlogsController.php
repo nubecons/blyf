@@ -16,7 +16,7 @@ class BlogsController extends AppController {
 
     public function beforeFilter(Event $event) {
         parent::beforeFilter($event);
-        $this->product_file_path = WWW_ROOT . 'img' . DS . 'blog' . DS;
+        $this->file_path = WWW_ROOT . 'img' . DS . 'Blogs' . DS;
         $this->loadComponent('Upload');
     }
 
@@ -29,12 +29,43 @@ class BlogsController extends AppController {
         $this->set('BlogCategories', $BlogCategories);
 		
 		
-		
-		
 		$conditions = [] ;
+		if ($this->request->is('post')) {
+
+            $this->Session->delete('SrchBlogData');
+            $this->Session->delete('SrchBlogCond');
+
+            $data = $this->request->getData();
+            $this->Session->write('SrchBlogData', $data);
+
+            if (isset($data['Keyword']) && $data['Keyword'] != '') {
+                $conditions['OR'] = ['Blogs.title Like' => '%'.$data['keyword'].'%' , 'Blogs.post Like' => '%'.$data['Keyword'].'%' ];
+            }
+
+
+            if (isset($data['blog_category_id']) && $data['blog_category_id'] != '') {
+                $conditions['Blogs.blog_category_id'] = $data['blog_category_id'];
+            }
+
+          
+          
+
+            $this->Session->write('SrchBlogCond', $conditions);
+        }
+
+       
+
+        if ($this->Session->check('SrchBlogCond')) {
+            $conditions = $this->Session->read('SrchBlogCond');
+        }
+      
+		
+		
+		//debug($conditions);
+		
 		$query = $this->Blogs->find('all')->where($conditions);
         $this->paginate['limit'] = 25;
-        $this->paginate['order'] = ['created' => 'DESC', ];
+        $this->paginate['order'] = ['id' => 'DESC', ];
         $Blogs = $this->paginate($query, array('url' => '/Blogs/'));
         $this->set('Blogs', $Blogs);
         
@@ -54,36 +85,60 @@ class BlogsController extends AppController {
 	  $this->set('Blog', $Blog);
 	  if ($this->request->is('post'))
 		{
-			 $data = $this->request->data;
-            
-			 
-            
-			if (!empty($this->request->data['image_file']['name']))
+			
+            $data = $this->request->getData();
+			$Blog= $this->Blogs->patchEntity($Blog, $data); 
+            $this->set('Blog', $Blog);
+				
+			if (!empty($data['image_file']['name']))
 			{
-				$result = $this->Upload->upload($this->request->data['image_file'], $this->product_file_path, null,  null ,null);
+				
+				if(($data['image_file']['size']/1024) > 800){
+					$this->Flash->error(__('Image size is greater then 800kb. Please choose smaller image.'));	
+					return;
+					}
+				
+				$result = $this->Upload->upload($data['image_file'], $this->file_path, null,  array('type' => 'resize', 'size' => '1000', 'output' => 'png') ,null);
 				
 				if(count($this->Upload->errors) > 0)
 				{
-					//unset($this->request->data['image_file']);
-				    $this->Flash->error(__($this->Upload->errors[0]));	
+					unset($data['image_file']);
+					$this->Flash->error(__($this->Upload->errors[0]));	
 					return;
 				}
 				else
 				{
-					$this->request->data['image'] = $this->Upload->result; 
-					$this->request->data['image_name'] = $this->request->data['image_file']['name']; 
+					$data['image'] = $this->Upload->result; 
+					$data['image_name'] = $data['image_file']['name']; 
 					
 				}
+				
+				$result = $this->Upload->upload($data['image_file'], $this->file_path.'thumbnails/', null,  array('type' => 'resize', 'size' => '300', 'output' => 'png') ,null);
+				
+				if(count($this->Upload->errors) > 0)
+				{
+					$this->Flash->error(__($this->Upload->errors[0]));	
+					return;
+				}
+				else
+				{
+					$data['thumbnail'] = $this->Upload->result; 
+					
+					
+				}
+				
+				
 			}
 		
-				$Blog= $this->Blogs->patchEntity($Blog, $this->request->data);
+		
+				$Blog= $this->Blogs->patchEntity($Blog, $data);
 			
 				if ($this->Blogs->save($Blog))
 				{
 				   $this->Flash->success(__('Record saved successfully.'));
 					$this->redirect(['action' => 'index']);
 				
-				}else{
+				}elseif(!$Blog->getErrors()){
 					
 				 $this->Flash->error(__('Record could not saved. Please try again later.'));	
 				}
@@ -110,37 +165,60 @@ class BlogsController extends AppController {
 	  
 	  if ($this->request->is('post') || $this->request->is('put'))
 		{
-			 $data = $this->request->data;
-            
-			 
-            
-			if (!empty($this->request->data['image_file']['name']))
+			  $data = $this->request->getData();
+			
+			  $Blog = $this->Blogs->patchEntity($Blog, $data);
+              $this->set('Blog' ,$Blog);
+			
+			if (!empty($data['image_file']['name']))
 			{
-				$result = $this->Upload->upload($this->request->data['image_file'], $this->product_file_path, null,  null ,null);
+				
+				if(($data['image_file']['size']/1024) > 800){
+					$this->Flash->error(__('Image size is greater then 800kb. Please choose smaller image.'));	
+					return;
+					}
+				
+				$result = $this->Upload->upload($data['image_file'], $this->file_path, null,  array('type' => 'resize', 'size' => '1000', 'output' => 'png') ,null);
 				
 				if(count($this->Upload->errors) > 0)
 				{
-					unset($this->request->data['image_file']);
+					unset($data['image_file']);
 					$this->Flash->error(__($this->Upload->errors[0]));	
 					return;
 				}
 				else
 				{
-					$this->request->data['image'] = $this->Upload->result; 
-					$this->request->data['image_name'] = $this->request->data['image_file']['name']; 
+					$data['image'] = $this->Upload->result; 
+					$data['image_name'] = $data['image_file']['name']; 
 					
 				}
+				
+				$result = $this->Upload->upload($data['image_file'], $this->file_path.'thumbnails/', null,  array('type' => 'resize', 'size' => '300', 'output' => 'png') ,null);
+				
+				if(count($this->Upload->errors) > 0)
+				{
+					$this->Flash->error(__($this->Upload->errors[0]));	
+					return;
+				}
+				else
+				{
+					$data['thumbnail'] = $this->Upload->result; 
+					
+					
+				}
+				
+				
 			}
 		
 				
-				$Blog= $this->Blogs->patchEntity($Blog, $this->request->data);
+				$Blog = $this->Blogs->patchEntity($Blog, $data);
 			
 				if ($this->Blogs->save($Blog))
 				{
 				   $this->Flash->success(__('Record saved successfully.'));
 					$this->redirect(['action' => 'index']);
 				
-				}else{
+				}elseif(!$Blog->getErrors()){
 					
 				 $this->Flash->error(__('Record could not saved. Please try again later.'));	
 				}
@@ -150,6 +228,23 @@ class BlogsController extends AppController {
 			
 	}
 	
+public function delete($id = null){
 
+	  $Category = $this->Blogs->get($id);
+	 
+	 // if ($this->request->is('post') || $this->request->is('put'))
+		{
+			 
+				if ($this->Blogs->delete($Category))
+				{
+					$this->Flash->success(__('Record deleted successfully.'));
+					$this->redirect(['action' => 'index']);
+				}else{
+					
+				 $this->Flash->error(__('Record could not deleted. Please try again later.'));	
+				
+				}
+		}
+	}
 
 }

@@ -39,7 +39,7 @@ class PagesController extends AppController
 					$this->Flash->success(__('Record saved successfully.'));
 					$this->redirect(['action' => 'index']);
 				
-				}else{
+				}elseif(!$Page->getErrors()){
 					
 				 $this->Flash->error(__('Record could not saved. Please try again later.'));	
 				 
@@ -58,14 +58,14 @@ class PagesController extends AppController
 	  
 	  if ($this->request->is('post') || $this->request->is('put'))
 		{
-			 $data = $this->request->data;
-				$Page= $this->Pages->patchEntity($Page, $this->request->data);
+			 $data = $this->request->getData();
+				$Page= $this->Pages->patchEntity($Page, $data);
 			
 				if ($this->Pages->save($Page))
 				{
 					$this->Flash->success(__('Record saved successfully.'));
 					$this->redirect(['action' => 'index']);
-				}else{
+				}elseif(!$Page->getErrors()){
 					
 				 $this->Flash->error(__('Record could not saved. Please try again later.'));	
 				

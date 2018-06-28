@@ -19,8 +19,108 @@ class UsersTable extends Table {
             ]
         ]);
     }
+	
+	public function validationDefault(Validator $validator)
+{
+	
+    $validator->notEmpty('first_name');
+	$validator->notEmpty('last_name');
+    $validator->notEmpty('address');
+	$validator->notEmpty('opening_hours');
+	$validator->notEmpty('closing_hours');
+	
+	 $validator->add('email', [
+                    'unique' => [
+                        'rule' => ['validateUnique'],
+						'provider' => 'table', 
+                        'message' => 'This email already exist. Please provide another one.',
+                    ]
+                ])
+                ->notEmpty('email');
+	
+	 $validator
+                ->add('old_password', 'custom', [
+
+                    'rule' => function($value, $context) {
+
+                        $user = $this->get($context['data']['id']);
+
+                        if ($user) {
+
+                            if ((new DefaultPasswordHasher)->check($value, $user->password)) {
+
+                                return true;
+                            }
+                        }
+
+                        return false;
+                    },
+                    'message' => 'The old password does not match the current password!',
+                ])
+                ->notEmpty('old_password');
+
+
+
+        $validator
+
+                ->add('new_password', [
+
+                  'length' => [
+
+                  'rule' => ['minLength', 6],
+
+                  'message' => 'The password have to be at least 6 characters!',
+
+                  ]
+
+                  ]) 
+                ->add('new_password', [
+
+                    'match' => [
+
+                        'rule' => ['compareWith', 'confirm_password'],
+                        'message' => 'The passwords does not match!',
+                    ]
+                ])
+                ->notEmpty('new_password');
+
+        $validator
+
+                /* ->add('confirm_password', [
+
+                  'length' => [
+
+                  'rule' => ['minLength', 6],
+
+                  'message' => 'The password have to be at least 6 characters!',
+
+                  ]
+
+                  ]) */
+                ->add('confirm_password', [
+
+                    'match' => [
+
+                        'rule' => ['compareWith', 'new_password'],
+                        'message' => 'The passwords does not match!',
+                    ]
+                ])
+                ->notEmpty('confirm_password');
+	
+    return $validator;
+}
 
     public function validationPassword(Validator $validator) {
+		
+		
+		$validator->add('email', [
+                    'unique' => [
+                        'rule' => ['validateUnique'],
+						'provider' => 'table', 
+                        'message' => 'This email already exist. Please provide another one.',
+                    ]
+                ])
+                ->notEmpty('email');
 
         $validator
                 ->add('old_password', 'custom', [
@@ -47,7 +147,7 @@ class UsersTable extends Table {
 
         $validator
 
-                /* ->add('new_password', [
+                ->add('new_password', [
 
                   'length' => [
 
@@ -57,7 +157,7 @@ class UsersTable extends Table {
 
                   ]
 
-                  ]) */
+                  ]) 
                 ->add('new_password', [
 
                     'match' => [

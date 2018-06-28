@@ -179,7 +179,8 @@ ServerRequest::addDetector('tablet', function ($request) {
  * locale specific date formats. For details see
  * @link https://book.cakephp.org/3.0/en/core-libraries/internationalization-and-localization.html#parsing-localized-datetime-data
  */
-Type::build('time')
+
+ Type::build('time')
     ->useImmutable();
 Type::build('date')
     ->useImmutable();
@@ -187,6 +188,12 @@ Type::build('datetime')
     ->useImmutable();
 Type::build('timestamp')
     ->useImmutable();
+
+// \Cake\I18n\Time::setToStringFormat('dd-MMMM-yyyy HH:mm:ss');
+// \Cake\I18n\Date::setToStringFormat('yyyy-dd-MMMM');
+ \Cake\I18n\FrozenTime::setToStringFormat('dd MMMM yyyy');
+// \Cake\I18n\FrozenDate::setToStringFormat('dd-MMMM-yyyy');
+
 
 /*
  * Custom Inflector rules, can be set to correctly pluralize or singularize

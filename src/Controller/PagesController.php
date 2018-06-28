@@ -39,7 +39,7 @@ class PagesController extends AppController
         parent::beforeFilter($event);
 
 
-        $this->Auth->allow(['about', 'contact', 'privacy', 'home', 'display']);
+        $this->Auth->allow(['about', 'contact', 'privacy', 'home', 'display' ,'view']);
     }
 
  
@@ -48,6 +48,17 @@ class PagesController extends AppController
 
     }
 
+public function view($url = null)
+    {
+	 $Page = $this->Pages->find()->where([ 'url' => $url, 'status' => '1'])->first();
+	 
+	 if (!$Page) {
+            return $this->redirect('/');
+        }
+	 
+	 $this->set('Page' ,$Page);	
+     
+	}
 
     /**
      * Displays a view

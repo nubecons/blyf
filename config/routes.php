@@ -22,6 +22,7 @@ use Cake\Core\Plugin;
 use Cake\Routing\RouteBuilder;
 use Cake\Routing\Router;
 use Cake\Routing\Route\DashedRoute;
+use Cake\ORM\TableRegistry;
 
 /**
  * The default class to use for all routes
@@ -69,7 +70,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     /**
      * ...and connect the rest of 'Pages' controller's URLs.
      */
-    $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
+    //$routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
 
     /**
      * Connect catchall routes for all controllers.
@@ -87,6 +88,23 @@ Router::scope('/', function (RouteBuilder $routes) {
      * You can remove these routes once you've connected the
      * routes you want in your application.
      */
+	 
+		
+		/**
+		* Initialize model and perform find
+		*/
+		$Cms =TableRegistry::get('Pages'); 
+		$cmsdata = $Cms->find('all'); 
+		
+		/**
+		* Iterate over results and define routes
+		*/
+		foreach ($cmsdata as $cmsrow) {
+		Router::connect('/'.$cmsrow->url, array('controller' => 'Pages', 'action' => 'view',$cmsrow->url));
+		}
+		
+	
+	 
     $routes->fallbacks(DashedRoute::class);
 });
 

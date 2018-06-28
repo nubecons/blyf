@@ -1,11 +1,9 @@
 <?php $site_url = $this->Url->build('/',true); ?>
-<!--<div class="bg-light lter b-b wrapper-md">
-  <h1 class="m-n font-thin h3">CMS</h1>
-</div>-->
+
 <div class="wrapper-md">
   
   <div class="panel panel-default">
-    <div class="panel-heading">
+    <div class="panel-heading font-bold">
      <div class="row">
       <div class="col-sm-5">
        Stores             
@@ -21,20 +19,16 @@
     </div>
   
   <div class="table-responsive">
-      <table class="table table-striped b-t b-light">
+      <table  id="data_table" class="table table-striped b-t b-light">
         <thead>
           <tr>
-            <th style="width:20px;">
-             <?php /*?> <label class="i-checks m-b-none">
-                <input type="checkbox"><i></i>
-              </label><?php */?>
-            </th>
-            <th>Id</th>
+           
+          
             <th>Name</th>
             <th>Email</th>
             <th>Opening Hours</th>
             <th>Closing Hours</th>
-            <th>Modified</th>
+            <th>Created</th>
             <th style="width:30px;">Action</th>
           </tr>
         </thead>
@@ -44,13 +38,13 @@
          ?>
 
           <tr>
-            <td><?php /*?><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label><?php */?></td>
-            <td><?=$Store['id']?></td>
+            
+           
             <td><?=$Store['name']?></td>
             <td><?=$Store['email']?></td>
             <td><?=$Store['opening_hours']?></td>
             <td><?=$Store['closing_hours']?></td>
-            <td><?=$Store['modified']?></td>
+            <td><?=$Store['created']?></td>
             <td>
              <a href="<?=$site_url?>admin/stores/edit/<?=$Store['id']?>" title="Edit"><i class="fa fa-pencil"></i></a>
               &nbsp;&nbsp;
@@ -62,7 +56,7 @@
         </tbody>
       </table>
     </div>
-    <footer class="panel-footer">
+   <?php /*?> <footer class="panel-footer">
       <div class="row">
         <div class="col-sm-4 hidden-xs">
                            
@@ -84,7 +78,7 @@
           <?php }?>   
         </div>
       </div>
-    </footer>
+    </footer><?php */?>
   </div>
 </div>
 

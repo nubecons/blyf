@@ -1,23 +1,54 @@
+<?php
+/**
+ * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
+ * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
+ *
+ * Licensed under The MIT License
+ * For full copyright and license information, please see the LICENSE.txt
+ * Redistributions of files must retain the above copyright notice.
+ *
+ * @copyright     Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
+ * @link          https://cakephp.org CakePHP(tm) Project
+ * @since         0.10.0
+ * @license       https://opensource.org/licenses/mit-license.php MIT License
+ */
+?>
 <!DOCTYPE html>
-<html lang="en" class="">
+<html>
     <head>
         <meta charset="utf-8" />
         <title><?=$SiteInfo['site-title']?> - Control Panel</title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-   <?= $this->Html->meta('icon') ?>
+    <?= $this->Html->meta('icon') ?>
+	<?= $this->fetch('meta') ?>
 
     <?= $this->Html->css('../admin/libs/assets/animate.css/animate.css') ?>
      <?= $this->Html->css('../admin/libs/assets/font-awesome/css/font-awesome.min.css') ?>
     <?= $this->Html->css('../admin/libs/jquery/bootstrap/dist/css/bootstrap.css') ?>
+    <? // $this->Html->css('../admin/libs/jquery/plugins/integration/bootstrap/3/dataTables.bootstrap.js') ?>
     <?= $this->Html->css('../admin/css/font.css') ?>
     <?= $this->Html->css('../admin/css/app.css') ?>
-
-
-    <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
-    <?= $this->fetch('script') ?>
+
+    <?= $this->Html->script('../admin/libs/jquery/jquery/dist/jquery.js') ?>
+	<?= $this->Html->script('../admin/libs/jquery/bootstrap/dist/js/bootstrap.js') ?>
+	<?= $this->Html->script('../admin/js/ui-load.js') ?>
+	<?= $this->Html->script('../admin/js/ui-jp.config.js') ?>
+	<?= $this->Html->script('../admin/js/ui-jp.js') ?>
+	<?= $this->Html->script('../admin/js/ui-nav.js') ?>
+	<?= $this->Html->script('../admin/js/ui-toggle.js') ?>
+	<?= $this->Html->script('../admin/js/ui-client.js') ?>
+    <?= $this->Html->script('../admin/libs/jquery/datatables/media/js/jquery.dataTables.min.js') ?>
+    <?= $this->Html->script('../admin/libs/jquery/plugins/integration/bootstrap/3/dataTables.bootstrap.js') ?>
+    <?= $this->fetch('script') ?>  
+	<script>
+    $(document).ready(function() {
+        $('#data_table').DataTable();
+    })
+    </script>
+
 
     <?php $site_url = $this->Url->build('/',true); ?> 
     </head>
@@ -207,11 +238,11 @@
                                                 <span>Add Store</span>
                                             </a>
                                         </li>
-                                        <li>
-                                            <a href="javascript void(0)">
+                                      <!--  <li>
+                                            <a href="#">
                                                 <span>Pick Up Timings</span>
                                             </a>
-                                        </li>
+                                        </li>-->
 
                                     </ul>
                                 </li>
@@ -227,11 +258,7 @@
                                         <span class="font-bold">Food Categories</span>
                                     </a>
                                     <ul class="nav nav-sub dk">
-                                        <li class="nav-sub-header">
-                                            <a href="#">
-                                                <span>Categories</span>
-                                            </a>
-                                        </li>
+                                      
                                         <li>
                                             <a href="<?=$site_url?>admin/categories">
                                                 <span>All Categories</span>
@@ -242,6 +269,18 @@
                                                 <span>Add Category</span>
                                             </a>
                                         </li>     
+                                        
+                                         <li>
+                                            <a href="<?=$site_url?>admin/categories/sub">
+                                                <span>All Sub Categories</span>
+                                            </a>
+                                        </li> 
+                                        <li>
+                                            <a href="<?=$site_url?>admin/categories/add_sub">
+                                                <span>Add Sub Category</span>
+                                            </a>
+                                        </li>     
+                                        
                                     </ul>
                                 </li>
                                 <li>
@@ -312,19 +351,15 @@
                                         <span class="font-bold">Meals</span>
                                     </a>
                                     <ul class="nav nav-sub dk">
-                                        <li class="nav-sub-header">
-                                            <a href="#">
-                                                <span>Meals</span>
-                                            </a>
-                                        </li>
+                                       
                                         <li>
                                             <a href="<?=$site_url?>admin/products">
-                                                <span>Individual Meals</span>
+                                                <span>All Dishes</span>
                                             </a>
                                         </li> 
                                          <li>
                                             <a href="<?=$site_url?>admin/products/add">
-                                                <span>Add Individual Meal</span>
+                                                <span>Add New Dish</span>
                                             </a>
                                         </li> 
                                         <li>
@@ -402,14 +437,7 @@
 
 
         </div>
-<?= $this->Html->script('../admin/libs/jquery/jquery/dist/jquery.js') ?>
-<?= $this->Html->script('../admin/libs/jquery/bootstrap/dist/js/bootstrap.js') ?>
-<?= $this->Html->script('../admin/js/ui-load.js') ?>
-<?= $this->Html->script('../admin/js/ui-jp.config.js') ?>
-<?= $this->Html->script('../admin/js/ui-jp.js') ?>
-<?= $this->Html->script('../admin/js/ui-nav.js') ?>
-<?= $this->Html->script('../admin/js/ui-toggle.js') ?>
-<?= $this->Html->script('../admin/js/ui-client.js') ?>
+
 
 
 

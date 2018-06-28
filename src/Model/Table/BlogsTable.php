@@ -39,7 +39,14 @@ public function initialize(array $config)
 public function validationDefault(Validator $validator)
 {
     $validator->notEmpty('blog_category_id');
-	$validator->notEmpty('title');
+	 $validator->add('title', [
+                    'unique' => [
+                        'rule' => ['validateUnique'],
+						'provider' => 'table', 
+                        'message' => 'This post already exist. Please provide another one.',
+                    ]
+                ])
+                ->notEmpty('title');
 	$validator->notEmpty('post');
 	
     return $validator;

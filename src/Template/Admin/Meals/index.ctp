@@ -1,11 +1,9 @@
 <?php $site_url = $this->Url->build('/',true); ?>
-<div class="bg-light lter b-b wrapper-md">
-  <h1 class="m-n font-thin h3">Meals Management</h1>
-</div>
+
 <div class="wrapper-md">
   
   <div class="panel panel-default">
-    <div class="panel-heading">
+    <div class="panel-heading  font-bold">
      <div class="row">
       <div class="col-sm-5">
        Meals             
@@ -14,27 +12,24 @@
       </div>
       <div class="col-sm-3">
         
-      <a href="<?=$site_url?>admin/meals/add"><button class="btn btn-default pull-right"> <i class="glyphicon glyphicon-plus">Add New</i></button></a>
+      <a href="<?=$site_url?>admin/meals/add"><button class="btn btn-default pull-right"> <i class="glyphicon glyphicon-plus"> </i> Add New</button></a>
       
       </div>
     </div>
     </div>
   
   <div class="table-responsive">
-      <table class="table table-striped b-t b-light">
+      <table class="table table-striped b-t b-light"  id="data_table">
         <thead>
           <tr>
-            <th style="width:20px;">
-             <?php /*?> <label class="i-checks m-b-none">
-                <input type="checkbox"><i></i>
-              </label><?php */?>
-            </th>
-            <th>Id</th>
+          
+          
             <th>Title</th>
-            <th>Image</th>
-            <th>Status</th>
+            <?php /*?><th>Image</th>
+            <th>Status</th><?php */?>
+            <th>Created</th>
             <th>Modified</th>
-			<th>Products</th>
+			<th>Dishes</th>
             <th style="width:30px;">Action</th>
           </tr>
         </thead>
@@ -44,13 +39,14 @@
          ?>
 
           <tr>
-            <td><?php /*?><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label><?php */?></td>
-            <td><?=$Meal['id']?></td>
+            
+            
             <td><?=$Meal['title']?></td>
-            <td><?=$Meal['image']?></td>
-            <td><?=$Meal['status']?></td>
+           <?php /*?> <td><?=$Meal['image']?></td>
+            <td><?=$Meal['status']?></td><?php */?>
+            <td><?=$Meal['created']?></td>
             <td><?=$Meal['modified']?></td>
-            <td> <a href="<?=$site_url?>admin/meal-products/index/<?=$Meal['id']?>" title="Meal Ingredients">View Products</a></td>
+            <td> <a href="<?=$site_url?>admin/meal-products/index/<?=$Meal['id']?>" title="Meal Ingredients" class="text-info">View/Add Dishes</a></td>
             <td>
              <a href="<?=$site_url?>admin/meals/edit/<?=$Meal['id']?>" title="Edit"><i class="fa fa-pencil"></i></a>
               &nbsp;&nbsp;
@@ -62,7 +58,7 @@
         </tbody>
       </table>
     </div>
-    <footer class="panel-footer">
+   <?php /*?> <footer class="panel-footer">
       <div class="row">
         <div class="col-sm-4 hidden-xs">
                            
@@ -84,7 +80,7 @@
           <?php }?>   
         </div>
       </div>
-    </footer>
+    </footer><?php */?>
   </div>
 </div>
 

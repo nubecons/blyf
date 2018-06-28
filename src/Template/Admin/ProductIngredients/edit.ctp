@@ -1,7 +1,9 @@
 <?php
 
 $site_url = $this->Url->build('/',true); ?> 
-
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">Dishes' Ingredients Management</h1>
+</div>
 <div class="wrapper-md col-sm-11" >
 
     <div class="panel panel-default">
@@ -14,7 +16,7 @@ $site_url = $this->Url->build('/',true); ?>
             <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-id-1">Title </label>
                 <div class="col-sm-5">
-            <?php echo $this->Form->text('title', ['class'=>'form-control' ]); ?>
+            <?php echo $this->Form->control('title', ['label'=>false,'class'=>'form-control' ]); ?>
                 </div>
             </div>
 

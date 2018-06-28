@@ -1,13 +1,22 @@
-<div class="bg-light lter b-b wrapper-md">
-  <h1 class="m-n font-thin h3">Blog Categories Management</h1>
-</div>
+<?php $site_url = $this->Url->build('/',true); ?>
 
 
 <div class="wrapper-md col-sm-10" >
 
   <div class="panel panel-default">
-    <div class="panel-heading font-bold">
-     Update Category
+   <div class="panel-heading font-bold">
+     <div class="row">
+      <div class="col-sm-5">
+        Update Blog Category             
+      </div>
+      <div class="col-sm-4">
+      </div>
+      <div class="col-sm-3">
+        
+      <a href="<?=$site_url?>admin/blog-categories"><button class="btn btn-default pull-right">  <i class="glyphicon glyphicon-list"></i> Go back to list</button></a>
+      
+      </div>
+    </div>
     </div>
     <div class="panel-body">
     
@@ -16,7 +25,7 @@
         <div class="form-group">
           <label class="col-sm-2 control-label" for="input-id-1">Title </label>
           <div class="col-sm-5">
-            <?php echo $this->Form->text('title', ['class'=>'form-control' ]); ?>
+            <?php echo $this->Form->control('title', ['label'=>false, 'class'=>'form-control' ]); ?>
           </div>
         </div>
         <div>

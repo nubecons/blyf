@@ -40,27 +40,63 @@ class IngredientsController extends AppController
 	  $this->set('Ingredient' ,$Ingredient);
 	  if ($this->request->is('post'))
 		{
-               if (!empty($this->request->data['image_file']['name'])) {
-                $result = $this->Upload->upload($this->request->data['image_file'], $this->file_path, null, null, null);
-
-                if (count($this->Upload->errors) > 0) {
-                    unset($this->request->data['image_file']);
-                } else {
-                    $this->request->data['image'] = $this->Upload->result;
-                }
-            }
-			   $data = $this->request->data;
-			   $Ingredient= $this->Ingredients->patchEntity($Ingredient, $this->request->data);
+			    $data = $this->request->getData();
+				
+                $Ingredient= $this->Ingredients->patchEntity($Ingredient, $data);
+			    $this->set('Ingredient' ,$Ingredient);
+				
+				if (!empty($data['image_file']['name']))
+				{
+				
+				if(($data['image_file']['size']/1024) > 100){
+					$this->Flash->error(__('Image size is greater then 100kb. Please choose smaller image.'));	
+					return;
+					}
+				
+				$result = $this->Upload->upload($data['image_file'], $this->file_path, null,  array('type' => 'resize', 'size' => '1000', 'output' => 'png') ,null);
+				
+				if(count($this->Upload->errors) > 0)
+				{
+					unset($data['image_file']);
+					$this->Flash->error(__($this->Upload->errors[0]));	
+					return;
+				}
+				else
+				{
+					$data['image'] = $this->Upload->result; 
+					$data['image_name'] = $data['image_file']['name']; 
+					
+				}
+				
+				$result = $this->Upload->upload($data['image_file'], $this->file_path.'thumbnails/', null,  array('type' => 'resize', 'size' => '100', 'output' => 'png') ,null);
+				
+				if(count($this->Upload->errors) > 0)
+				{
+					$this->Flash->error(__($this->Upload->errors[0]));	
+					return;
+				}
+				else
+				{
+					$data['thumbnail'] = $this->Upload->result; 
+					
+					
+				}
+				
+				
+			}
+		
+			 
+			   $Ingredient= $this->Ingredients->patchEntity($Ingredient, $data);
 			
 				if ($this->Ingredients->save($Ingredient))
 				{
 					$this->Flash->success(__('Record saved successfully.'));
 					$this->redirect(['action' => 'index']);
 				
-				}else{
+				}elseif(!$Ingredient->getErrors()){
 					
 				 $this->Flash->error(__('Record could not saved. Please try again later.'));	
-				  $this->set('errors', $Ingredient->errors());
+				 
 				}
 		}
 		
@@ -70,38 +106,66 @@ class IngredientsController extends AppController
 	}
 	
 	public function edit($id = null){
-        $MainIngredients = $this->Ingredients->find('list', ['keyField' => 'id', 'valueField' => 'title'])->where(['status' => 'ACTIVE', 'parent_id' => 0])->toArray();
-        $this->set('MainIngredients', $MainIngredients);
-	  $Ingredient = $this->Ingredients->get($id);
-	  $this->set('Ingredient' ,$Ingredient);
+		
+		$MainIngredients = $this->Ingredients->find('list', ['keyField' => 'id', 'valueField' => 'title'])->where(['status' => 'ACTIVE', 'parent_id' => 0])->toArray();
+		$this->set('MainIngredients', $MainIngredients);
+		$Ingredient = $this->Ingredients->get($id);
+		$this->set('Ingredient' ,$Ingredient);
 	  
 	  if ($this->request->is('post') || $this->request->is('put'))
 		{
-			    $data = $this->request->data;
+			      $data = $this->request->getData();
+				  $Ingredient= $this->Ingredients->patchEntity($Ingredient, $data);
+				  $this->set('Ingredient' ,$Ingredient);
 				
-				if (!empty($this->request->data['image_file']['name'])) {
-                $result = $this->Upload->upload($this->request->data['image_file'], $this->file_path, null, null, null);
-
-                if (count($this->Upload->errors) > 0) {
-                    unset($this->request->data['image_file']);
-                     $this->Flash->error(__($this->Upload->errors[0]));	
+				if (!empty($data['image_file']['name']))
+				{
+				
+				if(($data['image_file']['size']/1024) > 100){
+					$this->Flash->error(__('Image size is greater then 100kb. Please choose smaller image.'));	
+					return;
+					}
+				
+				$result = $this->Upload->upload($data['image_file'], $this->file_path, null,  array('type' => 'resize', 'size' => '1000', 'output' => 'png') ,null);
+				
+				if(count($this->Upload->errors) > 0)
+				{
+					unset($data['image_file']);
+					$this->Flash->error(__($this->Upload->errors[0]));	
 					return;
 				}
 				else
 				{
-					$this->request->data['image'] = $this->Upload->result; 
-					$this->request->data['image_name'] = $this->request->data['image_file']['name']; 
+					$data['image'] = $this->Upload->result; 
+					$data['image_name'] = $data['image_file']['name']; 
 					
 				}
-            }
 				
-				$Ingredient= $this->Ingredients->patchEntity($Ingredient, $this->request->data);
+				$result = $this->Upload->upload($data['image_file'], $this->file_path.'thumbnails/', null,  array('type' => 'resize', 'size' => '100', 'output' => 'png') ,null);
+				
+				if(count($this->Upload->errors) > 0)
+				{
+					$this->Flash->error(__($this->Upload->errors[0]));	
+					return;
+				}
+				else
+				{
+					$data['thumbnail'] = $this->Upload->result; 
+					
+					
+				}
+				
+				
+			}
+		
+				
+				$Ingredient= $this->Ingredients->patchEntity($Ingredient, $data);
 			
 				if ($this->Ingredients->save($Ingredient))
 				{
 					$this->Flash->success(__('Record saved successfully.'));
 					$this->redirect(['action' => 'index']);
-				}else{
+				}elseif(!$Ingredient->getErrors()){
 					
 				 $this->Flash->error(__('Record could not saved. Please try again later.'));	
 				
@@ -127,4 +191,128 @@ class IngredientsController extends AppController
 				}
 		}
 	}
+	
+	
+	public function changestatus($id = null){
+
+	  $Ingredient = $this->Ingredients->get($id);
+	
+	  if (!$Ingredient){
+	  		
+			$this->Flash->error(__('Invalid Ingredient.'));	
+	  		return $this->redirect($this->referer());
+		
+		}	
+		
+		
+	   
+	   if($Ingredient['status'] == 'ACTIVE')
+		{
+			$data['status'] = 'INACTIVE';
+		}else{
+			$data['status'] = 'ACTIVE';
+		}
+		
+		$Ingredient= $this->Ingredients->patchEntity($Ingredient, $data);
+		if ($this->Ingredients->save($Ingredient))
+		{
+			$this->Flash->success(__('Status updated successfully.'));
+		}else{
+		    $this->Flash->error(__('Status could not updated. Please try again later.'));	
+		}	
+		
+		return $this->redirect($this->referer());
+			
+	}
+	
+	  public function saveData(){
+        
+	  $Ingredient = $this->Ingredients->newEntity();
+	  
+	  $this->set('Ingredient' ,$Ingredient);
+	  
+	    $error = false;
+	  if ($this->request->is('post'))
+		{
+			    $data = $this->request->getData();
+				
+				
+                $Ingredient= $this->Ingredients->patchEntity($Ingredient, $data);
+			    $this->set('Ingredient' ,$Ingredient);
+				
+				if (!empty($data['image_file']['name']))
+				{
+				
+				if(($data['image_file']['size']/1024) > 100){
+					echo $error = 'Image size is greater then 100kb. Please choose smaller image.';	
+					exit;
+					}
+				
+				$result = $this->Upload->upload($data['image_file'], $this->file_path, null,  array('type' => 'resize', 'size' => '1000', 'output' => 'png') ,null);
+				
+				if(count($this->Upload->errors) > 0)
+				{
+					unset($data['image_file']);
+					echo $error = $this->Upload->errors[0];	
+					exit;
+				}
+				else
+				{
+					$data['image'] = $this->Upload->result; 
+					$data['image_name'] = $data['image_file']['name']; 
+					
+				}
+				
+				$result = $this->Upload->upload($data['image_file'], $this->file_path.'thumbnails/', null,  array('type' => 'resize', 'size' => '100', 'output' => 'png') ,null);
+				
+				if(count($this->Upload->errors) > 0)
+				{
+					echo $error = $this->Upload->errors[0];	
+					exit;
+				}
+				else
+				{
+					$data['thumbnail'] = $this->Upload->result; 
+					
+					
+				}
+				
+				
+			}
+		
+			 
+			   $Ingredient= $this->Ingredients->patchEntity($Ingredient, $data);
+			
+				if ($this->Ingredients->save($Ingredient))
+				{
+					echo $error = 'true';
+					exit;
+				
+				}elseif(!$Ingredient->getErrors()){
+					
+				 echo  $error = 'Record could not saved. Please try again later.';
+				 exit;	
+				 
+				}elseif($Ingredient->getError('title')){
+					
+				   foreach($Ingredient->getError('title') as $err){
+					 echo $err." \n";  
+					 }
+				   exit;		
+				 
+				}elseif($Ingredient->getError('image')){
+					
+				echo  $error = $Ingredient->getError('image');	
+				   exit;	
+				 
+				}
+		}
+		
+		echo $error ;
+		$this->set('Ingredient' ,$Ingredient);
+		exit;
+			
+			
+	}
+	
 }

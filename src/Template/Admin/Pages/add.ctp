@@ -3,10 +3,18 @@
 <?php echo $this->Html->script('../admin/ckeditor/ck_settings'); ?>
 
 <div class="wrapper-md col-sm-11" >
-
   <div class="panel panel-default">
-    <div class="panel-heading font-bold">
-      Details
+     <div class="panel-heading font-bold">
+     <div class="row">
+      <div class="col-sm-5">
+        Add New Page            
+      </div>
+      <div class="col-sm-4">
+      </div>
+      <div class="col-sm-3">
+      <a href="<?=$site_url?>admin/pages"><button class="btn btn-default pull-right"> <i class="glyphicon glyphicon-list"></i> Go back to list</button></a>
+      </div>
+    </div>
     </div>
     <div class="panel-body">
     
@@ -15,14 +23,14 @@
         <div class="form-group">
           <label class="col-sm-2 control-label" for="input-id-1">Headline </label>
           <div class="col-sm-5">
-            <?php echo $this->Form->text('headline', ['class'=>'form-control' ]); ?>
+            <?php echo $this->Form->control('headline', ['label'=>false, 'class'=>'form-control' ]); ?>
           </div>
         </div>
         
          <div class="form-group">
           <label class="col-sm-2 control-label" for="input-id-1">Url</label>
           <div class="col-sm-5">
-            <?php echo $this->Form->text('url', ['class'=>'form-control']); ?>
+            <?php echo $this->Form->control('url', ['label'=>false,'class'=>'form-control']); ?>
           </div>
         </div>
         
