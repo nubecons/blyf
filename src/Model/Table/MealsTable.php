@@ -5,6 +5,8 @@ namespace App\Model\Table;
 use Cake\ORM\Table;
 
 use Cake\Validation\Validator;
+use Cake\Event\Event ;
+use Cake\ORM\Entity;
 
 class MealsTable extends Table
 {
@@ -28,6 +30,14 @@ public function initialize(array $config)
         ]);
 
     }
+	
+public function beforeSave(Event $event, Entity $entity ) {
+      $entity->price = '11';
+	  echo "aaaa";
+	  exit;
+    }
+	
+		
 	
 public function validationDefault(Validator $validator)
 {

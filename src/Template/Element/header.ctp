@@ -47,11 +47,11 @@
     </div>
   </div>
 </div>
-	
-    <header id="header">
+	<header id="header">
 	  <div class="header-wrapper">
 		<div class="container">
 			<div class="header">
+            	<div class="col-sm-5">
 				<div class="navigation">
 					<ul>
 						<li><a href="<?=$site_url?>">Home</a></li>
@@ -76,26 +76,68 @@
 							</ul>
 						</li>
 					</ul>
-					
+					</div>
 				</div>
 				<!-- mobile-nav -->
-				<div class="logo">
+                <div class="col-sm-1">
+				  <div class="logo">
 					<a href="<?=$site_url?>"><img src="<?=$site_url?>images/logo-dark.png" alt=""></a>
-				</div>
-				<div class="right">
+				  </div>
+                </div>
+                <div class="col-sm-6">
+                 <div class="btn-menu-div">
+				  <div class="right">
 					<ul class="signup-sec">
-						<li><a href="#" class="header-cta"><span>Order Online</span></a></li>
-						<?php if($sUser){ ?>	
-                       
-						<li><a href="<?=$site_url?>users/dashboard">Profile</a></li>
-                        <li><a href="<?=$site_url?>users/logout">Logout</a></li>
-                        <?php }else{ ?>
-						<li><a href="<?=$site_url?>users/login" <?php /*?>data-toggle="modal" data-target="#loginModal"<?php */?>>Login</a></li>
-                        <li><a href="<?=$site_url?>users/signup" <?php /*?>data-toggle="modal" data-target="#signUpModal"<?php */?>>Signup</a></li>
-                        <?php }?>
-					
-                    </ul>
+				<li><a href="<?=$site_url?>" class="header-cta"><span>Order Online</span></a></li>
+					</ul>
 				</div>
+                <div class="">
+                	<div class="spti-day">
+                      <button class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Spitalfields  |  All Day</button>
+             <div class="dropdown-menu spti-day-btn" aria-labelledby="dropdownMenuLink">
+                <ul>
+                	<li>
+                    	<a class="dropdown-item" href="#"><strong>All Day</strong></a>
+                        <a class="dropdown-item" href="#">Spitalfields</a>
+                        <a class="dropdown-item" href="#">St Paul's</a>
+                        <a class="dropdown-item" href="#">Bank</a>
+                    </li>
+                    <li>
+                    	<a class="dropdown-item" href="#"><strong>Breakfast</strong></a>
+                        <a class="dropdown-item" href="#">Spitalfields</a>
+                        <a class="dropdown-item" href="#">St Paul's</a>
+                        <a class="dropdown-item" href="#">Bank</a>
+                    </li>
+                </ul>
+  </div>
+                        </div>
+                        
+              	<div class="user-profile">
+                    	<div class="user-profile-icon dropdown">
+                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="<?=$site_url?>images/user-icon.png" /></a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                          <?php if($sUser){ ?>
+                        <a class="dropdown-item" href="<?=$site_url?>users/dashboard"><?=$sUser['email']?></a>
+                        <a class="dropdown-item" href="<?=$site_url?>users/dashboard">Your Nutritionist</a>
+                        <a class="dropdown-item" href="<?=$site_url?>users/dashboard">Diets</a>
+                        <a class="dropdown-item" href="<?=$site_url?>users/dashboard">Current Orders</a>
+                        <a class="dropdown-item" href="<?=$site_url?>users/dashboard">BLYF</a>
+                        <a class="dropdown-item" href="<?=$site_url?>users/dashboard">My Cards</a>
+                        <a class="dropdown-item" href="<?=$site_url?>users/logout">Logout</a>
+                         <?php }else{ ?>
+                          <a class="dropdown-item" href="<?=$site_url?>users/login">Login</a>
+                          <a class="dropdown-item" href="<?=$site_url?>users/signup">Signup</a>
+                        <?php }?>
+  						</div>
+                        </div>
+                    </div>
+                    <div class="shopng-crt">
+                    	<i class="fa fa-shopping-cart"></i>
+                        <span>0</span>
+                    </div>
+                  	</div>
+                </div>
 				<div class="mobile-nav">
 					<ul>
 						<li><a href="<?=$site_url?>">Home</a></li>
@@ -119,8 +161,8 @@
 								<li><a href="<?=$site_url?>about">Who is BLYF</a></li>
 							</ul>
 						</li>
-						<li><a href="#">Order Online</a></li>
-                        <?php if($sUser){ ?>	
+						<li><a href="<?=$site_url?>">Order Online</a></li>
+						  <?php if($sUser){ ?>	
 							<li><a href="<?=$site_url?>users/dashboard">Profile</a></li>
                              <li><a href="<?=$site_url?>users/logout">Logout</a></li>
                         <?php }else{ ?>
@@ -133,4 +175,6 @@
 			</div>
 		</div>
 	</div>
+    </div>
 	</header>
+ 

@@ -19,8 +19,12 @@ class UsersTable extends Table {
             ]
         ]);
     }
+
+public $MealsPerDay   = ['1' =>'1 Meal', '2' =>'2 Meals', '3' =>'3 Meals', '4' =>'4 Meals', '5' =>'5 Meals' ,'6' =>'6 Meals', '7' =>'7 Meals', '8' =>'8 Meals', '9' =>'9 Meals', '10' =>'10 Meals'];
+public $ActivityLevel = ['1' =>'Lightly Active', '2' =>'Moderately Active', '3' =>'Very Active', '4' =>'Extremely Active', '5' =>'Sedentary'];
+public $Goal          = ['1' =>'Muscle Build', '2' =>'Fat Loss (Low Carb)', '3' =>'Fat Loss (Low Fat)', '4' =>'Brain Power', '5' =>'Balanced' ,'6' =>'Personal Settings' , '7' =>'Endurance Training'];
 	
-	public function validationDefault(Validator $validator)
+public function validationDefault(Validator $validator)
 {
 	
     $validator->notEmpty('first_name');

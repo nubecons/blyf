@@ -29,8 +29,13 @@
 						<div class="footer-items">
 							<h5>Order Online</h5>
 							<ul class="links">
-								<li><a href="<?=$site_url?>users/login">Login</a></li>
-								<li><a href="<?=$site_url?>users/signup">Sign Up</a></li>
+								<?php if($sUser){ ?>	
+                                <li><a href="<?=$site_url?>users/dashboard">Profile</a></li>
+                                <li><a href="<?=$site_url?>users/logout">Logout</a></li>
+                                <?php }else{ ?>
+                                <li><a href="<?=$site_url?>users/login">Login</a></li>
+                                <li><a href="<?=$site_url?>users/signup">Sign Up</a></li>
+                                <?php }?>
 								<li><a href="#">Pick up</a></li>
 								<li><a href="#">Delivery</a></li>
 							</ul>

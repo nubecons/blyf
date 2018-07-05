@@ -68,6 +68,54 @@
     }
 	
 	function dashboard(){
+		
+		 $user = $this->Users->get($this->sUser['id']);
+         $this->set('user', $user);
+
+ 		 $MealsPerDay = $this->Users->MealsPerDay;
+		 $this->set('MealsPerDay', $MealsPerDay);
+         
+		 $ActivityLevel = $this->Users->ActivityLevel;
+		 $this->set('ActivityLevel', $ActivityLevel);
+
+		 $Goal = $this->Users->Goal;
+		 $this->set('Goal', $Goal);
+		
+		
+        if ($this->request->is(['post', 'put'])) {
+          
+		    $data = $this->request->getData();
+            if (!empty($data['image_file']['name'])) {
+                
+				$result = $this->Upload->upload($data['image_file'], $this->profile_file_path, null, null, $this->allowedImages);
+
+                if (count($this->Upload->errors) > 0) {
+                    
+					 unset($data['image_file']);
+                     $this->Flash->error(__($this->Upload->errors[0]));	
+					return;
+					
+                } else {
+                    $data['image'] = $this->Upload->result;
+                }
+            }
+
+            $user = $this->Users->patchEntity($user, $data);
+			
+			$this->set('user', $user);
+            if ($this->Users->save($user)) {
+
+                $this->Flash->success(__('Bio data updated successfully.'));
+				$this->Auth->setUser($user);
+                return $this->redirect(array('controller' => 'Users', 'action' => 'dashboard'));
+
+            } else {
+				
+                $this->Flash->error(__('Changes could not saved.'));
+                
+            }
+        }
+		
 	}
 	
 

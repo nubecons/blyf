@@ -20,6 +20,8 @@ use Cake\Http\Exception\NotFoundException;
 use Cake\View\Exception\MissingTemplateException;
 use Cake\Event\Event;
 
+use App\View\Helper\GetInfoHelper;
+
 /**
  * Static content controller
  *
@@ -45,6 +47,9 @@ class PagesController extends AppController
  
  public function home()
     {
+		$this->loadModel('Meals');
+		$Meals = $this->Meals->find()->where(['status' => 'ACTIVE'])->all();
+	    $this->set('Meals' ,$Meals);	
 
     }
 

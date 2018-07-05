@@ -1,5 +1,7 @@
-	<?= $this->Html->css('owl.carousel.min.css',['block'=>true]) ?>
-    <?= $this->Html->script('owl.carousel.min.js',['block'=>true]) ?>
+<?php echo $this->Html->css('owl.carousel.min.css',['block'=>true]) ?>
+<?php echo $this->Html->script('owl.carousel.min.js',['block'=>true]) ?>
+<?php $site_url = $this->Url->build('/',true); ?> 
+ 
     <div class="banner">
 		<div class="container">
 			<div class="content">
@@ -95,58 +97,36 @@
 
 	<div class="featured-products bg-grey">
 		<div class="container">
-			<h2 class="trfm-up">featured product</h2>
-			<a href="#" class="cta-brown2">View all Items <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></a>
+			<h2 class="trfm-up">Ready Meals</h2>
+			<?php /*?><a href="#" class="cta-brown2">View all Items <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></a><?php */?>
 			<div class="products-outer mt-25">
 				<div class="row">
+                <?php
+				 foreach($Meals as $Meal){?>
 					<div class="col-lg-4 col-md-6">
 						<div class="products-inner">
-							<img src="images/hp-img2.jpg" alt="">
+							<img src="<?=$site_url?>images/hp-img2.jpg" alt="">
 							<div class="products-inr-title bg-white">
-								<h4 class="trfm-up">Product name <span class="color-brown">$15</span></h4>
-								<p class="trfm-up color-light-gray sub-p">Strawberry, kiwi, apple</p>
+								<h4 class="trfm-up"><?=$Meal->title?> <span class="color-brown">$<?= number_format($this->GetInfo->getMealPrice($Meal->id) , 2);?></span></h4>
+								<?php /*?><p class="trfm-up color-light-gray sub-p">Strawberry, kiwi, apple</p><?php */?>
+                               
+                                <br style="clear:both">
+                                <p>
+                                <a href="<?=$site_url?>products/customize/<?=$Meal->id?>" >
+                                <button class="cta-brown  button" style="min-width:25px; padding:5px">Customize</button>
+                                </a>
+                                 <a href="<?=$site_url?>products/snacks/<?=$Meal->id?>" >
+                                <button class="cta-brown  button pull-right" style="min-width:25px; padding:5px">Checkout</button>
+                                </a>
+                               </p>
 							</div>
 						</div>
 					</div>
-					<div class="col-lg-4 col-md-6">
-
-
-						<div class="products-inner">
-							<img src="images/hp-img3.jpg" alt="">
-							<div class="products-inr-title bg-white">
-								<h4 class="trfm-up">Product name <span class="color-brown">$17</span></h4>
-								<p class="trfm-up color-light-gray sub-p">Strawberry, kiwi, apple</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4 col-md-6">
-						<div class="products-inner">
-							<img src="images/hp-img4.jpg" alt="">
-							<div class="products-inr-title bg-white">
-								<h4 class="trfm-up">Product name <span class="color-brown">$10</span></h4>
-								<p class="trfm-up color-light-gray sub-p">Strawberry, kiwi, apple</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4 col-md-6">
-						<div class="products-inner">
-							<img src="images/hp-img5.jpg" alt="">
-							<div class="products-inr-title bg-white">
-								<h4 class="trfm-up">Product name <span class="color-brown">$25</span></h4>
-								<p class="trfm-up color-light-gray sub-p">Strawberry, kiwi, apple</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4 col-md-6">
-						<div class="products-inner">
-							<img src="images/hp-img6.jpg" alt="">
-							<div class="products-inr-title bg-white">
-								<h4 class="trfm-up">Product name <span class="color-brown">$35</span></h4>
-								<p class="trfm-up color-light-gray sub-p">Strawberry, kiwi, apple</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4 col-md-6">
+                    
+                    <?php } ?>
+                    
+           
+					<?php /*?><div class="col-lg-4 col-md-6">
 						<div class="products-inner">
 							<img src="images/hp-img7.jpg" alt="">
 							<div class="products-inr-title bg-white">
@@ -154,12 +134,12 @@
 								<p class="trfm-up color-light-gray sub-p">Strawberry, kiwi, apple</p>
 							</div>
 						</div>
-					</div>
+					</div><?php */?>
 				</div>
 			</div>
 		</div>
 	</div>
-
+<?php /*?>
 	<div class="news">
 		<div class="container">
 			<h2 class="trfm-up">News</h2>
@@ -245,7 +225,7 @@
 			</div>
 		</div>
 	</div>
-
+<?php */?>
 
      <script>
 		$(document).ready(function(){
@@ -269,3 +249,6 @@
 			});
 		});
  	</script>
+    
+    
+	<?=$this->element('footer');?>

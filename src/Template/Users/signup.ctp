@@ -76,3 +76,5 @@
 </div>
 
 </section>
+
+<?=$this->element('footer');?>
