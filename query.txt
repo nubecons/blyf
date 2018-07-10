@@ -1,3 +1,7 @@
 ALTER TABLE `users` ADD `height` FLOAT NOT NULL AFTER `group_id`, ADD `weight` FLOAT NOT NULL AFTER `height`, ADD `gender` VARCHAR(10) NOT NULL AFTER `weight`, ADD `dob` VARCHAR(255) NOT NULL AFTER `gender`, ADD `meals_per_day` INT NOT NULL AFTER `dob`, ADD `activity_level` INT NOT NULL AFTER `meals_per_day`, ADD `goal` INT NOT NULL AFTER `activity_level`, ADD `fats` FLOAT NOT NULL AFTER `goal`, ADD `proteins` FLOAT NOT NULL AFTER `fats`, ADD `carbs` FLOAT NOT NULL AFTER `proteins`;
 
 ALTER TABLE `meals` ADD `price` FLOAT NOT NULL AFTER `description`;
+
+ALTER TABLE `users` ADD `change_password_code` VARCHAR(255) NULL AFTER `confirm_code`;
+
+ALTER TABLE `users` ADD `recommended_Kcal` FLOAT NULL AFTER `carbs`;

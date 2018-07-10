@@ -37,7 +37,7 @@ public function validationDefault(Validator $validator)
                     'unique' => [
                         'rule' => ['validateUnique'],
 						'provider' => 'table', 
-                        'message' => 'This email already exist. Please provide another one.',
+                        'message' => 'This email already exist, please provide another one.',
                     ]
                 ])
                 ->notEmpty('email');
@@ -143,7 +143,7 @@ public function validationDefault(Validator $validator)
 
                         return false;
                     },
-                    'message' => 'The old password does not match the current password!',
+                    'message' => 'Incorrect old password',
                 ])
                 ->notEmpty('old_password');
 
@@ -157,7 +157,7 @@ public function validationDefault(Validator $validator)
 
                   'rule' => ['minLength', 6],
 
-                  'message' => 'The password have to be at least 6 characters!',
+                  'message' => 'The password have to be at least 6 characters',
 
                   ]
 
@@ -167,7 +167,7 @@ public function validationDefault(Validator $validator)
                     'match' => [
 
                         'rule' => ['compareWith', 'confirm_password'],
-                        'message' => 'The passwords does not match!',
+                        'message' => 'New password and confirm password does not match',
                     ]
                 ])
                 ->notEmpty('new_password');
@@ -190,7 +190,7 @@ public function validationDefault(Validator $validator)
                     'match' => [
 
                         'rule' => ['compareWith', 'new_password'],
-                        'message' => 'The passwords does not match!',
+                        'message' => 'New password and confirm password does not match',
                     ]
                 ])
                 ->notEmpty('confirm_password');

@@ -10,4 +10,5 @@ Email: <?php echo $user['email']?><br />
 <br />
 <br />
 Thanks,<br />
+<?=$site_name?> Team
 

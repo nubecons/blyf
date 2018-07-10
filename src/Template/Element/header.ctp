@@ -127,7 +127,7 @@
                         <a class="dropdown-item" href="<?=$site_url?>users/logout">Logout</a>
                          <?php }else{ ?>
                           <a class="dropdown-item" href="<?=$site_url?>users/login">Login</a>
-                          <a class="dropdown-item" href="<?=$site_url?>users/signup">Signup</a>
+                          <a class="dropdown-item" href="<?=$site_url?>users/signup">Sign Up</a>
                         <?php }?>
   						</div>
                         </div>
@@ -167,7 +167,7 @@
                              <li><a href="<?=$site_url?>users/logout">Logout</a></li>
                         <?php }else{ ?>
                         	<li><a href="<?=$site_url?>users/login" <?php /*?>data-toggle="modal" data-target="#loginModal"<?php */?>>Login</a></li>
-                        	<li><a href="<?=$site_url?>users/signup" <?php /*?>data-toggle="modal" data-target="#signUpModal"<?php */?>>Signup</a></li>
+                        	<li><a href="<?=$site_url?>users/signup" <?php /*?>data-toggle="modal" data-target="#signUpModal"<?php */?>>Sign Up</a></li>
                         <?php }?>
 					</ul>
 				</div>

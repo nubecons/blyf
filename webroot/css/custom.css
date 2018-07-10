@@ -54,6 +54,16 @@ li{
     box-shadow: 5px 5px 50px -10px #2d2d2d;
 	
 	}
+	
 .page-box{
 	color: #3d2f2e;
+}
+
+.form-control {
+    /*line-height: 2;*/
+	font-size:   1.3rem;
+}
+
+select.form-control:not([size]):not([multiple]) {
+    height:30px;
 }

@@ -10,7 +10,7 @@
 
 <ul class="nav nav-tabs brdr-btm0" id="myTab" role="tablist">
   <li class="nav-item mrgn-right1">
-    <a class="nav-link <?php if($activeTab == 'bio'){?>active<?php }?>"  href="<?=$site_url?>users/dashboard" >BIODATA</a>
+    <a class="nav-link <?php if($activeTab == 'bio'){?>active<?php }?>"  href="<?=$site_url?>users/dashboard" >My Profile</a>
   </li>
   <li class="nav-item mrgn-right1">
     <a class="nav-link <?php if($activeTab == 'password'){?>active<?php }?>" href="<?=$site_url?>users/change_password" >Password</a>

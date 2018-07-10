@@ -43,8 +43,8 @@
 <?= $this->Html->script('jquery.js') ?>
 
 <?= $this->Html->script('jquery.meanmenu.min.js') ?>
-<?= $this->Html->script('custom_scripts.js') ?>
-<?= $this->Html->script('wow.min.js') ?>
+<?php /*?><?= $this->Html->script('custom_scripts.js') ?>
+<?= $this->Html->script('wow.min.js') ?><?php */?>
 <?= $this->Html->script('bootstrap.min.js') ?>
 <?= $this->Html->script('isotope.pkgd.min.js') ?>
 <?= $this->fetch('script') ?>
@@ -75,11 +75,12 @@
 
     <?=$this->element('header');?>
   
-    
-    <div class="container mrgn-top104"> &nbsp;
+    <div class="clearfix"></div> 
+    <div class="container" style="margin-top:75px;">&nbsp;
 	<?=$this->Flash->render() ?>
-    </div>
     
+    </div>
+    <div class="clearfix"></div> 
 	<?= $this->fetch('content') ?>
 
     

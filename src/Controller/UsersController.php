@@ -32,7 +32,7 @@
 	{
 		parent::beforeFilter($event);
 		
-		$this->Auth->allow(['signup']);
+		$this->Auth->allow(['login', 'logout', 'signup',   'forgotPassword', 'forgotreset']);
 	
 	}
 	
@@ -105,7 +105,7 @@
 			$this->set('user', $user);
             if ($this->Users->save($user)) {
 
-                $this->Flash->success(__('Bio data updated successfully.'));
+                $this->Flash->success(__('Profile updated successfully.'));
 				$this->Auth->setUser($user);
                 return $this->redirect(array('controller' => 'Users', 'action' => 'dashboard'));
 
@@ -294,4 +294,150 @@
 
         $this->set('user', $user);
     }
+	
+
+
+    function forgotPassword() {
+
+        if ($this->sUser) {
+
+            return $this->redirect('/');
+        }
+
+
+        if ($this->request->is('post')) {
+			
+			$data = $this->request->getData();
+            $user = $this->Users->findByEmail($data['email'])->first();
+            if ($user) {
+				
+                $userEntity = $this->Users->get($user['id']);
+                $userEntity->change_password_code = $change_password_code = md5(time());
+                $this->Users->patchEntity($userEntity, $data);
+                
+				if ($this->Users->save($userEntity)) {
+                    $this->set('user', $user);
+                    $confirm_link = "users/forgotreset/" . $user['id'] . "/" . $change_password_code;
+                    $this->set('confirm_link', $confirm_link);
+
+                    $email = new Email();
+                    $email->setTemplate('forgot_password')
+                            ->setEmailFormat('html')
+                            ->setViewVars(['user' => $user, 'confirm_link' => $confirm_link, 'site_name' => $this->SiteInfo['site-name']])
+                            ->setFrom([$this->SiteInfo['support_email']])
+                            ->setTo($user['email']) //$user['email'];
+                            ->setSubject($this->SiteInfo['site-name'] . '- Password Change Request')
+                            ->send();
+
+                    $this->Flash->success(__('An email has been sent with password reset link.'));
+                    return $this->redirect($this->referer());
+                }
+            } else {
+                $this->Flash->error(__('No user was found with this email address.'));
+                return $this->redirect($this->referer());
+            }
+        }
+    }
+
+
+  
+
+    function forgotreset($userid = null, $change_password_code = null) {
+
+        if ($this->sUser) {
+
+            return $this->redirect('/');
+        }
+
+        $user = '';
+		$this->set('user' , $user);	
+		
+        if ($this->request->is(['post', 'put'])) {
+			
+			$data = $this->request->getData();
+			
+
+            /*if ($data['new_password'] != $data['confirm_password']) {
+
+                $this->Flash->error(__('New password and Confirm password field do not match'));
+
+                return $this->redirect($this->referer());
+				
+            } else */
+			if (!$this->Session->check('user_id_for_reset')) {
+
+                $this->Flash->error(__('You do not have permission to change this password'));
+
+                return $this->redirect(['action' => 'login']);
+            } else {
+
+			
+                $user = $this->Users->find()->where(['id' => $this->Session->read('user_id_for_reset')])->first();
+				
+              
+				
+				 $data['password'] = $data['new_password'];
+				 $data['change_password_code'] = '';
+				
+				
+				$user = $this->Users->patchEntity($user, $data , ['validate' => 'password']);
+				
+				
+                
+				if ($this->Users->save($user)) {
+
+                    $this->Flash->success(__('Your password has been changed successfully'));
+
+                    $this->Session->delete('user_id_for_reset');
+
+                    return $this->redirect(['controller' => 'users', 'action' => 'login']);
+					
+                }elseif(!$user->getErrors()){
+					
+				 $this->Flash->error(__('Password didn\'t update, Please try again later'));	
+				
+				} else {
+
+                   // $this->Flash->error(__('Password didn\'t update, Please try again later'));
+
+                   // return $this->redirect($this->referer());
+                }
+				
+				$this->set('user' , $user);	
+
+				
+				
+				
+            }
+        } else {
+			
+			if ($change_password_code == '') {
+
+                $this->Flash->error(__('You do not have permission to change this password'));
+
+                return $this->redirect(['action' => 'login']);
+            } 
+
+            $user = $this->Users->find()->where(['id' => $userid, 'change_password_code' => $change_password_code])->first();
+			$user->new_password = '';
+			$this->set('user' , $user);	
+            if ($user) {
+
+                $this->Session->write('user_id_for_reset', $user->id);
+            } else {
+
+                $this->Flash->error(__('Password reset link not valid, Please try again'));
+
+                return $this->redirect(['controller' => 'users', 'action' => 'login']);
+            }
+        }
+		
+
+		$this->set('user' , $user);	
+		
+		
+    }
+
+	
+	
 }
