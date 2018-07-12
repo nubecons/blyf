@@ -20,10 +20,11 @@
         <thead>
           <tr>
           
-            
+            <th>Category</th>
+            <th>Sub Category</th>
             <th>Title</th>
-            <?php /*?><th>Image</th>
-            <th>Status</th><?php */?>
+            <th>Image</th>
+            <?php /*?><th>Status</th><?php */?>
             <th>Created</th>
             <th>Modified</th>
 			<th>Ingredients</th>
@@ -36,11 +37,15 @@
          ?>
 
           <tr>
-            
-          
+         
+            <td><?php echo isset($Categories[$Product['main_category_id']])?$Categories[$Product['main_category_id']]:'';?></td>
+            <td><?php echo isset($Categories[$Product['category_id']])?$Categories[$Product['category_id']]:'';?></td>
             <td><?=$Product['title']?></td>
-           <?php /*?> <td><?=$Product['image']?></td>
-            <td><?=$Product['status']?></td><?php */?>
+            <td><?php if($Product['image'] != ''){?>
+                <img src="<?=$site_url?>img/Products/<?php echo $Product['image'];?>" alt="img"  style="max-height:50px; max-width:50px"/>
+            <?php }?>
+            </td>
+            <?php /*?> <td><?=$Product['status']?></td><?php */?>
             <td><?=$Product['created']?></td>
             <td><?=$Product['modified']?></td>
             <td> <a class="text-info" href="<?=$site_url?>admin/product-ingredients/index/<?=$Product['id']?>" title="Product Ingredients">View/Add Ingredients</a></td>

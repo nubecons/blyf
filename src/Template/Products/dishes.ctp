@@ -10,42 +10,23 @@
                     	<h2>Proteins</h2>
                     </div>
                     <div class="fixedheightcontainer" id="item-scrol">
+                    <?php
+					foreach($Protiens as $Product){?>
                     <div class="pro-list">
                       <div class="item-img">
-                    	<img src="<?=$site_url?>images/pro-img.jpeg" />
-                        <i class="info-circle fa fa-info"></i>
+                      <img src="<?=$site_url?>img/Products/<?php echo $Product['image'];?>" alt="<?=$Product['title']?>" />
+                    	
+                       <?php /*?> <i class="info-circle fa fa-info"></i><?php */?>
                       </div>
                       <div class="item-heading">
-                      	<h3>Chicken Thighs (warm)</h3>
+                      	<h3><?=$Product['title']?></h3>
                       </div>
                     </div>
-                    <div class="pro-list">
-                      <div class="item-img">
-                    	<img src="<?=$site_url?>images/pro-img.jpeg" />
-                        <i class="info-circle fa fa-info"></i>
-                      </div>
-                      <div class="item-heading">
-                      	<h3>Chicken Thighs (warm)</h3>
-                      </div>
-                    </div>
-                    <div class="pro-list">
-                      <div class="item-img">
-                    	<img src="<?=$site_url?>images/pro-img.jpeg" />
-                        <i class="info-circle fa fa-info"></i>
-                      </div>
-                      <div class="item-heading">
-                      	<h3>Chicken Thighs (warm)</h3>
-                      </div>
-                    </div>
-                    <div class="pro-list">
-                      <div class="item-img">
-                    	<img src="<?=$site_url?>images/pro-img.jpeg" />
-                        <i class="info-circle fa fa-info"></i>
-                      </div>
-                      <div class="item-heading">
-                      	<h3>Chicken Thighs (warm)</h3>
-                      </div>
-                    </div>
+                    <?php }?>
+                    
+                 
+                  
+                  
                     </div>
                   </div>
                 </div>
@@ -57,42 +38,21 @@
                     
                     
                     <div class="fixedheightcontainer" id="item-scrol">
+                    <?php
+					foreach($Sides as $Product){?>
                     <div class="pro-list">
                       <div class="item-img">
-                    	<img src="<?=$site_url?>images/pro-img.jpeg" />
-                        <i class="info-circle fa fa-info"></i>
+                      <img src="<?=$site_url?>img/Products/<?php echo $Product['image'];?>" alt="<?=$Product['title']?>" />
+                    	
+                       <?php /*?> <i class="info-circle fa fa-info"></i><?php */?>
                       </div>
                       <div class="item-heading">
-                      	<h3>Chicken Thighs (warm)</h3>
+                      	<h3><?=$Product['title']?></h3>
                       </div>
                     </div>
-                    <div class="pro-list">
-                      <div class="item-img">
-                    	<img src="<?=$site_url?>images/pro-img.jpeg" />
-                        <i class="info-circle fa fa-info"></i>
-                      </div>
-                      <div class="item-heading">
-                      	<h3>Chicken Thighs (warm)</h3>
-                      </div>
-                    </div>
-                    <div class="pro-list">
-                      <div class="item-img">
-                    	<img src="<?=$site_url?>images/pro-img.jpeg" />
-                        <i class="info-circle fa fa-info"></i>
-                      </div>
-                      <div class="item-heading">
-                      	<h3>Chicken Thighs (warm)</h3>
-                      </div>
-                    </div>
-                    <div class="pro-list">
-                      <div class="item-img">
-                    	<img src="<?=$site_url?>images/pro-img.jpeg" />
-                        <i class="info-circle fa fa-info"></i>
-                      </div>
-                      <div class="item-heading">
-                      	<h3>Chicken Thighs (warm)</h3>
-                      </div>
-                    </div>
+                    <?php }?>
+                   
+                  
                     </div>
                   </div>
                 </div>
@@ -105,42 +65,19 @@
                     
                     
                     <div class="fixedheightcontainer" id="item-scrol">
+                       <?php
+					foreach($Sauces as $Product){?>
                     <div class="pro-list">
                       <div class="item-img">
-                    	<img src="<?=$site_url?>images/pro-img.jpeg" />
-                        <i class="info-circle fa fa-info"></i>
+                      <img src="<?=$site_url?>img/Products/<?php echo $Product['image'];?>" alt="<?=$Product['title']?>" />
+                    	
+                       <?php /*?> <i class="info-circle fa fa-info"></i><?php */?>
                       </div>
                       <div class="item-heading">
-                      	<h3>Chicken Thighs (warm)</h3>
+                      	<h3><?=$Product['title']?></h3>
                       </div>
                     </div>
-                    <div class="pro-list">
-                      <div class="item-img">
-                    	<img src="<?=$site_url?>images/pro-img.jpeg" />
-                        <i class="info-circle fa fa-info"></i>
-                      </div>
-                      <div class="item-heading">
-                      	<h3>Chicken Thighs (warm)</h3>
-                      </div>
-                    </div>
-                    <div class="pro-list">
-                      <div class="item-img">
-                    	<img src="<?=$site_url?>images/pro-img.jpeg" />
-                        <i class="info-circle fa fa-info"></i>
-                      </div>
-                      <div class="item-heading">
-                      	<h3>Chicken Thighs (warm)</h3>
-                      </div>
-                    </div>
-                    <div class="pro-list">
-                      <div class="item-img">
-                    	<img src="<?=$site_url?>images/pro-img.jpeg" />
-                        <i class="info-circle fa fa-info"></i>
-                      </div>
-                      <div class="item-heading">
-                      	<h3>Chicken Thighs (warm)</h3>
-                      </div>
-                    </div>
+                    <?php }?>
                     </div>
                   </div>
                 </div>

@@ -19,6 +19,10 @@ class ProductsController extends AppController
     }
 
     public function index($id = null) {
+		
+	 $this->loadModel('Categories');
+	 $Categories = $this->Categories->find('list', ['keyField' => 'id', 'valueField' => 'title'])->where()->toArray();
+	 $this->set('Categories', $Categories);		
     
 	if($id){
 		$conditions = ['parent_id' => $id] ;
@@ -41,16 +45,25 @@ class ProductsController extends AppController
 	 	
 	 $MainCategories = $this->Categories->find('list', ['keyField' => 'id', 'valueField' => 'title'])->where(['status' => 'ACTIVE', 'parent_id' => 0])->toArray();
 	 $this->set('MainCategories', $MainCategories);
+	 $Categories = [];
+	 $this->set('Categories', $Categories);
+	 
         
-	  $Product = $this->Products->newEntity();
+	 $Product = $this->Products->newEntity();
 	  
 	  $this->set('Product' ,$Product);
 	  if ($this->request->is('post'))
 		{
 			
 			    $data = $this->request->getData() ;
+			  
+			  if($data['main_category_id'] !=''){
 				
-				 $Product= $this->Products->patchEntity($Product, $data);
+				 $Categories = $this->Categories->find('list', ['keyField' => 'id', 'valueField' => 'title'])->where(['status' => 'ACTIVE', 'parent_id' => $data['main_category_id']])->toArray();
+				 $this->set('Categories', $Categories);
+				}
+				
+				$Product= $this->Products->patchEntity($Product, $data);
 				if (!empty($data['image_file']['name']))
 				{
 				
@@ -115,14 +128,28 @@ class ProductsController extends AppController
 	 	
 	 $MainCategories = $this->Categories->find('list', ['keyField' => 'id', 'valueField' => 'title'])->where(['status' => 'ACTIVE', 'parent_id' => 0])->toArray();
 	 $this->set('MainCategories', $MainCategories);	
-       
-	  $Product = $this->Products->get($id);
-	  $this->set('Product' ,$Product);
+     $Categories = [];
+	 $this->set('Categories', $Categories);
+	  
+	 $Product = $this->Products->get($id);
+	 $this->set('Product' ,$Product);
+	 
+	 if($Product->main_category_id !=''){
+				
+		$Categories = $this->Categories->find('list', ['keyField' => 'id', 'valueField' => 'title'])->where(['status' => 'ACTIVE', 'parent_id' => $Product->main_category_id])->toArray();
+		$this->set('Categories', $Categories);
+	 }
 	  
 	  if ($this->request->is('post') || $this->request->is('put'))
 		{
 			
  			   $data = $this->request->getData() ;
+			   
+			    if($data['main_category_id'] !=''){
+				
+				 $Categories = $this->Categories->find('list', ['keyField' => 'id', 'valueField' => 'title'])->where(['status' => 'ACTIVE', 'parent_id' => $data['main_category_id']])->toArray();
+				 $this->set('Categories', $Categories);
+				}
 				
                 $Product= $this->Products->patchEntity($Product, $data);
 				if (!empty($data['image_file']['name']))
@@ -281,5 +308,19 @@ class ProductsController extends AppController
 			
 	}
 	
+	public function getCategories($id = null){
+		$this->viewBuilder()->setLayout(false);
+		
+		 $this->loadModel('Categories');
+		 $Categories = [];
+		
+		 if($id){
+			$Categories = $this->Categories->find('list', ['keyField' => 'id', 'valueField' => 'title'])->where(['status' => 'ACTIVE', 'parent_id' => $id])->toArray();
+			}
+			
+		 
+		
+		 $this->set('Categories' ,$Categories);
+		}
 	
 }

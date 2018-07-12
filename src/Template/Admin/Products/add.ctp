@@ -24,7 +24,15 @@
         <div class="form-group">
           <label class="col-sm-2 control-label" for="input-id-1">Category </label>
           <div class="col-sm-8">
-            <?php echo $this->Form->control('main_category_id', [ 'empty' => 'Select Category' ,   'options' => $MainCategories ,   'label' => false,  'class'=>'form-control']); ?>
+            <?php echo $this->Form->control('main_category_id', ['required' => true,'onChange' =>'get_categories()',  'empty' => 'Select Category' ,   'options' => $MainCategories ,   'label' => false,  'class'=>'form-control']); ?>
+       
+          </div>
+        </div>
+        
+          <div class="form-group">
+          <label class="col-sm-2 control-label" for="input-id-1">Sub Category </label>
+          <div class="col-sm-8" id="sub_cat_div">
+            <?php echo $this->Form->control('category_id', [ 'required' => true,'empty' => 'Select Category' ,   'options' => $Categories ,   'label' => false,  'class'=>'form-control']); ?>
        
           </div>
         </div>
@@ -32,7 +40,7 @@
         <div class="form-group">
           <label class="col-sm-2 control-label" for="input-id-1">Title </label>
           <div class="col-sm-8">
-            <?php echo $this->Form->control('title', [ 'label' => false, 'class'=>'form-control' ]); ?>
+            <?php echo $this->Form->control('title', [ 'required' => true,'label' => false, 'class'=>'form-control' ]); ?>
           </div>
         </div>
         
@@ -46,11 +54,12 @@
         </div>
         <div class="form-group">
           <label class="col-sm-2 control-label" for="input-id-1">Description</label>
-          <div class="col-sm-10">
-           <?php echo $this->Ck->Create('description' , $Product->description); ?>
+          <div class="col-sm-8">
+           <?php echo $this->Form->control('description', [ 'required' => true,'label' => false, 'class'=>'form-control' ]); ?>
+           <?php //echo $this->Ck->Create('description' , $Product->description); ?>
            <?php
 		     if( $Product->getError('description') ){?>
-           <div class="error-message">This field cannot be left empty</div>
+           <div class="error-message">This field can not be left empty</div>
            <?php }?>
            
           </div>
@@ -86,13 +95,13 @@
          <div class="form-group">
           <label class="col-sm-2 control-label" for="input-id-1">Price </label>
           <div class="col-sm-3">
-            <?php echo $this->Form->control('price', [ 'label' => false, 'class'=>'form-control' ]); ?>
+            <?php echo $this->Form->control('price', [ 'required' => true,'label' => false, 'class'=>'form-control' ]); ?>
           </div>
            <div class="col-sm-2">
            <label> Per Gram</label>
           </div>
         </div>
-  
+
         <div class="line line-dashed b-b line-lg pull-in"></div>
         <div class="form-group">
           <div class="col-sm-4 col-sm-offset-2">
@@ -105,7 +114,23 @@
   </div>
 </div>
 <script>
+	
+   function get_categories(){
+     
+        var main_category_id = $('#main-category-id').val();
+        $.ajax({
+            type: "POST",
+            url: "<?php echo $site_url?>admin/products/get_categories/" + main_category_id,
+                    success: function (data) {
+                        if (data != '')
+                        {
+                            $('#sub_cat_div').html(data);
+                        }
+                    }
+        });
+    }
 $(document).ready(function() {
+
    $("#flUpload").change(function () 
    { 
  
@@ -130,5 +155,6 @@ $(document).ready(function() {
 	// $("#flUpload").val(''); 
 	}
   }); 
+  
 });
 </script>

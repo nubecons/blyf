@@ -39,6 +39,15 @@ class ProductsController extends AppController
 public function dishes()
     {
 		
+		$Protiens = $this->Products->find()->where(['status' => 'ACTIVE', 'category_id' => 5])->all();
+	    $this->set('Protiens' ,$Protiens);
+		
+		$Sides = $this->Products->find()->where(['status' => 'ACTIVE', 'category_id' => 7])->all();
+	    $this->set('Sides' , $Sides);
+		
+		$Sauces = $this->Products->find()->where(['status' => 'ACTIVE', 'category_id' => 6])->all();
+	    $this->set('Sauces' ,$Sauces);	
+		
 
     }
 	

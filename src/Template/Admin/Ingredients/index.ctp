@@ -28,7 +28,7 @@
             <th>Image</th>
             <th>Status</th>
             <th>Created</th>
-            <th style="width:100px;">Action</th>
+            <th style="width:200px;">Action</th>
           </tr>
         </thead>
         <tbody>

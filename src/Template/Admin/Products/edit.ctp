@@ -19,47 +19,45 @@
     
       <?php echo $this->Form->create($Product, ["class" => "form-horizontal" , 'enctype' => 'multipart/form-data']); ?> 
       
-        <div class="form-group">
+         <div class="form-group">
           <label class="col-sm-2 control-label" for="input-id-1">Category </label>
-          <div class="col-sm-5">
-            <?php echo $this->Form->control('main_category_id', [ 'empty' => 'Select Category' ,   'options' => $MainCategories ,   'label' => false,  'class'=>'form-control']); ?>
+          <div class="col-sm-8">
+            <?php echo $this->Form->control('main_category_id', ['required' => true,'onChange' =>'get_categories()',  'empty' => 'Select Category' ,   'options' => $MainCategories ,   'label' => false,  'class'=>'form-control']); ?>
+       
+          </div>
+        </div>
+        
+          <div class="form-group">
+          <label class="col-sm-2 control-label" for="input-id-1">Sub Category </label>
+          <div class="col-sm-8" id="sub_cat_div">
+            <?php echo $this->Form->control('category_id', [ 'required' => true,'empty' => 'Select Category' ,   'options' => $Categories ,   'label' => false,  'class'=>'form-control']); ?>
        
           </div>
         </div>
       
         <div class="form-group">
           <label class="col-sm-2 control-label" for="input-id-1">Title </label>
-          <div class="col-sm-5">
-            <?php echo $this->Form->control('title', [ 'label' => false, 'class'=>'form-control' ]); ?>
+          <div class="col-sm-8">
+            <?php echo $this->Form->control('title', [ 'required' => true,'label' => false, 'class'=>'form-control' ]); ?>
           </div>
         </div>
         
          <div class="form-group">
           <label class="col-sm-2 control-label" for="input-id-1">Picture</label>
-          <div class="col-sm-5">
-               <?php echo $this->Form->control('image_file',[ 'id' =>'flUpload', 'label' =>false,  "accept"=>'image/*' ,'type'=>'file' ]); ?>
-                <br>
-            <small> Ideal image dimension: 370px X 230px and Image Size less then : 150KB </small>     
+          <div class="col-sm-8">
+             <?php echo $this->Form->control('image_file',['id' =>'flUpload', 'label' =>false,  "accept"=>'image/*' ,'type'=>'file' ]); ?> <br>
+              <small> Ideal image dimension: 370px X 230px and Image Size less then : 150KB </small>     
                                   
           </div>
         </div>
         <div class="form-group">
-           <label class="col-sm-2 control-label" for="input-id-1"></label>
-              <div class="col-sm-5"><?php if($Product['image'] != ''){?>
-                <img src="<?=$site_url?>img/Products/<?php echo $Product['image'];?>" alt="img" style="max-height:150px; max-width:150px"/>
-               <?php }else{?>
-                 <img src="<?=$site_url?>img/awaiting-image.jpg" alt="img" style="max-height:150px; max-width:150px"/>
-               <?php }?>&nbsp;</div>
-
-            </div>
-        
-        <div class="form-group">
           <label class="col-sm-2 control-label" for="input-id-1">Description</label>
-          <div class="col-sm-10">
-           <?php echo $this->Ck->Create('description' , $Product->description); ?>
+          <div class="col-sm-8">
+           <?php echo $this->Form->control('description', [ 'required' => true,'label' => false, 'class'=>'form-control' ]); ?>
+           <?php //echo $this->Ck->Create('description' , $Product->description); ?>
            <?php
 		     if( $Product->getError('description') ){?>
-           <div class="error-message">This field cannot be left empty</div>
+           <div class="error-message">This field can not be left empty</div>
            <?php }?>
            
           </div>
@@ -95,7 +93,7 @@
          <div class="form-group">
           <label class="col-sm-2 control-label" for="input-id-1">Price </label>
           <div class="col-sm-3">
-            <?php echo $this->Form->control('price', [ 'label' => false, 'class'=>'form-control' ]); ?>
+            <?php echo $this->Form->control('price', [ 'required' => true,'label' => false, 'class'=>'form-control' ]); ?>
           </div>
            <div class="col-sm-2">
            <label> Per Gram</label>
@@ -115,6 +113,20 @@
 </div>
 
 <script>
+function get_categories(){
+     
+        var main_category_id = $('#main-category-id').val();
+        $.ajax({
+            type: "POST",
+            url: "<?php echo $site_url?>admin/products/get_categories/" + main_category_id,
+                    success: function (data) {
+                        if (data != '')
+                        {
+                            $('#sub_cat_div').html(data);
+                        }
+                    }
+        });
+    }
 $(document).ready(function() {
    $("#flUpload").change(function () 
    { 
