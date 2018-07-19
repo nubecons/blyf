@@ -19,16 +19,10 @@
     
       <?php echo $this->Form->create($Product, ["class" => "form-horizontal" , 'enctype' => 'multipart/form-data']); ?> 
       
-         <div class="form-group">
-          <label class="col-sm-2 control-label" for="input-id-1">Category </label>
-          <div class="col-sm-8">
-            <?php echo $this->Form->control('main_category_id', ['required' => true,'onChange' =>'get_categories()',  'empty' => 'Select Category' ,   'options' => $MainCategories ,   'label' => false,  'class'=>'form-control']); ?>
-       
-          </div>
-        </div>
+        
         
           <div class="form-group">
-          <label class="col-sm-2 control-label" for="input-id-1">Sub Category </label>
+          <label class="col-sm-2 control-label" for="input-id-1">Category </label>
           <div class="col-sm-8" id="sub_cat_div">
             <?php echo $this->Form->control('category_id', [ 'required' => true,'empty' => 'Select Category' ,   'options' => $Categories ,   'label' => false,  'class'=>'form-control']); ?>
        

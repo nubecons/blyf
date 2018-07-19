@@ -67,3 +67,7 @@ li{
 select.form-control:not([size]):not([multiple]) {
     height:30px;
 }
+
+.itemselect{
+	border-color:#9a2743;
+}

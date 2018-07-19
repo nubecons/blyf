@@ -105,17 +105,19 @@
 				 foreach($Meals as $Meal){?>
 					<div class="col-lg-4 col-md-6">
 						<div class="products-inner">
-							<img src="<?=$site_url?>images/hp-img2.jpg" alt="">
+                            <img src="<?=$site_url?>img/Meals/<?=$Meal->image?>" alt="">
+							
 							<div class="products-inr-title bg-white">
 								<h4 class="trfm-up"><?=$Meal->title?> <span class="color-brown">$<?= number_format($this->GetInfo->getMealPrice($Meal->id) , 2);?></span></h4>
 								<?php /*?><p class="trfm-up color-light-gray sub-p">Strawberry, kiwi, apple</p><?php */?>
                                
                                 <br style="clear:both">
                                 <p>
-                                <a href="<?=$site_url?>products/customize/<?=$Meal->id?>" >
+                                <?php /*?><a href="<?=$site_url?>products/customize/<?=$Meal->id?>" >
                                 <button class="cta-brown  button" style="min-width:25px; padding:5px">Customize</button>
-                                </a>
-                                 <a href="<?=$site_url?>products/snacks/<?=$Meal->id?>" >
+                                </a><?php */?>
+                                <?php /*?><a href="<?=$site_url?>products/snacks/<?=$Meal->id?>" ><?php */?>
+                                <a href="<?=$site_url?>products/addtocart/<?=$Meal->id?>/meal" >
                                 <button class="cta-brown  button pull-right" style="min-width:25px; padding:5px">Checkout</button>
                                 </a>
                                </p>

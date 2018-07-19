@@ -22,10 +22,25 @@ class ProductsController extends AppController
         parent::beforeFilter($event);
 
 
-        $this->Auth->allow(['customize' ,'snacks']);
+        $this->Auth->allow(['customize' ,'snacks','dishes' ,'cart' ,'checkout']);
     }
 
-
+public function addtocart($id , $type){
+	
+	$Cart = $this->Session->read('Cart');
+	if(!isset($cart[$id])){
+		//$cart['product_idz'][] = 'bb' ;
+		$Cart[$id]['id'] = $id;
+		$Cart[$id]['type'] = $type;
+		$Cart[$id]['quantity'] = 3;
+		}
+		$this->Session->write('Cart' , $Cart);
+		debug($Cart);
+		exit;
+	
+	//
+	
+	}
  
  public function customize()
     {
@@ -39,13 +54,13 @@ class ProductsController extends AppController
 public function dishes()
     {
 		
-		$Protiens = $this->Products->find()->where(['status' => 'ACTIVE', 'category_id' => 5])->all();
+		$Protiens = $this->Products->find()->where(['status' => 'ACTIVE', 'category_id' => 1])->all();
 	    $this->set('Protiens' ,$Protiens);
 		
-		$Sides = $this->Products->find()->where(['status' => 'ACTIVE', 'category_id' => 7])->all();
+		$Sides = $this->Products->find()->where(['status' => 'ACTIVE', 'category_id' => 2])->all();
 	    $this->set('Sides' , $Sides);
 		
-		$Sauces = $this->Products->find()->where(['status' => 'ACTIVE', 'category_id' => 6])->all();
+		$Sauces = $this->Products->find()->where(['status' => 'ACTIVE', 'category_id' => 3])->all();
 	    $this->set('Sauces' ,$Sauces);	
 		
 
@@ -54,6 +69,14 @@ public function dishes()
 public function snacks()
     {
 		
+		$Snacks = $this->Products->find()->where(['status' => 'ACTIVE', 'category_id' => 4])->all();
+	    $this->set('Snacks' ,$Snacks);
+		
+		$Drinks = $this->Products->find()->where(['status' => 'ACTIVE', 'category_id' => 5])->all();
+	    $this->set('Drinks' , $Drinks);
+		
+		$HotDrinks = $this->Products->find()->where(['status' => 'ACTIVE', 'category_id' => 6])->all();
+	    $this->set('HotDrinks' ,$HotDrinks);	
 
     }
 	 

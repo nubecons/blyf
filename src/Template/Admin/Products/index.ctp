@@ -21,7 +21,7 @@
           <tr>
           
             <th>Category</th>
-            <th>Sub Category</th>
+          
             <th>Title</th>
             <th>Image</th>
             <?php /*?><th>Status</th><?php */?>
@@ -38,7 +38,7 @@
 
           <tr>
          
-            <td><?php echo isset($Categories[$Product['main_category_id']])?$Categories[$Product['main_category_id']]:'';?></td>
+    
             <td><?php echo isset($Categories[$Product['category_id']])?$Categories[$Product['category_id']]:'';?></td>
             <td><?=$Product['title']?></td>
             <td><?php if($Product['image'] != ''){?>

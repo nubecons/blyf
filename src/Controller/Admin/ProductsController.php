@@ -43,9 +43,8 @@ class ProductsController extends AppController
 		
 	 $this->loadModel('Categories');
 	 	
-	 $MainCategories = $this->Categories->find('list', ['keyField' => 'id', 'valueField' => 'title'])->where(['status' => 'ACTIVE', 'parent_id' => 0])->toArray();
-	 $this->set('MainCategories', $MainCategories);
-	 $Categories = [];
+	 $Categories = $this->Categories->find('list', ['keyField' => 'id', 'valueField' => 'title'])->where(['status' => 'ACTIVE'])->toArray();
+	
 	 $this->set('Categories', $Categories);
 	 
         
@@ -57,11 +56,7 @@ class ProductsController extends AppController
 			
 			    $data = $this->request->getData() ;
 			  
-			  if($data['main_category_id'] !=''){
-				
-				 $Categories = $this->Categories->find('list', ['keyField' => 'id', 'valueField' => 'title'])->where(['status' => 'ACTIVE', 'parent_id' => $data['main_category_id']])->toArray();
-				 $this->set('Categories', $Categories);
-				}
+			
 				
 				$Product= $this->Products->patchEntity($Product, $data);
 				if (!empty($data['image_file']['name']))
@@ -126,30 +121,21 @@ class ProductsController extends AppController
 		
 	 $this->loadModel('Categories');
 	 	
-	 $MainCategories = $this->Categories->find('list', ['keyField' => 'id', 'valueField' => 'title'])->where(['status' => 'ACTIVE', 'parent_id' => 0])->toArray();
-	 $this->set('MainCategories', $MainCategories);	
-     $Categories = [];
+	 $Categories = $this->Categories->find('list', ['keyField' => 'id', 'valueField' => 'title'])->where(['status' => 'ACTIVE'])->toArray();
+	
 	 $this->set('Categories', $Categories);
 	  
 	 $Product = $this->Products->get($id);
 	 $this->set('Product' ,$Product);
 	 
-	 if($Product->main_category_id !=''){
-				
-		$Categories = $this->Categories->find('list', ['keyField' => 'id', 'valueField' => 'title'])->where(['status' => 'ACTIVE', 'parent_id' => $Product->main_category_id])->toArray();
-		$this->set('Categories', $Categories);
-	 }
+	
 	  
 	  if ($this->request->is('post') || $this->request->is('put'))
 		{
 			
  			   $data = $this->request->getData() ;
 			   
-			    if($data['main_category_id'] !=''){
-				
-				 $Categories = $this->Categories->find('list', ['keyField' => 'id', 'valueField' => 'title'])->where(['status' => 'ACTIVE', 'parent_id' => $data['main_category_id']])->toArray();
-				 $this->set('Categories', $Categories);
-				}
+			  
 				
                 $Product= $this->Products->patchEntity($Product, $data);
 				if (!empty($data['image_file']['name']))

@@ -31,11 +31,10 @@ public function initialize(array $config)
 
     }
 	
-public function beforeSave(Event $event, Entity $entity ) {
+/*public function beforeSave(Event $event, Entity $entity ) {
       $entity->price = '11';
-	  echo "aaaa";
-	  exit;
-    }
+	 
+    }*/
 	
 		
 	

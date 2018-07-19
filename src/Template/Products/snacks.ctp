@@ -3,250 +3,84 @@
     <section id="Order Page Section">
     	<div class="container">
         	<div class="row">
-                <div class="col-md-4 pdng-right0">
-                <div class="pro-box">
-                <div class="pro-box-heading">
-                <h2>Snacks</h2>
-                </div>
-                <div class="fixedheightcontainer" id="item-scrol">
-                <div class="pro-list">
-                <div class="item-img">
-                <img src="<?=$site_url?>images/pro-img.jpeg" />
-                <span class="kcal"><b>44</b> Kcal</span>
-                <i class="info-circle fa fa-info"></i>
-                </div>
-                <div class="item-descript">
-                <h3>Seasonal Fruit Bowl</h3>
-                <div class="row mrgn-top">
-                <div class="col-4">
-                <span class="item-price">£2.75</span>
-                </div>
-                <div class="col-8 text-right">
-                <button class="item-btn">Add to basket</button>
-                </div>
-                </div>
-                </div>
-                </div>
-                <div class="pro-list">
-                <div class="item-img">
-                <img src="<?=$site_url?>images/pro-img.jpeg" />
-                <span class="kcal"><b>44</b> Kcal</span>
-                <i class="info-circle fa fa-info"></i>
-                </div>
-                <div class="item-descript">
-                <h3>Seasonal Fruit Bowl</h3>
-                <div class="row mrgn-top">
-                <div class="col-4">
-                <span class="item-price">£2.75</span>
-                </div>
-                <div class="col-8 text-right">
-                <button class="item-btn">Add to basket</button>
-                </div>
-                </div>
-                </div>
-                </div>
-                <div class="pro-list">
-                <div class="item-img">
-                <img src="<?=$site_url?>images/pro-img.jpeg" />
-                <span class="kcal"><b>44</b> Kcal</span>
-                <i class="info-circle fa fa-info"></i>
-                </div>
-                <div class="item-descript">
-                <h3>Seasonal Fruit Bowl</h3>
-                <div class="row mrgn-top">
-                <div class="col-4">
-                <span class="item-price">£2.75</span>
-                </div>
-                <div class="col-8 text-right">
-                <button class="item-btn">Add to basket</button>
-                </div>
-                </div>
-                </div>
-                </div>
-                <div class="pro-list">
-                <div class="item-img">
-                <img src="<?=$site_url?>images/pro-img.jpeg" />
-                <span class="kcal"><b>44</b> Kcal</span>
-                <i class="info-circle fa fa-info"></i>
-                </div>
-                <div class="item-descript">
-                <h3>Seasonal Fruit Bowl</h3>
-                <div class="row mrgn-top">
-                <div class="col-4">
-                <span class="item-price">£2.75</span>
-                </div>
-                <div class="col-8 text-right">
-                <button class="item-btn">Add to basket</button>
-                </div>
-                </div>
-                </div>
-                </div>
-                </div>
-                </div>
+            	<div class="col-md-4 pdng-right0">
+                  <div class="pro-box">
+                	<div class="pro-box-heading">
+                    	<h2>Snacks</h2>
+                    </div>
+                    <div class="fixedheightcontainer" id="item-scrol">
+                    <?php
+					foreach($Snacks as $Product){?>
+                    <div class="pro-list">
+                      <div class="item-img">
+                      <img src="<?=$site_url?>img/Products/<?php echo $Product['image'];?>" alt="<?=$Product['title']?>" />
+                    	
+                       <?php /*?> <i class="info-circle fa fa-info"></i><?php */?>
+                      </div>
+                      <div class="item-heading">
+                      	<h3><?=$Product['title']?></h3>
+                      </div>
+                    </div>
+                    <?php }?>
+                    
+                <?php /*?> $( "div.tumble" ).toggleClass( "bounce" )<?php */?>
+                  
+                  
+                    </div>
+                  </div>
                 </div>
                 <div class="col-md-4 pdng-right0">
-                <div class="pro-box">
-                <div class="pro-box-heading">
-                <h2>Drinks</h2>
+                  <div class="pro-box">
+                	<div class="pro-box-heading">
+                    	<h2>Drinks</h2>
+                    </div>
+                    
+                    
+                    <div class="fixedheightcontainer" id="item-scrol">
+                    <?php
+					foreach($Drinks as $Product){?>
+                    <div class="pro-list ">
+                      <div class="item-img">
+                      <img src="<?=$site_url?>img/Products/<?php echo $Product['image'];?>" alt="<?=$Product['title']?>" />
+                    	
+                       <?php /*?> <i class="info-circle fa fa-info"></i><?php */?>
+                      </div>
+                      <div class="item-heading">
+                      	<h3><?=$Product['title']?></h3>
+                      </div>
+                    </div>
+                    <?php }?>
+                   
+                  
+                    </div>
+                  </div>
                 </div>
-                <div class="fixedheightcontainer" id="item-scrol">
-                <div class="pro-list">
-                <div class="item-img">
-                <img src="<?=$site_url?>images/pro-img.jpeg" />
-                <span class="kcal"><b>44</b> Kcal</span>
-                <i class="info-circle fa fa-info"></i>
+                
+                 <div class="col-md-4 pdng-right0">
+                  <div class="pro-box">
+                	<div class="pro-box-heading">
+                    	<h2>Hot Drinks</h2>
+                    </div>
+                    
+                    
+                    <div class="fixedheightcontainer" id="item-scrol">
+                       <?php
+					foreach($HotDrinks as $Product){?>
+                    <div class="pro-list">
+                      <div class="item-img">
+                      <img src="<?=$site_url?>img/Products/<?php echo $Product['image'];?>" alt="<?=$Product['title']?>" />
+                    	
+                       <?php /*?> <i class="info-circle fa fa-info"></i><?php */?>
+                      </div>
+                      <div class="item-heading">
+                      	<h3><?=$Product['title']?></h3>
+                      </div>
+                    </div>
+                    <?php }?>
+                    </div>
+                  </div>
                 </div>
-                <div class="item-descript">
-                <h3>Seasonal Fruit Bowl</h3>
-                <div class="row mrgn-top">
-                <div class="col-4">
-                <span class="item-price">£2.75</span>
-                </div>
-                <div class="col-8 text-right">
-                <button class="item-btn">Add to basket</button>
-                </div>
-                </div>
-                </div>
-                </div>
-                <div class="pro-list">
-                <div class="item-img">
-                <img src="<?=$site_url?>images/pro-img.jpeg" />
-                <span class="kcal"><b>44</b> Kcal</span>
-                <i class="info-circle fa fa-info"></i>
-                </div>
-                <div class="item-descript">
-                <h3>Seasonal Fruit Bowl</h3>
-                <div class="row mrgn-top">
-                <div class="col-4">
-                <span class="item-price">£2.75</span>
-                </div>
-                <div class="col-8 text-right">
-                <button class="item-btn">Add to basket</button>
-                </div>
-                </div>
-                </div>
-                </div>
-                <div class="pro-list">
-                <div class="item-img">
-                <img src="<?=$site_url?>images/pro-img.jpeg" />
-                <span class="kcal"><b>44</b> Kcal</span>
-                <i class="info-circle fa fa-info"></i>
-                </div>
-                <div class="item-descript">
-                <h3>Seasonal Fruit Bowl</h3>
-                <div class="row mrgn-top">
-                <div class="col-4">
-                <span class="item-price">£2.75</span>
-                </div>
-                <div class="col-8 text-right">
-                <button class="item-btn">Add to basket</button>
-                </div>
-                </div>
-                </div>
-                </div>
-                <div class="pro-list">
-                <div class="item-img">
-                <img src="<?=$site_url?>images/pro-img.jpeg" />
-                <span class="kcal"><b>44</b> Kcal</span>
-                <i class="info-circle fa fa-info"></i>
-                </div>
-                <div class="item-descript">
-                <h3>Seasonal Fruit Bowl</h3>
-                <div class="row mrgn-top">
-                <div class="col-4">
-                <span class="item-price">£2.75</span>
-                </div>
-                <div class="col-8 text-right">
-                <button class="item-btn">Add to basket</button>
-                </div>
-                </div>
-                </div>
-                </div>
-                </div>
-                </div>
-                </div>
-                <div class="col-md-4 pdng-right0">
-                <div class="pro-box">
-                <div class="pro-box-heading">
-                <h2>Hot Drinks</h2>
-                </div>
-                <div class="fixedheightcontainer" id="item-scrol">
-                <div class="pro-list">
-                <div class="item-img">
-                <img src="<?=$site_url?>images/pro-img.jpeg" />
-                <span class="kcal"><b>44</b> Kcal</span>
-                <i class="info-circle fa fa-info"></i>
-                </div>
-                <div class="item-descript">
-                <h3>Seasonal Fruit Bowl</h3>
-                <div class="row mrgn-top">
-                <div class="col-4">
-                <span class="item-price">£2.75</span>
-                </div>
-                <div class="col-8 text-right">
-                <button class="item-btn">Add to basket</button>
-                </div>
-                </div>
-                </div>
-                </div>
-                <div class="pro-list">
-                <div class="item-img">
-                <img src="<?=$site_url?>images/pro-img.jpeg" />
-                <span class="kcal"><b>44</b> Kcal</span>
-                <i class="info-circle fa fa-info"></i>
-                </div>
-                <div class="item-descript">
-                <h3>Seasonal Fruit Bowl</h3>
-                <div class="row mrgn-top">
-                <div class="col-4">
-                <span class="item-price">£2.75</span>
-                </div>
-                <div class="col-8 text-right">
-                <button class="item-btn">Add to basket</button>
-                </div>
-                </div>
-                </div>
-                </div>
-                <div class="pro-list">
-                <div class="item-img">
-                <img src="<?=$site_url?>images/pro-img.jpeg" />
-                <span class="kcal"><b>44</b> Kcal</span>
-                <i class="info-circle fa fa-info"></i>
-                </div>
-                <div class="item-descript">
-                <h3>Seasonal Fruit Bowl</h3>
-                <div class="row mrgn-top">
-                <div class="col-4">
-                <span class="item-price">£2.75</span>
-                </div>
-                <div class="col-8 text-right">
-                <button class="item-btn">Add to basket</button>
-                </div>
-                </div>
-                </div>
-                </div>
-                <div class="pro-list">
-                <div class="item-img">
-                <img src="<?=$site_url?>images/pro-img.jpeg" />
-                <span class="kcal"><b>44</b> Kcal</span>
-                <i class="info-circle fa fa-info"></i>
-                </div>
-                <div class="item-descript">
-                <h3>Seasonal Fruit Bowl</h3>
-                <div class="row mrgn-top">
-                <div class="col-4">
-                <span class="item-price">£2.75</span>
-                </div>
-                <div class="col-8 text-right">
-                <button class="item-btn">Add to basket</button>
-                </div>
-                </div>
-                </div>
-                </div>
-                </div>
-                </div>
-                </div>
-             
+              
             </div>
         </div>
     </section>
@@ -267,4 +101,11 @@
                     </div>
                     </div>
     </section>
+    <script>
+$(document).ready(function(){
+    $(".pro-list").click(function(){
+        $(this).toggleClass("itemselect");
+    });
+});
+</script>
     

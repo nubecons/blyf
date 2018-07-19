@@ -270,7 +270,7 @@
                                             </a>
                                         </li>     
                                         
-                                         <li>
+                                        <?php /*?> <li>
                                             <a href="<?=$site_url?>admin/categories/sub">
                                                 <span>All Sub Categories</span>
                                             </a>
@@ -279,7 +279,7 @@
                                             <a href="<?=$site_url?>admin/categories/add_sub">
                                                 <span>Add Sub Category</span>
                                             </a>
-                                        </li>     
+                                        </li>     <?php */?>
                                         
                                     </ul>
                                 </li>

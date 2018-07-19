@@ -112,6 +112,7 @@ class MealsController extends AppController
 	  if ($this->request->is('post') || $this->request->is('put'))
 		{
 			
+			
  			   $data = $this->request->getData() ;
 				
               $Meal= $this->Meals->patchEntity($Meal, $data);
@@ -155,17 +156,23 @@ class MealsController extends AppController
 				
 				
 			}
-				$Meal= $this->Meals->patchEntity($Meal, $data);
+			
+			   
+				$Meal = $this->Meals->patchEntity($Meal, $data);
 			
 				if ($this->Meals->save($Meal))
 				{
+					
 					$this->Flash->success(__('Record saved successfully.'));
 					$this->redirect(['action' => 'index']);
+					
 				}elseif(!$Meal->getErrors()){
 					
 				 $this->Flash->error(__('Record could not saved. Please try again later.'));	
 				
 				}
+				
+				
 		}
 	} 
 	

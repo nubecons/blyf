@@ -96,8 +96,7 @@
                     </div>
                 <div class="col-sm-6">
                 	<div class="pull-right box-btn">
-                        	<span class="prictxt-tag">£7.42</span>
-                            <a href="#" class="cta-brown order-now button brdr-rads">Checkout</a>
+                        	<a href="<?=$site_url?>products/snacks" class="cta-brown order-now button">Checkout</a>
                         </div>
                     </div>
                     </div>
